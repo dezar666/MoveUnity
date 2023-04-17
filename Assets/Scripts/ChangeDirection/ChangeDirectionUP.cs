@@ -2,29 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//public class ChangeDirectionUP : MonoBehaviour
-//{
-//    public float speed = 20f;
+/*
+public class ChangeDirectionUP : MonoBehaviour
+{
+    public float speed = 20f;
 
-//    private void OnCollisionEnter(Collision collision)
-//    {
-//        if (collision.gameObject.CompareTag("Player"))
-//        {
-//            // Get the direction of the player's movement
-//            Vector3 playerDirection = collision.gameObject.GetComponent<CharacterMovement>().MoveDir;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Get the direction of the player's movement
+            Vector3 playerDirection = collision.gameObject.GetComponent<CharacterMovement>().MoveDir;
 
-//            // Change the direction of movement to the up
-//            Vector3 newDirection = Vector3.Cross(Vector3.up, playerDirection);
+            // Change the direction of movement to the up
+            Vector3 newDirection = Vector3.Cross(Vector3.up, playerDirection);
 
-//            // Update the direction of the player
-//            collision.gameObject.GetComponent<CharacterMovement>().MoveDir = newDirection.normalized;
+            // Update the direction of the player
+            collision.gameObject.GetComponent<CharacterMovement>().MoveDir = newDirection.normalized;
 
-//            // Move an object in a new direction
-//            GetComponent<Rigidbody>().velocity = newDirection.normalized * speed;
-//        }
-//    }
-//}
-
+            // Move an object in a new direction
+            GetComponent<Rigidbody>().velocity = newDirection.normalized * speed;
+        }
+    }
+}
+*/
 
 
 

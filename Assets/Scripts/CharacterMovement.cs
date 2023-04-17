@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
-{ /*
-    
+{ 
+    /*
     GameObject character;
     //    private Vector3 currentPos = Transform.;
     public float speed = 5f;
@@ -72,7 +72,8 @@ public class CharacterMovement : MonoBehaviour
                 rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
             }
         }
-    }*/
+    }
+    */
 
 
 
@@ -110,22 +111,24 @@ public class CharacterMovement : MonoBehaviour
             StartCoroutine(MovePlayer(Vector3.right));
         }
 
-        //if (moveDir != Vector3.zero)
-        //{
-        //    Ray moveRay = new Ray(transform.position, moveDir);
+        /*
+        if (moveDir != Vector3.zero)
+        {
+            Ray moveRay = new Ray(transform.position, moveDir);
 
 
-        //    if (Physics.Raycast(moveRay, out RaycastHit hit, raycastLength, obstacleLayer))
-        //    {
+            if (Physics.Raycast(moveRay, out RaycastHit hit, raycastLength, obstacleLayer))
+            {
 
-        //        moveDir = Vector3.zero;
-        //    }
-        //    else
-        //    {
+                moveDir = Vector3.zero;
+            }
+            else
+            {
 
-        //        rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
-        //    }
-        //}
+                rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
+            }
+        }
+        */
     }
 
 

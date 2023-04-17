@@ -35,22 +35,24 @@ public class GridMovement : MonoBehaviour
             StartCoroutine(MovePlayer(Vector3.right));
         }
 
-        //if (moveDir != Vector3.zero)
-        //{
-        //    Ray moveRay = new Ray(transform.position, moveDir);
+        /*
+        if (moveDir != Vector3.zero)
+        {
+            Ray moveRay = new Ray(transform.position, moveDir);
 
 
-        //    if (Physics.Raycast(moveRay, out RaycastHit hit, raycastLength, obstacleLayer))
-        //    {
+            if (Physics.Raycast(moveRay, out RaycastHit hit, raycastLength, obstacleLayer))
+            {
 
-        //        moveDir = Vector3.zero;
-        //    }
-        //    else
-        //    {
+                moveDir = Vector3.zero;
+            }
+            else
+            {
 
-        //        rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
-        //    }
-        //}
+                rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
+            }
+        } 
+        */
     }
 
 
