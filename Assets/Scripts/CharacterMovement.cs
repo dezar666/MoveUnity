@@ -59,22 +59,22 @@ public class CharacterMovement : MonoBehaviour
         {
             Ray moveRay = new Ray(transform.position, moveDir);
 
-            // ѕровер€ем, есть ли преп€тствие на пути луча
+            // Checking if there is an obstacle in the path of the ray
             if (Physics.Raycast(moveRay, out RaycastHit hit, raycastLength, obstacleLayer))
             {
-                // ≈сли есть преп€тствие, останавливаем движение и обнул€ем направление
+                // If there is an obstacle, stop the movement and reset the direction
                 moveDir = Vector3.zero;
             }
 
             else
             {
-                // ≈сли преп€тстви€ нет, двигаем персонажа
+                // If there is no obstacle, move the character
                 rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
             }
         }
     }*/
 
-    
+
 
     private bool isMoving;
     private Vector3 origPos, targetPos;

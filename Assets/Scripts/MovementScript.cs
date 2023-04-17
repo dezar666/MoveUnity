@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
-    // Ссылка на игровой объект игрока
+    // Reference to the player's game object
     public GameObject player;
 
-    // При столкновении игрока с объектом
+    // When a player collides with an object
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == player)
         {
-            // Начать движение игрока влево
+            // Start player moving to the left
             player.GetComponent<Rigidbody>().AddForce(Vector3.left * 10, ForceMode.Impulse);
         }
     }
