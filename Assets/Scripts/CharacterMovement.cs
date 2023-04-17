@@ -80,6 +80,9 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 origPos, targetPos;
     private float timeToMove = 0.2f;
 
+    public LayerMask obstacleLayer;
+    public float raycastLength = 1f;
+
     private void Start()
     {
         isMoving = false;
@@ -89,55 +92,59 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
 
-        if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.forward));
-        }
-
-        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.back));
-
-        }
-
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.left));
-        }
-
-        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.right));
-        }
-
-        //if (moveDir != Vector3.zero)
+        //if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !isMoving)
         //{
-        //    Ray moveRay = new Ray(transform.position, moveDir);
-
-
-        //    if (Physics.Raycast(moveRay, out RaycastHit hit, raycastLength, obstacleLayer))
-        //    {
-
-        //        moveDir = Vector3.zero;
-        //    }
-        //    else
-        //    {
-
-        //        rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
-        //    }
+        //    StartCoroutine(MovePlayer(Vector3.forward));
         //}
+
+        //if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && !isMoving)
+        //{
+        //    StartCoroutine(MovePlayer(Vector3.back));
+
+        //}
+
+        //if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && !isMoving)
+        //{
+        //    StartCoroutine(MovePlayer(Vector3.left));
+        //}
+
+        //if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && !isMoving)
+        //{
+        //    StartCoroutine(MovePlayer(Vector3.right));
+        //}
+
+        if (!isMoving)
+        {
+            if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
+            {
+                StartCoroutine(MovePlayer(Input.GetAxis("Horizontal") > 0 ? Vector3.right : Vector3.left));
+            }
+            else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+            {
+                StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
+            }
+        }
     }
 
 
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
+        // Checking if there is an obstacle in the path of the ray
         isMoving = true;
-
         float elapsedTime = 0;
 
         origPos = transform.position;
         targetPos = origPos + direction;
+
+        Ray moveRay = new Ray(transform.position, direction);
+
+        // Checking if there is an obstacle in the path of the ray
+        if (Physics.Raycast(moveRay, out RaycastHit hit, 1f, obstacleLayer))
+        {
+            isMoving = false;
+            yield break;
+        }
 
         while (elapsedTime < timeToMove)
         {
@@ -145,10 +152,9 @@ public class CharacterMovement : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         transform.position = targetPos;
 
-        isMoving = false;
+        StartCoroutine(MovePlayer(direction));
     }
 
 }

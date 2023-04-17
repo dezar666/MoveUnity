@@ -8246,7 +8246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d867b968ac109047836d81e748d7f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!65 &305227696
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27254,7 +27253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095cd9c6a270767419cad7a8b642834b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!65 &1043361612
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28804,7 +28802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c75f5711ee3e8744a1edec5eb9725a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushbackForce: 45
 --- !u!1001 &1082320075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30562,7 +30559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d867b968ac109047836d81e748d7f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!65 &1138075626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36606,7 +36602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c75e5ba621de00448ed97c499b31fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!65 &1326034670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42511,7 +42506,7 @@ BoxCollider:
   m_GameObject: {fileID: 1542322655}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -44042,7 +44037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d867b968ac109047836d81e748d7f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!65 &1608323418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49998,7 +49992,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c75f5711ee3e8744a1edec5eb9725a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushbackForce: 45
 --- !u!1001 &1839870731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51458,7 +51451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d867b968ac109047836d81e748d7f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!54 &1888275671
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -53590,6 +53582,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14187b19d8b1802469a90f1c91c700f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  raycastLength: 1
 --- !u!54 &1985243260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -53605,7 +53601,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1985243261
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54792,7 +54788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d867b968ac109047836d81e748d7f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!65 &2025638682
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57586,7 +57581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d867b968ac109047836d81e748d7f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!65 &2123635938
 BoxCollider:
   m_ObjectHideFlags: 0
