@@ -50,14 +50,16 @@ public class CharacterMovement : MonoBehaviour
             if (hit.collider.gameObject.tag == "DirectionBlock")
             {
                 StartCoroutine(MovePlayer(hit.collider.gameObject.transform.up));
-                yield break;
             }
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
                 Vector3 NewDir = Vector3.Normalize(transform.position - hit.collider.transform.position);
                 StartCoroutine(MovePlayer(NewDir));
             }
-            isMoving = false;
+            else
+            {
+                isMoving = false;
+            }
             yield break;
         }
 
