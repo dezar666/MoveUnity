@@ -16,12 +16,13 @@ public class CharacterMovement : MonoBehaviour
     public float raycastLength = 1f;
 
     float duration = 5;
-    bool depthTest = true;
+    
 
 
     private void Start()
     {
         isMoving = false;
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -66,6 +67,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 Vector3 NewDir = Vector3.Normalize(transform.position - hit.collider.transform.position);
                 StartCoroutine(MovePlayer(NewDir));
+                isCharged = true;
             }
             else
             {
@@ -74,7 +76,7 @@ public class CharacterMovement : MonoBehaviour
             yield break;
         }
 
-        /*
+        
         // Checking what is under player
         if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, obstacleLayer))
         {
@@ -88,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
                 OnDestroy();
             }
             yield break;
-        } */
+        } 
 
         while (elapsedTime < timeToMove)
         {
@@ -105,5 +107,6 @@ public class CharacterMovement : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    
 
 }
