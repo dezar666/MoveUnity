@@ -1,69 +1,109 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
-{
-    GameObject character;
-/*    private Vector3 currentPos = Transform.;*/
-    public float speed = 5f;
+{ 
+    private bool isMoving;
+    private bool isAlive;
+    private bool isCharged;
+    private Vector3 origPos, targetPos, checkPos;
+
+
+    public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
     public float raycastLength = 1f;
 
-    private Rigidbody rb;
-    private Vector3 moveDir = Vector3.zero;
+    float duration = 5;
+    bool depthTest = true;
 
-    public Vector3 MoveDir
-    {
-        get { return moveDir; }
-        set { moveDir = value; }
-    }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        character = GameObject.Find("Player");
-        rb = GetComponent<Rigidbody>();
-        Physics.defaultContactOffset = 0.5f;
+        isMoving = false;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        if (!isMoving && isAlive)
         {
-            moveDir = Vector3.forward;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-        {
-            moveDir = Vector3.back;
-/*            transform.position = Vector3.(Mathf.Round())*/
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            moveDir = Vector3.left;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            moveDir = Vector3.right;
-        }
-
-        if (moveDir != Vector3.zero)
-        {
-            Ray moveRay = new Ray(transform.position, moveDir);
-
-            // ѕровер€ем, есть ли преп€тствие на пути луча
-            if (Physics.Raycast(moveRay, out RaycastHit hit, raycastLength, obstacleLayer))
+            if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
-                // ≈сли есть преп€тствие, останавливаем движение и обнул€ем направление
-                moveDir = Vector3.zero;
+                StartCoroutine(MovePlayer(Input.GetAxis("Horizontal") > 0 ? Vector3.right : Vector3.left));
             }
-            else
+            else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
             {
-                // ≈сли преп€тстви€ нет, двигаем персонажа
-                rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
+                StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
         }
     }
-}
 
+    private IEnumerator MovePlayer(Vector3 direction)
+    {
+        // Checking if there is an obstacle in the path of the ray
+        isMoving = true;
+        float elapsedTime = 0;
+
+        origPos = transform.position;
+        targetPos = origPos + direction;
+
+        Vector3 down = transform.TransformDirection(Vector3.back) * 10;
+        Debug.DrawRay(transform.position, down, Color.red, duration);
+
+        Ray moveRay = new Ray(transform.position, direction);
+        Ray checkRay =  new Ray(transform.position, down);
+
+        // Checking if there is an obstacle in the path of the ray
+        if (Physics.Raycast(moveRay, out RaycastHit hit, 1f, obstacleLayer))
+        {
+            if (hit.collider.gameObject.tag == "DirectionBlock")
+            {
+                StartCoroutine(MovePlayer(hit.collider.gameObject.transform.up));
+            }
+            else if (hit.collider.gameObject.tag == "PushbackBlock")
+            {
+                Vector3 NewDir = Vector3.Normalize(transform.position - hit.collider.transform.position);
+                StartCoroutine(MovePlayer(NewDir));
+            }
+            else
+            {
+                isMoving = false;
+            }
+            yield break;
+        }
+
+        /*
+        // Checking what is under player
+        if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, obstacleLayer))
+        {
+            if (checkhit.collider.gameObject.tag == "GrassBlock")
+            {
+                GetComponent<ChangeGrass>().wasSteped = true;
+            }
+            else if (checkhit.collider.gameObject.tag == "SpikeBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
+            {
+                isAlive = false;
+                OnDestroy();
+            }
+            yield break;
+        } */
+
+        while (elapsedTime < timeToMove)
+        {
+            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPos;
+
+        StartCoroutine(MovePlayer(direction));
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
+
+}

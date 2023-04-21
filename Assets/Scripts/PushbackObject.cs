@@ -9,23 +9,24 @@ public class PushbackObject : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player")) // проверяем, столкнулся ли объект с игроком
+        if (collision.gameObject.CompareTag("Player")) // check if the object collided with the player
         {
             Vector3 pushDirection = (collision.transform.position - transform.position).normalized;
 
-            // выпускаем луч из игрока
+            // fire a ray from the player
             Ray ray = new Ray(collision.transform.position, pushDirection);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit)) // проверяем, столкнулся ли луч с другим объектом
+            if (Physics.Raycast(ray, out hit)) // check if the ray has collided with another object
             {
                 float distanceToHit = hit.distance;
-                collision.transform.Translate(pushDirection * (distanceToHit - width), Space.World); // перемещаем игрока до стены
+                collision.transform.Translate(pushDirection * (distanceToHit - width), Space.World); // move the player to the wall
             }
         }
     }
 }
 */
 
+/*
 using UnityEngine;
 
 public class PushbackObject : MonoBehaviour
@@ -48,3 +49,4 @@ public class PushbackObject : MonoBehaviour
         }
     }
 }
+*/
