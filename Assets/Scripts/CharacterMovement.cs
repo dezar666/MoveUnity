@@ -6,12 +6,18 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 { 
     private bool isMoving;
-    private Vector3 origPos, targetPos;
+    private bool isAlive;
+    private bool isCharged;
+    private Vector3 origPos, targetPos, checkPos;
 
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
     public float raycastLength = 1f;
+
+    float duration = 5;
+    bool depthTest = true;
+
 
     private void Start()
     {
@@ -21,7 +27,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isMoving)
+        if (!isMoving && isAlive)
         {
             if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
@@ -43,7 +49,11 @@ public class CharacterMovement : MonoBehaviour
         origPos = transform.position;
         targetPos = origPos + direction;
 
+        Vector3 down = transform.TransformDirection(Vector3.back) * 10;
+        Debug.DrawRay(transform.position, down, Color.red, duration);
+
         Ray moveRay = new Ray(transform.position, direction);
+        Ray checkRay =  new Ray(transform.position, down);
 
         // Checking if there is an obstacle in the path of the ray
         if (Physics.Raycast(moveRay, out RaycastHit hit, 1f, obstacleLayer))
@@ -64,6 +74,22 @@ public class CharacterMovement : MonoBehaviour
             yield break;
         }
 
+        /*
+        // Checking what is under player
+        if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, obstacleLayer))
+        {
+            if (checkhit.collider.gameObject.tag == "GrassBlock")
+            {
+                GetComponent<ChangeGrass>().wasSteped = true;
+            }
+            else if (checkhit.collider.gameObject.tag == "SpikeBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
+            {
+                isAlive = false;
+                OnDestroy();
+            }
+            yield break;
+        } */
+
         while (elapsedTime < timeToMove)
         {
             transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
@@ -73,6 +99,11 @@ public class CharacterMovement : MonoBehaviour
         transform.position = targetPos;
 
         StartCoroutine(MovePlayer(direction));
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
     }
 
 }
