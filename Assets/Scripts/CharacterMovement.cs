@@ -4,25 +4,30 @@ using UnityEditor.UI;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
-{ 
+{
     private bool isMoving;
     private bool isAlive;
     private bool isCharged;
     private Vector3 origPos, targetPos, checkPos;
 
-
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
     public float raycastLength = 1f;
 
-    float duration = 5;
-    
+    [SerializeField] GameObject GameObject;
+    [SerializeField] Transform spawnPoint;
 
+    float duration = 5;
 
     private void Start()
     {
         isMoving = false;
         isAlive = true;
+    }
+
+    private void RespawnPoint()
+    {
+        transform.position = spawnPoint.position;
     }
 
     // Update is called once per frame
@@ -84,10 +89,10 @@ public class CharacterMovement : MonoBehaviour
             {
                 GetComponent<ChangeGrass>().wasSteped = true;
             }
-            else if (checkhit.collider.gameObject.tag == "SpikeBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
+            else if (checkhit.collider.gameObject.tag == "DeathBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
             {
-                isAlive = false;
-                OnDestroy();
+                RespawnPoint();
+                isMoving = false;
             }
             yield break;
         } 
@@ -102,11 +107,4 @@ public class CharacterMovement : MonoBehaviour
 
         StartCoroutine(MovePlayer(direction));
     }
-
-    private void OnDestroy()
-    {
-        Destroy(gameObject);
-    }
-    
-
 }
