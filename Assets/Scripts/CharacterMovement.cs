@@ -65,7 +65,18 @@ public class CharacterMovement : MonoBehaviour
             }
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
-                Vector3 NewDir = Vector3.Normalize(transform.position - hit.collider.transform.position);
+                Vector3 NewDir = transform.position - hit.collider.transform.position;
+                NewDir.y = 0;
+                if (NewDir.x > NewDir.z)
+                {
+                    NewDir.z = 0;
+                }
+                else
+                {
+                    NewDir.x = 0;
+                }
+                NewDir.Normalize();
+
                 StartCoroutine(MovePlayer(NewDir));
                 isCharged = true;
             }
