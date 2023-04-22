@@ -64,6 +64,8 @@ public class CharacterMovement : MonoBehaviour
         // Checking if there is an obstacle in the path of the ray
         if (Physics.Raycast(moveRay, out RaycastHit hit, 1f, obstacleLayer))
         {
+            bool bShouldYield = true;
+
             if (hit.collider.gameObject.tag == "DirectionBlock")
             {
                 StartCoroutine(MovePlayer(hit.collider.gameObject.transform.up));
@@ -85,11 +87,21 @@ public class CharacterMovement : MonoBehaviour
                 StartCoroutine(MovePlayer(NewDir));
                 isCharged = true;
             }
+            else if (hit.collider.gameObject.tag == "Destroyable" && isCharged)
+            {
+                Destroy(hit.collider.gameObject);
+                isCharged = false;
+                bShouldYield = false;
+            }
             else
             {
                 isMoving = false;
             }
-            yield break;
+
+            if (bShouldYield)
+            {
+                yield break;
+            }
         }
 
         
