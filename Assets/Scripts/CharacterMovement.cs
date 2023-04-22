@@ -72,7 +72,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 Vector3 NewDir = transform.position - hit.collider.transform.position;
                 NewDir.y = 0;
-                if (NewDir.x > NewDir.z)
+                if (Mathf.Abs(NewDir.x) > Mathf.Abs(NewDir.z))
                 {
                     NewDir.z = 0;
                 }
