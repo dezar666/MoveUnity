@@ -100,6 +100,7 @@ public class CharacterMovement : MonoBehaviour
 
             if (bShouldYield)
             {
+                isCharged = false;
                 yield break;
             }
         }
