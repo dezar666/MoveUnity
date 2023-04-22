@@ -5,6 +5,9 @@ using UnityEngine;
 public class ChangeGrass : MonoBehaviour
 {
 
+    public Material newMaterialRef;
+    public Renderer grassRenderer;
+
     public bool wasSteped;
 
     // Start is called before the first frame update
@@ -17,5 +20,14 @@ public class ChangeGrass : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void onSteped()
+    {
+        if (wasSteped)
+        {
+            wasSteped=true;
+            grassRenderer.material = newMaterialRef;;
+        }
     }
 }

@@ -87,7 +87,10 @@ public class CharacterMovement : MonoBehaviour
         {
             if (checkhit.collider.gameObject.tag == "GrassBlock")
             {
-                GetComponent<ChangeGrass>().wasSteped = true;
+                if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
+                {
+                    checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
+                }
             }
             else if (checkhit.collider.gameObject.tag == "DeathBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
             {
