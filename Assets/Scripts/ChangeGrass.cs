@@ -24,7 +24,7 @@ public class ChangeGrass : MonoBehaviour
 
     public void onSteped()
     {
-        if (wasSteped)
+        if (!wasSteped)
         {
             wasSteped=true;
             grassRenderer.material = newMaterialRef;;

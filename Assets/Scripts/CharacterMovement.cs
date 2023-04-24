@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
+    public LayerMask FloorObstacleLayer;
     public float raycastLength = 1f;
 
     [SerializeField] GameObject GameObject;
@@ -107,13 +108,15 @@ public class CharacterMovement : MonoBehaviour
 
         
         // Checking what is under player
-        if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, obstacleLayer))
+        if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, FloorObstacleLayer))
         {
             if (checkhit.collider.gameObject.tag == "GrassBlock")
             {
                 if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
                 {
                     checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
+                    isMoving = false;
+
                 }
             }
             else if (checkhit.collider.gameObject.tag == "DeathBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
