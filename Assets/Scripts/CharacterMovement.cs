@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UI;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.Profiling;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
     public LayerMask obstacleLayer;
     public LayerMask FloorObstacleLayer;
     public float raycastLength = 1f;
+    public GameObject DrownVFX;
 
     [SerializeField] GameObject GameObject;
     [SerializeField] Transform spawnPoint;
@@ -121,6 +124,8 @@ public class CharacterMovement : MonoBehaviour
             }
             else if (checkhit.collider.gameObject.tag == "DeathBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
             {
+                Instantiate(DrownVFX, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(1);
                 RespawnPoint();
                 isMoving = false;
             }
