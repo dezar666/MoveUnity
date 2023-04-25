@@ -73,6 +73,18 @@ public class CharacterMovement : MonoBehaviour
         Ray moveRay = new Ray(transform.position, direction);
         Ray checkRay =  new Ray(transform.position, down);
 
+        if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, FloorObstacleLayer))
+        {
+            if (checkhit.collider.gameObject.tag == "GrassBlock")
+            {
+                if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
+                {
+                    checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
+                }
+            }
+        }
+
+
         // Checking if there is an obstacle in the path of the ray
         if (Physics.Raycast(moveRay, out RaycastHit hit, 1f, obstacleLayer))
         {
@@ -117,21 +129,24 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        
-        // Checking what is under player
-        if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, FloorObstacleLayer))
-        {
-           if (checkhit.collider.gameObject.tag == "GrassBlock")
-            {
-                if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
-                {
-                    checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
-                }
-            }
 
-            if (checkhit.collider.gameObject.tag == "DeathBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
+        // Checking what is under player
+
+        if (Physics.Raycast(checkRay, out RaycastHit deathkhit, 1f, FloorObstacleLayer))
+        {
+
+            if (deathkhit.collider.gameObject.tag == "WaterBlock")
             {
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(1);
+                RespawnPoint();
+                //GetComponent<ChangeGrass>().turnBack();
+                isMoving = false;
+                yield break;
+            }
+
+            if (deathkhit.collider.gameObject.tag == "DeathBlock")
+            {
                 yield return new WaitForSeconds(1);
                 RespawnPoint();
                 isMoving = false;

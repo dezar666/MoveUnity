@@ -5,7 +5,8 @@ using UnityEngine;
 public class ChangeGrass : MonoBehaviour
 {
 
-    public Material newMaterialRef;
+    public Material greenMaterialRef;
+    public Material yellowMaterialRef;
     public Renderer grassRenderer;
 
     public bool wasSteped;
@@ -27,7 +28,18 @@ public class ChangeGrass : MonoBehaviour
         if (!wasSteped)
         {
             wasSteped=true;
-            grassRenderer.material = newMaterialRef;;
+            grassRenderer.material = greenMaterialRef;;
         }
     }
+
+    /*
+    public void turnBack()
+    {
+        if (wasSteped)
+        {
+            wasSteped = false;
+            grassRenderer.material = yellowMaterialRef; ;
+        }
+    }
+    */
 }
