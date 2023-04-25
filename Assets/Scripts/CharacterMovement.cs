@@ -39,13 +39,21 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!isMoving && isAlive)
         {
-            if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
+            if (Input.GetKeyDown(KeyCode.A))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
-                StartCoroutine(MovePlayer(Input.GetAxis("Horizontal") > 0 ? Vector3.right : Vector3.left));
+                StartCoroutine(MovePlayer(Vector3.left));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
             }
-            else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+            else if (Input.GetKeyDown(KeyCode.D))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
-                StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
+                StartCoroutine(MovePlayer(Vector3.right));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
+            }
+            else if (Input.GetKeyDown(KeyCode.W)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+            {
+                StartCoroutine(MovePlayer(Vector3.forward));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
+            }
+            else if (Input.GetKeyDown(KeyCode.S)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+            {
+                StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
         }
     }
@@ -113,23 +121,22 @@ public class CharacterMovement : MonoBehaviour
         // Checking what is under player
         if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, FloorObstacleLayer))
         {
-            if (checkhit.collider.gameObject.tag == "GrassBlock")
+           if (checkhit.collider.gameObject.tag == "GrassBlock")
             {
                 if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
                 {
                     checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
-                    isMoving = false;
-
                 }
             }
-            else if (checkhit.collider.gameObject.tag == "DeathBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
+
+            if (checkhit.collider.gameObject.tag == "DeathBlock" || checkhit.collider.gameObject.tag == "WaterBlock")
             {
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(1);
                 RespawnPoint();
                 isMoving = false;
+                yield break;
             }
-            yield break;
         } 
 
         while (elapsedTime < timeToMove)
