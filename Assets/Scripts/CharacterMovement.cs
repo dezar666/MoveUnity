@@ -27,6 +27,7 @@ public class CharacterMovement : MonoBehaviour
     {
         isMoving = false;
         isAlive = true;
+        isCharged = false;
     }
 
     private void RespawnPoint()
@@ -43,14 +44,17 @@ public class CharacterMovement : MonoBehaviour
             {
                 StartCoroutine(MovePlayer(Vector3.left));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
             }
+
             else if (Input.GetKeyDown(KeyCode.D))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
                 StartCoroutine(MovePlayer(Vector3.right));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
             }
+
             else if (Input.GetKeyDown(KeyCode.W)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
             {
                 StartCoroutine(MovePlayer(Vector3.forward));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
+
             else if (Input.GetKeyDown(KeyCode.S)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
             {
                 StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
@@ -68,7 +72,9 @@ public class CharacterMovement : MonoBehaviour
         targetPos = origPos + direction;
 
         Vector3 down = transform.TransformDirection(Vector3.back) * 10;
+
         Debug.DrawRay(transform.position, down, Color.red, duration);
+        Debug.DrawRay(transform.position, direction, Color.magenta, duration);
 
         Ray moveRay = new Ray(transform.position, direction);
         Ray checkRay =  new Ray(transform.position, down);
@@ -94,8 +100,11 @@ public class CharacterMovement : MonoBehaviour
             {
                 StartCoroutine(MovePlayer(hit.collider.gameObject.transform.up));
             }
+
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
+                isCharged = true;
+                Debug.Assert(isCharged);
                 Vector3 NewDir = transform.position - hit.collider.transform.position;
                 NewDir.y = 0;
                 if (Mathf.Abs(NewDir.x) > Mathf.Abs(NewDir.z))
@@ -107,16 +116,18 @@ public class CharacterMovement : MonoBehaviour
                     NewDir.x = 0;
                 }
                 NewDir.Normalize();
-
+               
                 StartCoroutine(MovePlayer(NewDir));
-                isCharged = true;
+                
             }
-            else if (hit.collider.gameObject.tag == "Destroyable" && isCharged)
+
+            else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
                 Destroy(hit.collider.gameObject);
                 isCharged = false;
                 bShouldYield = false;
             }
+
             else
             {
                 isMoving = false;
