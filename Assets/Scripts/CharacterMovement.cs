@@ -4,6 +4,7 @@ using UnityEditor.UI;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.Profiling;
+using Unity.VisualScripting;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CharacterMovement : MonoBehaviour
     public GameObject DrownVFX;
 
     [SerializeField] GameObject GameObject;
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] Transform CheckPoint;
 
     float duration = 5;
 
@@ -30,13 +31,13 @@ public class CharacterMovement : MonoBehaviour
         isCharged = false;
     }
 
-    private void RespawnPoint()
+    private void Respawn()
     {
-        transform.position = spawnPoint.position;
+        transform.position = CheckPoint.position;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!isMoving && isAlive)
         {
@@ -60,6 +61,11 @@ public class CharacterMovement : MonoBehaviour
                 StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
         }
+
+
+
+
+
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -77,7 +83,8 @@ public class CharacterMovement : MonoBehaviour
         Debug.DrawRay(transform.position, direction, Color.magenta, duration);
 
         Ray moveRay = new Ray(transform.position, direction);
-        Ray checkRay =  new Ray(transform.position, down);
+        Ray checkRay = new Ray(transform.position, down);
+
 
         if (Physics.Raycast(checkRay, out RaycastHit checkhit, 1f, FloorObstacleLayer))
         {
@@ -89,7 +96,6 @@ public class CharacterMovement : MonoBehaviour
                 }
             }
         }
-
 
         // Checking if there is an obstacle in the path of the ray
         if (Physics.Raycast(moveRay, out RaycastHit hit, 1f, obstacleLayer))
@@ -103,7 +109,6 @@ public class CharacterMovement : MonoBehaviour
 
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
-                isCharged = true;
                 Debug.Assert(isCharged);
                 Vector3 NewDir = transform.position - hit.collider.transform.position;
                 NewDir.y = 0;
@@ -111,14 +116,14 @@ public class CharacterMovement : MonoBehaviour
                 {
                     NewDir.z = 0;
                 }
+
                 else
                 {
                     NewDir.x = 0;
                 }
                 NewDir.Normalize();
-               
+                isCharged = true;
                 StartCoroutine(MovePlayer(NewDir));
-                
             }
 
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
@@ -135,13 +140,13 @@ public class CharacterMovement : MonoBehaviour
 
             if (bShouldYield)
             {
-                isCharged = false;
+                //isCharged = false;
                 yield break;
             }
         }
 
 
-        // Checking what is under player
+        // Checking what is under player is now in void update
 
         if (Physics.Raycast(checkRay, out RaycastHit deathkhit, 1f, FloorObstacleLayer))
         {
@@ -150,7 +155,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(1);
-                RespawnPoint();
+                Respawn();
                 //GetComponent<ChangeGrass>().turnBack();
                 isMoving = false;
                 yield break;
@@ -159,11 +164,12 @@ public class CharacterMovement : MonoBehaviour
             if (deathkhit.collider.gameObject.tag == "DeathBlock")
             {
                 yield return new WaitForSeconds(1);
-                RespawnPoint();
+                Respawn();
                 isMoving = false;
                 yield break;
             }
-        } 
+        }
+
 
         while (elapsedTime < timeToMove)
         {
@@ -175,4 +181,15 @@ public class CharacterMovement : MonoBehaviour
 
         StartCoroutine(MovePlayer(direction));
     }
+
+    /*
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.tag == "CheckPoint")
+        {
+            Vector3 position = collision.transform.position;
+            CheckPoint.position = position;
+        }
+    }
+    */
 }
