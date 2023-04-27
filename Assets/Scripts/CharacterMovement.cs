@@ -6,8 +6,10 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.Profiling;
 using Unity.VisualScripting;
 
+
 public class CharacterMovement : MonoBehaviour
 {
+    
     private bool isMoving;
     private bool isAlive;
     private bool isCharged;
@@ -109,9 +111,10 @@ public class CharacterMovement : MonoBehaviour
 
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
-                Debug.Assert(isCharged);
                 Vector3 NewDir = transform.position - hit.collider.transform.position;
+
                 NewDir.y = 0;
+
                 if (Mathf.Abs(NewDir.x) > Mathf.Abs(NewDir.z))
                 {
                     NewDir.z = 0;
@@ -121,6 +124,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     NewDir.x = 0;
                 }
+
                 NewDir.Normalize();
                 isCharged = true;
                 StartCoroutine(MovePlayer(NewDir));
@@ -135,6 +139,9 @@ public class CharacterMovement : MonoBehaviour
 
             else
             {
+                MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
+                onMoveEnd.onMove();
+
                 isMoving = false;
             }
 
@@ -192,4 +199,6 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     */
+
+
 }
