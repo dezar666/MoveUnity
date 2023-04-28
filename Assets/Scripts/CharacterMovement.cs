@@ -135,6 +135,9 @@ public class CharacterMovement : MonoBehaviour
                 Destroy(hit.collider.gameObject);
                 isCharged = false;
                 bShouldYield = false;
+                //isMoving = false; to move if we get stopped by block
+                //transform.position = transform.position + direction;  //if we want to stop on the block 
+                //yield break; // delite or comment this if we dont want to stop by destryable block / uncomment if we want to be stopped before block
             }
 
             else
