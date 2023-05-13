@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] GameObject GameObject;
     [SerializeField] Transform CheckPoint;
 
+
     public int currentLvl = 0;
 
     float duration = 5;
@@ -203,11 +204,19 @@ public class CharacterMovement : MonoBehaviour
         {
             //WakeUp(collision);
             CheckPoint = collision.transform;
-            spawnPos = CheckPoint.position;
+            spawnPos = collision.GetComponentInChildren<SetSpawnPoint>().transform.position;
             currentLvl++;
             Debug.Log("new lvl reached");
         } 
         
+    }
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.tag == "CheckPoint")
+        {
+            collision.GetComponentInChildren<WallBuilder>().levelIsReached= true;
+            Debug.Log("wall is build");
+        }
     }
 
     //private void WakeUp(Collider collider)
