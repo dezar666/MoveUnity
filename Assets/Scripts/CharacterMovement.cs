@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
     private bool isMoving;
     private bool isAlive;
     private bool isCharged;
-    private Vector3 origPos, targetPos, checkPos;
+    private Vector3 origPos, targetPos, checkPos, spawnPos;
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
@@ -24,6 +24,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] GameObject GameObject;
     [SerializeField] Transform CheckPoint;
 
+    public int currentLvl = 0;
+
     float duration = 5;
 
     private void Start()
@@ -31,11 +33,13 @@ public class CharacterMovement : MonoBehaviour
         isMoving = false;
         isAlive = true;
         isCharged = false;
+
+        spawnPos = CheckPoint.position;
     }
 
     private void Respawn()
     {
-        transform.position = CheckPoint.position;
+        transform.position = spawnPos;
     }
 
     // Update is called once per frame
@@ -192,16 +196,27 @@ public class CharacterMovement : MonoBehaviour
         StartCoroutine(MovePlayer(direction));
     }
 
-    /*
+    
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "CheckPoint")
+        if(collision.tag == "CheckPoint")
         {
-            Vector3 position = collision.transform.position;
-            CheckPoint.position = position;
-        }
+            //WakeUp(collision);
+            CheckPoint = collision.transform;
+            spawnPos = CheckPoint.position;
+            currentLvl++;
+            Debug.Log("new lvl reached");
+        } 
+        
     }
-    */
+
+    //private void WakeUp(Collider collider)
+    //{
+    //    Transform wall = collider.gameObject.GetComponentInChildren<Transform>();
+    //    Debug.Log(wall.name);
+    //    Vector3 targetWallPos = new Vector3(0, 0, 0);
+    //    wall.transform.position = Vector3.Lerp(wall.transform.position, targetWallPos, 0.5f);
+    //}
 
 
 }
