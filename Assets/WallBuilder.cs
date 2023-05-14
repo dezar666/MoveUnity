@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class WallBuilder : MonoBehaviour
 {
+    LevelManager levelManager;
 
     [SerializeField] private float buildingSpeed = 5f;
 
-    public bool levelIsReached;
+    public bool buildWall;
 
+    private void Start()
+    {
+        levelManager = GetComponentInParent<LevelManager>();
+    }
 
     void Update()
     {
@@ -17,7 +22,7 @@ public class WallBuilder : MonoBehaviour
 
     private void BuildWall()
     {
-        if (levelIsReached && transform.position.y <= 0.5f)
+        if (buildWall && transform.position.y <= 0.5f)
         {
             transform.localPosition += Vector3.up * buildingSpeed * Time.deltaTime;
             gameObject.GetComponent<Collider>().enabled = true;

@@ -9,10 +9,12 @@ using Unity.VisualScripting;
 
 public class CharacterMovement : MonoBehaviour
 {
-    
-    private bool isMoving;
-    private bool isAlive;
-    private bool isCharged;
+    public LevelManager levelManager;
+
+
+    public bool isMoving;
+    public bool isAlive;
+    public bool isCharged;
     private Vector3 origPos, targetPos, checkPos, spawnPos;
 
     public float timeToMove = 0.05f;
@@ -21,12 +23,11 @@ public class CharacterMovement : MonoBehaviour
     public float raycastLength = 1f;
     public GameObject DrownVFX;
 
+    
     [SerializeField] GameObject GameObject;
     [SerializeField] Transform CheckPoint;
 
-    public bool levelIsReached = false;
-
-    public int currentLvl = 0;
+    public int currentStep = 0;
 
     float duration = 5;
 
@@ -41,7 +42,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void Respawn()
     {
+        isMoving = false;
         transform.position = spawnPos;
+        currentStep = 0;
     }
 
     // Update is called once per frame
@@ -51,21 +54,25 @@ public class CharacterMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
+                currentStep++;
                 StartCoroutine(MovePlayer(Vector3.left));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
             }
 
             else if (Input.GetKeyDown(KeyCode.D))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
             {
+                currentStep++;
                 StartCoroutine(MovePlayer(Vector3.right));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
             }
 
             else if (Input.GetKeyDown(KeyCode.W)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
             {
+                currentStep++;
                 StartCoroutine(MovePlayer(Vector3.forward));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
 
             else if (Input.GetKeyDown(KeyCode.S)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
             {
+                currentStep++;
                 StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
         }
@@ -133,6 +140,7 @@ public class CharacterMovement : MonoBehaviour
 
                 NewDir.Normalize();
                 isCharged = true;
+                Debug.Log("get charge");
                 StartCoroutine(MovePlayer(NewDir));
             }
 
@@ -152,10 +160,11 @@ public class CharacterMovement : MonoBehaviour
                 onMoveEnd.onMove();
 
                 isMoving = false;
-                if (levelIsReached)
+                if (levelManager.levelIsReached)
                 {
+                    currentStep = 0;
                     spawnPos = transform.position;
-                    levelIsReached = false;
+                    levelManager.levelIsReached = false;
                 }
             }
 
@@ -200,7 +209,15 @@ public class CharacterMovement : MonoBehaviour
         }
         transform.position = targetPos;
 
-        StartCoroutine(MovePlayer(direction));
+        if (currentStep < levelManager.maxSteps)
+        {
+            StartCoroutine(MovePlayer(direction));
+        }
+        else
+        {
+            Respawn();
+        }
+        
     }
 
     
@@ -210,28 +227,23 @@ public class CharacterMovement : MonoBehaviour
         {
             //WakeUp(collision);
             CheckPoint = collision.transform;
-            spawnPos = collision.GetComponentInChildren<SetSpawnPoint>().transform.position;
-            currentLvl++;
+            levelManager = collision .GetComponentInParent<LevelManager>();
+
             Debug.Log("new lvl reached");
         } 
         
     }
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.tag == "CheckPoint")
+        if (other.tag == "CheckPoint")
         {
-            levelIsReached =  collision.GetComponentInChildren<WallBuilder>().levelIsReached= true;
-            Debug.Log("wall is build");
+            if(levelManager.level != 1)
+            {
+                other.GetComponentInChildren<WallBuilder>().buildWall = true;
+                levelManager.levelIsReached = true;
+                Debug.Log("build wall");
+            }                      
+            
         }
     }
-
-    //private void WakeUp(Collider collider)
-    //{
-    //    Transform wall = collider.gameObject.GetComponentInChildren<Transform>();
-    //    Debug.Log(wall.name);
-    //    Vector3 targetWallPos = new Vector3(0, 0, 0);
-    //    wall.transform.position = Vector3.Lerp(wall.transform.position, targetWallPos, 0.5f);
-    //}
-
-
 }
