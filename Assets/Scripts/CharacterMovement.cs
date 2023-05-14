@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using UnityEngine.Profiling;
-using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 
 public class CharacterMovement : MonoBehaviour
 {
     public LevelManager levelManager;
-
+    public InputAction move;
 
     public bool isMoving;
     public bool isAlive;
     public bool isCharged;
-    private Vector3 origPos, targetPos, checkPos, spawnPos;
+    private Vector3 origPos, targetPos, checkPos;
+    private Vector3 spawnPos;
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
@@ -31,6 +29,13 @@ public class CharacterMovement : MonoBehaviour
 
     float duration = 5;
 
+    private void Awake()
+    {
+        move.Enable();
+        //move.performed += context => { StartCoroutine(MovePlayer(context.ReadValue<Vector2>())); };
+        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x,0f,context.y))); };
+    }
+
     private void Start()
     {
         isMoving = false;
@@ -40,7 +45,7 @@ public class CharacterMovement : MonoBehaviour
         spawnPos = CheckPoint.position;
     }
 
-    private void Respawn()
+    public void Respawn()
     {
         isMoving = false;
         transform.position = spawnPos;
@@ -160,6 +165,7 @@ public class CharacterMovement : MonoBehaviour
                 onMoveEnd.onMove();
 
                 isMoving = false;
+                currentStep++;
                 if (levelManager.levelIsReached)
                 {
                     currentStep = 0;
