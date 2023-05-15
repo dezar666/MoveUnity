@@ -52,42 +52,6 @@ public class CharacterMovement : MonoBehaviour
         currentStep = 0;
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        //if (!isMoving && isAlive)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.A))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-        //    {
-        //        currentStep++;
-        //        StartCoroutine(MovePlayer(Vector3.left));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
-        //    }
-
-        //    else if (Input.GetKeyDown(KeyCode.D))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-        //    {
-        //        currentStep++;
-        //        StartCoroutine(MovePlayer(Vector3.right));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
-        //    }
-
-        //    else if (Input.GetKeyDown(KeyCode.W)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
-        //    {
-        //        currentStep++;
-        //        StartCoroutine(MovePlayer(Vector3.forward));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
-        //    }
-
-        //    else if (Input.GetKeyDown(KeyCode.S)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
-        //    {
-        //        currentStep++;
-        //        StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
-        //    }
-        //}
-
-
-
-
-
-    }
-
     private IEnumerator MovePlayer(Vector3 direction)
     {
         // Checking if there is an obstacle in the path of the ray
