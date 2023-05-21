@@ -10,7 +10,6 @@ public class CurrentLevel : MonoBehaviour
     private void Start()
     {
         characterMovement= FindObjectOfType<CharacterMovement>();
-
     }
 
     private void Update()

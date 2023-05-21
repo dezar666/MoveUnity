@@ -32,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         move.Enable();
-        //move.performed += context => { StartCoroutine(MovePlayer(context.ReadValue<Vector2>())); };
+        //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
         SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x,0f,context.y))); };
     }
 
@@ -45,11 +45,38 @@ public class CharacterMovement : MonoBehaviour
         spawnPos = CheckPoint.position;
     }
 
+    private void Update()
+    {
+        if (!isMoving && isAlive)
+        {
+            if (Input.GetKeyDown(KeyCode.A))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
+            {
+                StartCoroutine(MovePlayer(Vector3.left));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
+            }
+
+            else if (Input.GetKeyDown(KeyCode.D))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
+            {
+                StartCoroutine(MovePlayer(Vector3.right));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
+            }
+
+            else if (Input.GetKeyDown(KeyCode.W)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+            {
+                StartCoroutine(MovePlayer(Vector3.forward));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
+            }
+
+            else if (Input.GetKeyDown(KeyCode.S)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+            {
+                StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
+            }
+        }
+    }
+
     public void Respawn()
     {
         isMoving = false;
         transform.position = spawnPos;
         currentStep = 0;
+        levelManager.deathOnLevelCounter++;
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -179,14 +206,17 @@ public class CharacterMovement : MonoBehaviour
         }
         transform.position = targetPos;
 
-        if (currentStep < levelManager.maxSteps)
-        {
-            StartCoroutine(MovePlayer(direction));
-        }
-        else
-        {
-            Respawn();
-        }
+        //uncomment if u want to respawn lvl if currentStep == levelManager.maxStep
+        //if (currentStep < levelManager.maxSteps)
+        //{
+        //    StartCoroutine(MovePlayer(direction));
+        //}
+        //else
+        //{
+        //    Respawn();
+        //}
+
+        StartCoroutine(MovePlayer(direction));
         
     }
 

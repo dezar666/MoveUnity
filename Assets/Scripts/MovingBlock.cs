@@ -49,10 +49,10 @@ public class MovingBlock : MonoBehaviour
     {
         Vector3 playerPos = player.transform.position;
         Vector3 rockPos = rock.transform.position;
-        Debug.Log(checkDistance);
+        //Debug.Log(checkDistance);
 
         float distance = Vector3.Distance(playerPos, rockPos);
-        //if (distance == checkDistance) { Debug.Log(distance); }
+        if (distance <= checkDistance) {Debug.Log("Player in range of {0}", rock); }
         
         if (distance <= checkDistance)
         {
