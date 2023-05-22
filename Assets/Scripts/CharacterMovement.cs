@@ -158,8 +158,8 @@ public class CharacterMovement : MonoBehaviour
 
             else
             {
-                //MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
-                //onMoveEnd.onMove();
+                MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
+                onMoveEnd.onMove();
 
                 isMoving = false;
                 //currentStep++;
@@ -252,17 +252,17 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    //private void CheckStateChange()
-    //{
+    private void CheckStateChange()
+    {
 
-    //    if (isMoving != checkState)
-    //    {
-    //        if (stateFlag)
-    //        {
-    //            currentStep++;
-    //        }
-    //        stateFlag = !stateFlag;
-    //        checkState = isMoving;
-    //    }
-    //}
+        if (isMoving != checkState)
+        {
+            if (stateFlag)
+            {
+                currentStep++;
+            }
+            stateFlag = !stateFlag;
+            checkState = isMoving;
+        }
+    }
 }
