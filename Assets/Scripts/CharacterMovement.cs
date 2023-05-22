@@ -12,6 +12,9 @@ public class CharacterMovement : MonoBehaviour
     public bool isMoving;
     public bool isAlive;
     public bool isCharged;
+    private bool checkState;
+    private bool stateFlag;
+
     private Vector3 origPos, targetPos, checkPos;
     private Vector3 spawnPos;
 
@@ -69,6 +72,9 @@ public class CharacterMovement : MonoBehaviour
                 StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
         }
+
+        CheckStateChange();
+        
     }
 
     public void Respawn()
@@ -156,7 +162,7 @@ public class CharacterMovement : MonoBehaviour
                 onMoveEnd.onMove();
 
                 isMoving = false;
-                currentStep++;
+                //currentStep++;
                 if (levelManager.levelIsReached)
                 {
                     currentStep = 0;
@@ -216,8 +222,7 @@ public class CharacterMovement : MonoBehaviour
         //    Respawn();
         //}
 
-        StartCoroutine(MovePlayer(direction));
-        
+        StartCoroutine(MovePlayer(direction));        
     }
 
     
@@ -244,6 +249,20 @@ public class CharacterMovement : MonoBehaviour
                 Debug.Log("build wall");
             }                      
             
+        }
+    }
+
+    private void CheckStateChange()
+    {
+
+        if (isMoving != checkState)
+        {
+            if (stateFlag)
+            {
+                currentStep++;
+            }
+            stateFlag = !stateFlag;
+            checkState = isMoving;
         }
     }
 }
