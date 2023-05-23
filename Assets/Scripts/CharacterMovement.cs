@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public InputAction move;
 
     public bool isMoving;
-    public bool isAlive;
+    public bool isAlive = true;
     public bool isCharged;
     private bool checkState;
     private bool stateFlag;
@@ -36,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
     {
         move.Enable();
         //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
-        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x,0f,context.y))); };
+        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
     }
 
     private void Start()
@@ -73,7 +73,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        //CheckStateChange();
+        CheckStateChange();
         
     }
 
