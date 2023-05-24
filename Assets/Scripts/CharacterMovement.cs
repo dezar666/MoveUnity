@@ -32,12 +32,12 @@ public class CharacterMovement : MonoBehaviour
 
     float duration = 5;
 
-    private void Awake()
-    {
-        move.Enable();
-        //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
-        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x,0f,context.y))); };
-    }
+    //private void awake()
+    //{
+    //    move.enable();
+    //    //move.performed += context => { startcoroutine(moveplayer(new vector3(context.readvalue<vector2>().x, 0, context.readvalue<vector2>().y))); };
+    //    swipedetection.instance.swipeperformed += context => { startcoroutine(moveplayer(new vector3(context.x, 0f, context.y))); };
+    //}
 
     private void Start()
     {
