@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
 {
     public LevelManager levelManager;
     public InputAction move;
+    public Stack<GameObject> greenGrass;
 
     public bool isMoving;
     public bool isAlive;
@@ -46,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
         isCharged = false;
 
         spawnPos = CheckPoint.position;
+        greenGrass = new Stack<GameObject>();
     }
 
     private void Update()
@@ -74,6 +76,11 @@ public class CharacterMovement : MonoBehaviour
         }
 
         CheckStateChange();
+
+        if (levelManager.levelIsReached)
+        {
+            greenGrass.Clear();
+        }
         
     }
 
@@ -84,6 +91,11 @@ public class CharacterMovement : MonoBehaviour
         transform.position = spawnPos;
         currentStep = 0;
         levelManager.deathOnLevelCounter++;
+        foreach (var grass in greenGrass)
+        {
+            grass.GetComponent<ChangeGrass>().turnBack();
+        }
+        greenGrass.Clear();
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -111,6 +123,7 @@ public class CharacterMovement : MonoBehaviour
                 if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
                 {
                     checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
+                    greenGrass.Push(checkhit.collider.gameObject);
                 }
             }
         }

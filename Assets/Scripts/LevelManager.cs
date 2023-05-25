@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] GameObject[] allGrass;
+    [SerializeField] LevelManager nextLevel;
+
+    
+
     public int level;
     public int maxSteps;
 
@@ -11,7 +16,7 @@ public class LevelManager : MonoBehaviour
     public int levelRecord;
 
     public bool levelIsReached = false;
-    public bool levelIsCompleted = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +26,17 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (levelIsCompleted)
+        if (nextLevel.levelIsReached)
         {
+            OnLevelCompleated();
+        }
+    }
 
+    private void OnLevelCompleated()
+    {
+        for (int i = 0; i < allGrass.Length; i++)
+        {
+            allGrass[i].GetComponent<ChangeGrass>().onSteped();
         }
     }
 }
