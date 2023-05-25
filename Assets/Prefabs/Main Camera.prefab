@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3126822171431641107}
   - component: {fileID: 3126822171431641106}
   - component: {fileID: 3126822171431641109}
-  - component: {fileID: 3126822171431641110}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Obstacle
@@ -27,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3126822171431641105}
-  m_LocalRotation: {x: 0.63183045, y: -0.21587674, z: 0.07547276, w: 0.7406021}
+  m_LocalRotation: {x: 0.6318329, y: -0.21587239, z: 0.07547193, w: 0.74060136}
   m_LocalPosition: {x: 40.969997, y: 16.373001, z: -15.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 70, y: 43.487, z: -0.001}
+  m_LocalEulerAnglesHint: {x: 75.571, y: -64.22, z: -40.25}
 --- !u!20 &3126822171431641107
 Camera:
   m_ObjectHideFlags: 0
@@ -120,50 +119,3 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3126822171431641110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76bdde0931be9ea40ab0711782ececc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: f37b7fc0-8178-4eda-84cb-1abf8355adf7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 5403d46f-5aee-4815-8089-42a0932f9765
-      m_Path: <Touchscreen>/primaryTouch/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: af43d3dc-f31c-4ab8-a832-ceec8bb4f17a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4cf4b937-1ab6-4436-9eaa-d7a1bf9491c5
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100

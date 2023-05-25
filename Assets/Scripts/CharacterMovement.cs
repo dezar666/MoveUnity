@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public InputAction move;
 
     public bool isMoving;
-    public bool isAlive = true;
+    public bool isAlive;
     public bool isCharged;
     private bool checkState;
     private bool stateFlag;
@@ -32,12 +32,12 @@ public class CharacterMovement : MonoBehaviour
 
     float duration = 5;
 
-    //private void Awake()
-    //{
-    //    move.Enable();
-    //    //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
-    //    SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
-    //}
+    private void Awake()
+    {
+        move.Enable();
+        //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
+        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
+    }
 
     private void Start()
     {
@@ -80,6 +80,7 @@ public class CharacterMovement : MonoBehaviour
     public void Respawn()
     {
         isMoving = false;
+        isAlive = true;
         transform.position = spawnPos;
         currentStep = 0;
         levelManager.deathOnLevelCounter++;
@@ -187,7 +188,8 @@ public class CharacterMovement : MonoBehaviour
             if (deathkhit.collider.gameObject.tag == "WaterBlock")
             {
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
-                yield return new WaitForSeconds(1);
+                isAlive = false;
+                yield return new WaitForSeconds(1);                
                 Respawn();
                 //GetComponent<ChangeGrass>().turnBack();
                 isMoving = false;
@@ -196,6 +198,7 @@ public class CharacterMovement : MonoBehaviour
 
             if (deathkhit.collider.gameObject.tag == "DeathBlock")
             {
+                isAlive = false;
                 yield return new WaitForSeconds(1);
                 Respawn();
                 isMoving = false;
@@ -232,7 +235,7 @@ public class CharacterMovement : MonoBehaviour
         {
             //WakeUp(collision);
             CheckPoint = collision.transform;
-            levelManager = collision .GetComponentInParent<LevelManager>();
+            levelManager = collision.GetComponentInParent<LevelManager>();
 
             Debug.Log("new lvl reached");
         } 
