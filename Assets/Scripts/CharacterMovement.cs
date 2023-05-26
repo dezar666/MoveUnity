@@ -204,8 +204,6 @@ public class CharacterMovement : MonoBehaviour
                 isAlive = false;
                 yield return new WaitForSeconds(1);                
                 Respawn();
-                //GetComponent<ChangeGrass>().turnBack();
-                isMoving = false;
                 yield break;
             }
 
@@ -214,7 +212,6 @@ public class CharacterMovement : MonoBehaviour
                 isAlive = false;
                 yield return new WaitForSeconds(1);
                 Respawn();
-                isMoving = false;
                 yield break;
             }
         }

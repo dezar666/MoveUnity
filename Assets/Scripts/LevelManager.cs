@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public int levelRecord;
 
     public bool levelIsReached = false;
+    public bool isLastLevel = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +27,13 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (nextLevel.levelIsReached)
+        if (!isLastLevel)
         {
-            OnLevelCompleated();
-        }
+            if (nextLevel.levelIsReached)
+            {
+                OnLevelCompleated();
+            }
+        }        
     }
 
     private void OnLevelCompleated()
