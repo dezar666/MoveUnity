@@ -32,7 +32,7 @@ public class ChangeGrass : MonoBehaviour
         }
     }
 
-    
+    /*
     public void turnBack()
     {
         if (wasSteped)
@@ -41,4 +41,5 @@ public class ChangeGrass : MonoBehaviour
             grassRenderer.material = yellowMaterialRef; ;
         }
     }
+    */
 }
