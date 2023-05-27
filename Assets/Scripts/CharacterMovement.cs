@@ -75,13 +75,13 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        //CheckStateChange();
+        CheckStateChange();
 
-        //if (levelManager.levelIsReached)
-        //{
-        //    greenGrass.Clear();
-        //}
-        
+        if (levelManager.levelIsReached)
+        {
+            greenGrass.Clear();
+        }
+
     }
 
     public void Respawn()
