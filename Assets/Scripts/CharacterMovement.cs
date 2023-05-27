@@ -8,9 +8,10 @@ public class CharacterMovement : MonoBehaviour
 {
     public LevelManager levelManager;
     public InputAction move;
+    public Stack<GameObject> greenGrass;
 
     public bool isMoving;
-    public bool isAlive = true;
+    public bool isAlive;
     public bool isCharged;
     private bool checkState;
     private bool stateFlag;
@@ -32,12 +33,12 @@ public class CharacterMovement : MonoBehaviour
 
     float duration = 5;
 
-    //private void Awake()
-    //{
-    //    move.Enable();
-    //    //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
-    //    SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
-    //}
+    private void Awake()
+    {
+        move.Enable();
+        //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
+        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
+    }
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
         isCharged = false;
 
         spawnPos = CheckPoint.position;
+        greenGrass = new Stack<GameObject>();
     }
 
     private void Update()
@@ -74,15 +76,35 @@ public class CharacterMovement : MonoBehaviour
         }
 
         CheckStateChange();
+
+        if (levelManager.levelIsReached)
+        {
+            greenGrass.Clear();
+        }
         
     }
 
     public void Respawn()
     {
         isMoving = false;
+        isAlive = true;
         transform.position = spawnPos;
-        currentStep = 0;
+        currentStep = -1;
         levelManager.deathOnLevelCounter++;
+        foreach (var grass in greenGrass)
+        {
+            grass.GetComponent<ChangeGrass>().turnBack();
+        }
+        greenGrass.Clear();
+
+        if (levelManager.allEnemies.Length != 0)
+        {
+            for (int i = 0; i < levelManager.allEnemies.Length; i++)
+            {
+                levelManager.allEnemies[i].SetActive(true);
+                levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
+            }
+        }
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -110,6 +132,7 @@ public class CharacterMovement : MonoBehaviour
                 if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
                 {
                     checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
+                    greenGrass.Push(checkhit.collider.gameObject);
                 }
             }
         }
@@ -149,7 +172,7 @@ public class CharacterMovement : MonoBehaviour
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
                 Destroy(hit.collider.gameObject);
-                isCharged = false;
+                //isCharged = false;
                 bShouldYield = false;
                 //isMoving = false; to move if we get stopped by block
                 //transform.position = transform.position + direction;  //if we want to stop on the block 
@@ -162,12 +185,13 @@ public class CharacterMovement : MonoBehaviour
                 onMoveEnd.onMove();
 
                 isMoving = false;
+                isCharged = false;
                 //currentStep++;
                 if (levelManager.levelIsReached)
                 {
-                    currentStep = 0;
-                    spawnPos = transform.position;
+                    //currentStep = 0;
                     levelManager.levelIsReached = false;
+                    spawnPos = transform.position;
                 }
             }
 
@@ -187,18 +211,17 @@ public class CharacterMovement : MonoBehaviour
             if (deathkhit.collider.gameObject.tag == "WaterBlock")
             {
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
-                yield return new WaitForSeconds(1);
+                isAlive = false;
+                yield return new WaitForSeconds(1);                
                 Respawn();
-                //GetComponent<ChangeGrass>().turnBack();
-                isMoving = false;
                 yield break;
             }
 
             if (deathkhit.collider.gameObject.tag == "DeathBlock")
             {
+                isAlive = false;
                 yield return new WaitForSeconds(1);
                 Respawn();
-                isMoving = false;
                 yield break;
             }
         }
@@ -232,7 +255,7 @@ public class CharacterMovement : MonoBehaviour
         {
             //WakeUp(collision);
             CheckPoint = collision.transform;
-            levelManager = collision .GetComponentInParent<LevelManager>();
+            levelManager = collision.GetComponentInParent<LevelManager>();
 
             Debug.Log("new lvl reached");
         } 
@@ -246,6 +269,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
                 levelManager.levelIsReached = true;
+                currentStep = -1;
                 Debug.Log("build wall");
             }                      
             
@@ -257,7 +281,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (isMoving != checkState)
         {
-            if (stateFlag)
+            if (stateFlag && !levelManager.levelIsReached)
             {
                 currentStep++;
             }
