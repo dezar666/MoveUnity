@@ -97,10 +97,13 @@ public class CharacterMovement : MonoBehaviour
         }
         greenGrass.Clear();
 
-        for (int i = 0; i < levelManager.allEnemies.Length; i++)
+        if (levelManager.allEnemies.Length != 0)
         {
-            levelManager.allEnemies[i].SetActive(true);
-            levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
+            for (int i = 0; i < levelManager.allEnemies.Length; i++)
+            {
+                levelManager.allEnemies[i].SetActive(true);
+                levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
+            }
         }
     }
 
