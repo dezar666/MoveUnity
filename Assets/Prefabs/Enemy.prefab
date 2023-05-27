@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6558309337809062755
 Transform:
   m_ObjectHideFlags: 0
@@ -89,8 +89,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.23311615}
-  m_Center: {x: 0, y: 0, z: -0.45971966}
+  m_Size: {x: 1, y: 0.7, z: 1}
+  m_Center: {x: 0, y: -0.49, z: 0}
 --- !u!114 &7365989676799050762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94499be7478a1b64dbfabc4ff14f7bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyGO: {fileID: 1771948829993652323}
+  enemyGO: {fileID: 1465450826954865853}
+  enemyManager: {fileID: 0}
 --- !u!1 &1678642237249941860
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,9 +159,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1771948829993652320}
+  - component: {fileID: 1282401226}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,6 +184,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282401226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771948829993652323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84717546afc18c3468f6184a5225c7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  enemy: {fileID: 1465450826954865853}
+  isDead: 0
 --- !u!1 &1771948831654241735
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,19 +349,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -368,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a970e301c74860942ae40844301b2319, type: 2}
     - target: {fileID: 919132149155446097, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_Name
-      value: Rock (57)
+      value: EnemyGO
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_Layer
@@ -376,7 +393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
       propertyPath: m_TagString
-      value: Obstacle
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}
@@ -416,8 +433,20 @@ MonoBehaviour:
   - {fileID: 7818134035854159503}
   - {fileID: 1078141136}
   player: {fileID: 0}
-  moveSpeed: 1
+  moveSpeed: 3
   checkDistance: 20
+--- !u!114 &2921023430080380470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465450826954865853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 364378ff1f4edf34e82a43e4f749ad67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2242092705800922631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 23c04c7a5b6587e4995c0dbf6f702b3f, type: 3}

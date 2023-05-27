@@ -169,7 +169,7 @@ public class CharacterMovement : MonoBehaviour
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
                 Destroy(hit.collider.gameObject);
-                isCharged = false;
+                //isCharged = false;
                 bShouldYield = false;
                 //isMoving = false; to move if we get stopped by block
                 //transform.position = transform.position + direction;  //if we want to stop on the block 
@@ -182,6 +182,7 @@ public class CharacterMovement : MonoBehaviour
                 onMoveEnd.onMove();
 
                 isMoving = false;
+                isCharged = false;
                 //currentStep++;
                 if (levelManager.levelIsReached)
                 {
