@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Steps : MonoBehaviour
+public class ScoreBar : MonoBehaviour
 {
     [SerializeField] private Text stepText;
-    [SerializeField] private Text maxStepText;
 
     private int step;
     private int maxStep;
@@ -26,8 +25,8 @@ public class Steps : MonoBehaviour
     public void UpdateStepText()
     {
         step = characterMovement.currentStep;
-        stepText.text = string.Format("step: {0}", step);
+        if (step == -1) { step= 0; }
         maxStep = characterMovement.levelManager.maxSteps;
-        maxStepText.text = string.Format("max steps: {0}", maxStep);
+        stepText.text = string.Format("Step: {0}/{1}", step, maxStep);
     }
 }

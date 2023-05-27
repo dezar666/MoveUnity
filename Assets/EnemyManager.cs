@@ -19,6 +19,10 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         ReviveEnemy();
+        if (isDead)
+        {
+            playerMovement.levelManager.kills++;
+        }
     }
 
     private void ReviveEnemy()

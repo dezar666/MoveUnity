@@ -89,13 +89,19 @@ public class CharacterMovement : MonoBehaviour
         isMoving = false;
         isAlive = true;
         transform.position = spawnPos;
-        currentStep = 0;
+        currentStep = -1;
         levelManager.deathOnLevelCounter++;
         foreach (var grass in greenGrass)
         {
             grass.GetComponent<ChangeGrass>().turnBack();
         }
         greenGrass.Clear();
+
+        for (int i = 0; i < levelManager.allEnemies.Length; i++)
+        {
+            levelManager.allEnemies[i].SetActive(true);
+            levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
+        }
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -179,9 +185,9 @@ public class CharacterMovement : MonoBehaviour
                 //currentStep++;
                 if (levelManager.levelIsReached)
                 {
-                    currentStep = 0;
-                    spawnPos = transform.position;
+                    //currentStep = 0;
                     levelManager.levelIsReached = false;
+                    spawnPos = transform.position;
                 }
             }
 
@@ -259,6 +265,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
                 levelManager.levelIsReached = true;
+                currentStep = -1;
                 Debug.Log("build wall");
             }                      
             
@@ -270,7 +277,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (isMoving != checkState)
         {
-            if (stateFlag)
+            if (stateFlag && !levelManager.levelIsReached)
             {
                 currentStep++;
             }
