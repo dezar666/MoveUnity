@@ -32,12 +32,12 @@ public class CharacterMovement : MonoBehaviour
 
     float duration = 5;
 
-    private void Awake()
-    {
-        move.Enable();
-        //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
-        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
-    }
+    //private void Awake()
+    //{
+    //    move.Enable();
+    //    move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
+    //    SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
+    //}
 
     private void Start()
     {
@@ -149,7 +149,7 @@ public class CharacterMovement : MonoBehaviour
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
                 Destroy(hit.collider.gameObject);
-                isCharged = false;
+                //isCharged = false;
                 bShouldYield = false;
                 //isMoving = false; to move if we get stopped by block
                 //transform.position = transform.position + direction;  //if we want to stop on the block 
@@ -161,6 +161,7 @@ public class CharacterMovement : MonoBehaviour
                 MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
                 onMoveEnd.onMove();
 
+                isCharged = false;
                 isMoving = false;
                 //currentStep++;
                 if (levelManager.levelIsReached)
