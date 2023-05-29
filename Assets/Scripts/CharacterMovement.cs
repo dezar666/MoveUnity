@@ -178,8 +178,8 @@ public class CharacterMovement : MonoBehaviour
 
             else
             {
-                MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
-                onMoveEnd.onMove();
+                //MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
+                //onMoveEnd.onMove();
 
                 isMoving = false;
                 isCharged = false;
