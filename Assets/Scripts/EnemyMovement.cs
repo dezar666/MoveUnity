@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 currentPos, targetPos;
     private int wayIndex;
 
-    private bool canMove = true;
+    //private bool canMove = true;
     private bool rotatePath = false;
 
 
