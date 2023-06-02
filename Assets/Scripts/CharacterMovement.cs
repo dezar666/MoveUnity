@@ -28,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     
     [SerializeField] GameObject GameObject;
     [SerializeField] Transform CheckPoint;
+    [SerializeField] GameObject levelCompleatedUI;
 
     public int currentStep = 0;
 
@@ -90,6 +91,7 @@ public class CharacterMovement : MonoBehaviour
         isAlive = true;
         transform.position = spawnPos;
         currentStep = -1;
+        levelManager.stepsOnLevel = -1;
         levelManager.deathOnLevelCounter++;
         foreach (var grass in greenGrass)
         {
@@ -284,6 +286,7 @@ public class CharacterMovement : MonoBehaviour
             if (stateFlag && !levelManager.levelIsReached)
             {
                 currentStep++;
+                levelManager.stepsOnLevel++;
             }
             stateFlag = !stateFlag;
             checkState = isMoving;

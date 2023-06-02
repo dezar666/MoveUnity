@@ -55,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
         }
         
 
-        this.transform.LookAt(targetPos);
+        //this.transform.LookAt(targetPos);
         this.transform.position = Vector3.MoveTowards(this.transform.position, targetPos, step);
     }
 }
