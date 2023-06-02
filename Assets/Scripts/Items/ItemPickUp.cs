@@ -5,5 +5,5 @@ using static UnityEditor.Progress;
 
 public class ItemPickUp : MonoBehaviour
 {
-    public AssetItem _item;
+    public AssetItem _item;    
 }

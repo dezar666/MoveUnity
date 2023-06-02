@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     CharacterMovement characterMovement;
     [SerializeField] private CollectedItems collectedItems;
+    [SerializeField] private PickUpMessage pickUpMessage;
 
     private void Start()
     {
@@ -23,8 +24,9 @@ public class PlayerManager : MonoBehaviour
 
         if (other.tag == "Item")
         {
-
-            collectedItems.Items.Add(other.GetComponent<ItemPickUp>()._item);
+            var cureentItem = other.GetComponent<ItemPickUp>()._item;
+            collectedItems.Items.Add(cureentItem);
+            pickUpMessage.ShowMessage(cureentItem.name, cureentItem.UIIcon);
             Debug.Log("Item {0} added.", other.gameObject);
             Destroy(other.gameObject);
         }
