@@ -28,7 +28,9 @@ public class PlayerManager : MonoBehaviour
             collectedItems.Items.Add(cureentItem);
             pickUpMessage.ShowMessage(cureentItem.name, cureentItem.UIIcon);
             Debug.Log("Item {0} added.", other.gameObject);
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<ItemPickUp>().collected = true;
+            other.gameObject.SetActive(false);
+            //Destroy(other.gameObject);
         }
     }
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class CollectedItems : MonoBehaviour
 {
     public List<AssetItem> Items;
     [SerializeField] private InventoryCell _inventoryCellTemplate;
     [SerializeField] private Transform _conteiner;
+    
 
     public void OnEnable()
     {
@@ -20,10 +22,12 @@ public class CollectedItems : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+
         items.ForEach(item =>
         {
             var cell = Instantiate(_inventoryCellTemplate, _conteiner);
             cell.Render(item);
         });
     }
+
 }

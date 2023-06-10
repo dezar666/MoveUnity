@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour, IDatePersistence
 {
     public LevelManager levelManager;
     public InputAction move;
@@ -39,6 +39,18 @@ public class CharacterMovement : MonoBehaviour
         move.Enable();
         //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
         SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPos;
+        this.spawnPos = data.spawnPos;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+            data.playerPos = this.transform.position;
+            data.spawnPos = this.spawnPos;
     }
 
     private void Start()
