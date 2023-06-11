@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PickUpMessage : MonoBehaviour
 {
-    [SerializeField] private Text _itemName;
+    [SerializeField] private TextMeshProUGUI _itemName;
     [SerializeField] private Image _itemIcon;
 
     public void ShowMessage(string name, Sprite icon)
