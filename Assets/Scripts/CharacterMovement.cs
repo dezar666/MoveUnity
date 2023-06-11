@@ -59,7 +59,6 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         isAlive = true;
         isCharged = false;
 
-        spawnPos = CheckPoint.position;
         greenGrass = new Stack<GameObject>();
     }
 
