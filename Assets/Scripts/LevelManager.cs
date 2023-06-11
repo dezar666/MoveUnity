@@ -46,8 +46,11 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < allGrass.Length; i++)
         {
             allGrass[i].GetComponent<ChangeGrass>().onSteped();
-            levelCompleatedScreen.gameObject.SetActive(true);
-            levelCompleatedScreen.SetText(level, stepsOnLevel, deathOnLevelCounter);
+            
         }
+        levelCompleatedScreen.gameObject.SetActive(true);
+        levelCompleatedScreen.SetText(level, stepsOnLevel, deathOnLevelCounter);
+        FindObjectOfType<CharacterMovement>().spawnPos = spawnPos.position;
+        FindObjectOfType<DataPersictenceManager>().SaveGame();       
     }
 }

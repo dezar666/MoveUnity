@@ -17,7 +17,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     private bool stateFlag;
 
     private Vector3 origPos, targetPos, checkPos;
-    private Vector3 spawnPos;
+    public Vector3 spawnPos;
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
