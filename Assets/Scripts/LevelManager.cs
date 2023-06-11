@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public int deathOnLevelCounter;
     public int levelRecord;
 
+    public bool levelCompleated = false;
     public bool levelIsReached = false;
     public bool isLastLevel = false;
 
@@ -36,6 +37,7 @@ public class LevelManager : MonoBehaviour
         {
             if (nextLevel.levelIsReached)
             {
+                levelCompleated = true;
                 OnLevelCompleated();
             }
         }        
@@ -51,6 +53,7 @@ public class LevelManager : MonoBehaviour
         levelCompleatedScreen.gameObject.SetActive(true);
         levelCompleatedScreen.SetText(level, stepsOnLevel, deathOnLevelCounter);
         FindObjectOfType<CharacterMovement>().spawnPos = spawnPos.position;
+        FindObjectOfType<GameManager>().lastLevel = level;
         FindObjectOfType<DataPersictenceManager>().SaveGame();       
     }
 }

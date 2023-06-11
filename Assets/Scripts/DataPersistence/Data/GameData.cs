@@ -8,6 +8,8 @@ public class GameData
     public Vector3 spawnPos;
     public Vector3 playerPos;
 
+    public int lastLevel;
+
     public SerializableDictionary<string,bool> collectedItems;
     
     public GameData()

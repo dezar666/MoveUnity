@@ -8,5 +8,6 @@ public class PauseMenu : MonoBehaviour
     public void OnMainMenuButtonClick()
     {
         SceneManager.LoadScene("MainMenu");
+        FindObjectOfType<DataPersictenceManager>().SaveGame();
     }
 }

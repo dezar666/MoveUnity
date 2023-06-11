@@ -2,18 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDatePersistence
 {
+    private CharacterMovement characterMovement;
+    private WallBuilder wallBuilder;
 
-    // Start is called before the first frame update
-    void Start()
+    public int lastLevel;
+
+    private void Awake()
     {
-        
+        characterMovement = FindAnyObjectByType<CharacterMovement>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadData(GameData data)
     {
-        
+        lastLevel = data.lastLevel;
+        characterMovement.levelManager = GameObject.Find("LVL" + lastLevel.ToString()).GetComponent<LevelManager>();
+        wallBuilder = GameObject.Find("LVL" + lastLevel.ToString()).GetComponentInChildren<WallBuilder>();
+        wallBuilder.buildWall = true;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.lastLevel = lastLevel;
     }
 }
