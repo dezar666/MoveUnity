@@ -32,6 +32,13 @@ public class GameManager : MonoBehaviour, IDatePersistence
         {
             prevLevel = lastLevel - 1;
         }
+
+        if (lastLevel != 0)
+        {
+            wallBuilder = GameObject.Find("LVL" + lastLevel.ToString()).GetComponentInChildren<WallBuilder>();
+            wallBuilder.buildWall = true;
+        }
+
         characterMovement.levelManager = levels[prevLevel].GetComponent<LevelManager>();
         foreach (LevelManager currentLevel in levels)
         {
@@ -51,11 +58,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
             }
         }
         
-        if (lastLevel != 0)
-        {
-            wallBuilder = GameObject.Find("LVL" + lastLevel.ToString()).GetComponentInChildren<WallBuilder>();
-            wallBuilder.buildWall = true;
-        }
+        
     }
 
     public void SaveData(ref GameData data)

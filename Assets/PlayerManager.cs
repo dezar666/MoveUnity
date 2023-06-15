@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     CharacterMovement characterMovement;
-    [SerializeField] private CollectedItems collectedItems;
-    [SerializeField] private PickUpMessage pickUpMessage;
+    public CollectedItems collectedItems;
+    public PickUpMessage pickUpMessage;
 
+    private void Awake()
+    {
+        collectedItems = GameObject.Find("CollectedItems").GetComponent<CollectedItems>();
+        pickUpMessage = GameObject.Find("PickUpMessage").GetComponent<PickUpMessage>();
+    }
     private void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
