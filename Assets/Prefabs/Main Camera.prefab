@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3126822171431641105
+--- !u!1 &2427373583228608614
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3126822171431641108}
-  - component: {fileID: 3126822171431641107}
-  - component: {fileID: 3126822171431641106}
-  - component: {fileID: 3126822171431641109}
-  - component: {fileID: 5281466756320232929}
+  - component: {fileID: 2427373583228608611}
+  - component: {fileID: 2427373583228608612}
+  - component: {fileID: 2427373583228608613}
+  - component: {fileID: 2427373583228608610}
+  - component: {fileID: 777846593484448600}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Obstacle
@@ -20,28 +20,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3126822171431641108
+--- !u!4 &2427373583228608611
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
-  m_LocalRotation: {x: 0.6318329, y: -0.21587239, z: 0.07547193, w: 0.74060136}
-  m_LocalPosition: {x: 40.969997, y: 16.373001, z: -15.57}
+  m_GameObject: {fileID: 2427373583228608614}
+  m_LocalRotation: {x: 0.6362894, y: -0.13449275, z: 0.0066819494, w: 0.7596071}
+  m_LocalPosition: {x: 30.094364, y: 26.373001, z: -43.612263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 75.571, y: -64.22, z: -40.25}
---- !u!20 &3126822171431641107
+  m_LocalEulerAnglesHint: {x: 70, y: 43.487, z: -0.001}
+--- !u!20 &2427373583228608612
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
@@ -62,7 +62,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 16
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -78,21 +78,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3126822171431641106
+--- !u!81 &2427373583228608613
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
---- !u!114 &3126822171431641109
+--- !u!114 &2427373583228608610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
@@ -120,13 +120,13 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5281466756320232929
+--- !u!114 &777846593484448600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76bdde0931be9ea40ab0711782ececc0, type: 3}
@@ -136,12 +136,12 @@ MonoBehaviour:
     m_Name: Position
     m_Type: 0
     m_ExpectedControlType: Vector2
-    m_Id: 13eba5e5-53c4-4ca4-8027-d87186023962
+    m_Id: 9571630c-5e44-483e-af72-ba81a93d71c6
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: d2c96f4d-87e3-4758-9480-6045d5723d40
+      m_Id: 04300528-adf0-490a-91e9-592c628e7070
       m_Path: <Touchscreen>/position
       m_Interactions: 
       m_Processors: 
@@ -153,12 +153,12 @@ MonoBehaviour:
     m_Name: Press
     m_Type: 1
     m_ExpectedControlType: Button
-    m_Id: aac32dc5-e71b-48d9-9131-e61353144bae
+    m_Id: 52391c42-25e5-42ce-9a06-3334a6e2ec9d
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 518187fb-a809-4642-89ad-241a7acd69ed
+      m_Id: a04a83f1-6352-4c37-b37d-9d21eb7a55e6
       m_Path: <Touchscreen>/Press
       m_Interactions: 
       m_Processors: 
