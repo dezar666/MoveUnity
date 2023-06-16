@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public LevelManager levelManager;
     public InputAction move;
     public Stack<GameObject> greenGrass;
+    public Animator animator;
 
     public bool isMoving;
     public bool isAlive;
@@ -60,6 +61,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         isCharged = false;
 
         greenGrass = new Stack<GameObject>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -86,6 +88,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
             }
         }
+
+        if (isMoving)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+            animator.SetBool("isMoving", false);
 
         CheckStateChange();
 
