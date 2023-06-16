@@ -9,7 +9,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public LevelManager levelManager;
     public InputAction move;
     public Stack<GameObject> greenGrass;
-    public Animator animator;
+    [SerializeField] private Animator animator;
 
     public bool isMoving;
     public bool isAlive;
@@ -61,7 +61,6 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         isCharged = false;
 
         greenGrass = new Stack<GameObject>();
-        animator = GetComponent<Animator>();
     }
 
     private void Update()
