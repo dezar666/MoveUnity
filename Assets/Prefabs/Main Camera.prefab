@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2427373583228608612}
   - component: {fileID: 2427373583228608613}
   - component: {fileID: 2427373583228608610}
-  - component: {fileID: 4012510062602379344}
+  - component: {fileID: 5072158665126849689}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Obstacle
@@ -62,7 +62,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 16
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4012510062602379344
+--- !u!114 &5072158665126849689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,12 +136,12 @@ MonoBehaviour:
     m_Name: Position
     m_Type: 0
     m_ExpectedControlType: Vector2
-    m_Id: c1e5fa10-e4a9-4295-b51f-8dfb3a80ec0b
+    m_Id: 70a10f16-6550-4c55-b0de-40b4e7a7ea60
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 8c6b0d1e-44d9-48ee-9556-8209a76d6e5a
+      m_Id: ff1f04a9-600a-4551-8b58-b102e07b889e
       m_Path: <Touchscreen>/position
       m_Interactions: 
       m_Processors: 
@@ -153,12 +153,12 @@ MonoBehaviour:
     m_Name: Press
     m_Type: 1
     m_ExpectedControlType: Button
-    m_Id: 33b54a10-9cdf-473a-93d2-5a13087f20e7
+    m_Id: d9b86604-dc00-4b05-a389-c32fb80337ca
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: c3ebeedd-5cfd-4646-a7d4-9e1ba655a8b9
+      m_Id: 23c09a8f-5929-4d63-b677-984c09ab26a9
       m_Path: <Touchscreen>/Press
       m_Interactions: 
       m_Processors: 
