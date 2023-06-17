@@ -5883,11 +5883,7 @@ PrefabInstance:
     - target: {fileID: 841231795934958376, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 841231795934958376, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Respawn
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1059388042}
     - target: {fileID: 841231796240793442, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5976,6 +5972,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UserUI
       objectReference: {fileID: 0}
+    - target: {fileID: 841231797918590567, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1059388042}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
 --- !u!114 &759182918 stripped
@@ -7839,6 +7839,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1059388042 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+  m_PrefabInstance: {fileID: 8899413763428669695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059388033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14187b19d8b1802469a90f1c91c700f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1068292916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11249,58 +11260,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1467877477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2427373583228608614, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
+--- !u!114 &1467877488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4012510062602379344, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
   m_PrefabInstance: {fileID: 777846595288069508}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1467877483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467877477}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76bdde0931be9ea40ab0711782ececc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: 874e0ee7-ce00-400e-88e0-f9e2712a5c83
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 3e242020-1423-4f01-ad45-2842d7b13a3e
-      m_Path: <Touchscreen>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 3541b189-8cf0-46cb-9ec1-b955d6ef13fc
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: ed1dfc8c-0fdf-4c9e-a616-0b98f5f5d123
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100
 --- !u!1001 &1474026526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16393,15 +16363,23 @@ PrefabInstance:
       value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608612, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
-      propertyPath: orthographic size
-      value: 15
+      propertyPath: m_HDR
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427373583228608612, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427373583228608612, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
+      propertyPath: m_RenderingPath
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608614, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 777846593484448600, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
+    - {fileID: 1467877483, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
 --- !u!114 &798055606178129624 stripped
 MonoBehaviour:
@@ -17291,6 +17269,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1059388041}
+    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: swipeDetection
+      value: 
+      objectReference: {fileID: 1467877488}
     - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: levelCompleatedUI
       value: 

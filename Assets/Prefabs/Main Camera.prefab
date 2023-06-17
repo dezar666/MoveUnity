@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2427373583228608612}
   - component: {fileID: 2427373583228608613}
   - component: {fileID: 2427373583228608610}
-  - component: {fileID: 9104791024559175222}
+  - component: {fileID: 4012510062602379344}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Obstacle
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 70, y: 43.487, z: -0.001}
+  m_LocalEulerAnglesHint: {x: 75.571, y: -51.8, z: -40.25}
 --- !u!20 &2427373583228608612
 Camera:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &9104791024559175222
+--- !u!114 &4012510062602379344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,12 +136,12 @@ MonoBehaviour:
     m_Name: Position
     m_Type: 0
     m_ExpectedControlType: Vector2
-    m_Id: a84fdb84-a1aa-439d-85b2-6db6e4aa3bee
+    m_Id: c1e5fa10-e4a9-4295-b51f-8dfb3a80ec0b
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: d785e3d0-d26f-4853-8e95-2d5c46c2c576
+      m_Id: 8c6b0d1e-44d9-48ee-9556-8209a76d6e5a
       m_Path: <Touchscreen>/position
       m_Interactions: 
       m_Processors: 
@@ -153,12 +153,12 @@ MonoBehaviour:
     m_Name: Press
     m_Type: 1
     m_ExpectedControlType: Button
-    m_Id: 5cd2ae5a-dd8d-45f6-a8a0-83ebff158541
+    m_Id: 33b54a10-9cdf-473a-93d2-5a13087f20e7
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 6df8ff31-cb83-4bc8-b516-32bd7b13ec85
+      m_Id: c3ebeedd-5cfd-4646-a7d4-9e1ba655a8b9
       m_Path: <Touchscreen>/Press
       m_Interactions: 
       m_Processors: 
@@ -167,3 +167,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   swipeResistance: 100
+  isMoving: 0
+  isPaused: 0
+  debugMode: 1

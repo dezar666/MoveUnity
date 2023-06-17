@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public LevelManager levelManager;
     public InputAction move;
     public Stack<GameObject> greenGrass;
+    [SerializeField] private SwipeDetection swipeDetection;
     [SerializeField] private Animator animator;
 
     public bool isMoving;
@@ -91,9 +92,15 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         if (isMoving)
         {
             animator.SetBool("isMoving", true);
+            swipeDetection.isMoving = true;
         }
         else
+        {
             animator.SetBool("isMoving", false);
+            swipeDetection.isMoving = false;
+        }
+            
+
 
         CheckStateChange();
 

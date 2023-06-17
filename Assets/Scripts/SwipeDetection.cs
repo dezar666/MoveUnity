@@ -12,6 +12,10 @@ public class SwipeDetection : MonoBehaviour
 	[SerializeField] private float swipeResistance = 100;
 	private Vector2 initialPos;
 	private Vector2 currentPos => position.ReadValue<Vector2>();
+
+    public bool isMoving;
+    public bool isPaused;
+    public bool debugMode;
 	private void Awake () 
 	{
 		position.Enable();
@@ -23,16 +27,37 @@ public class SwipeDetection : MonoBehaviour
 
     private void DetectSwipe()
     {
+        if (isMoving || isPaused)
+            return;
+
         Vector2 delta = currentPos - initialPos;
         Vector2 direction = Vector2.zero;
 
-        if (Mathf.Abs(delta.x) > swipeResistance)
+        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y) && Mathf.Abs(delta.x) > swipeResistance)
         {
-            direction.x = Mathf.Clamp(delta.x, -1, 1);
+            if (delta.x > 0)
+            {
+                direction = Vector2.right;
+                if (this.debugMode) Debug.Log("Swipe Right");
+            }
+            else
+            {
+                direction = Vector2.left;
+                if (this.debugMode) Debug.Log("Swipe Left");
+            }
         }
-        else if (Mathf.Abs(delta.y) > swipeResistance)
+        else if (Mathf.Abs(delta.y) > Mathf.Abs(delta.x) && Mathf.Abs(delta.y) > swipeResistance)
         {
-            direction.y = Mathf.Clamp(delta.y, -1, 1);
+            if (delta.y > 0)
+            {
+                direction = Vector2.up;
+                if (this.debugMode) Debug.Log("Swipe Up");
+            }
+            else
+            {
+                direction = Vector2.down;
+                if (this.debugMode) Debug.Log("Swipe Down");
+            }
         }
         if (direction != Vector2.zero & swipePerformed != null)
             swipePerformed(direction);
