@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7595232786117480025}
   - component: {fileID: 7595232786117480031}
   - component: {fileID: 8593000558711917626}
+  - component: {fileID: 1059388041}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -179,6 +180,7 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
+  animator: {fileID: 1059388041}
   isMoving: 0
   isAlive: 0
   isCharged: 0
@@ -195,6 +197,7 @@ MonoBehaviour:
   GameObject: {fileID: 7324759736076931745}
   CheckPoint: {fileID: 0}
   levelCompleatedUI: {fileID: 0}
+  swipeInput: {fileID: 0}
   currentStep: 0
 --- !u!114 &8593000558711917626
 MonoBehaviour:
@@ -210,6 +213,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedItems: {fileID: 0}
   pickUpMessage: {fileID: 0}
+--- !u!95 &1059388041
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324759736076931745}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 4117c91a4b9a41b4d8a64046ee7f2f18, type: 2}
+  m_Controller: {fileID: 9100000, guid: ead0c03393516fd4cb0f52fb0bbb8521, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8899413764139950912
 PrefabInstance:
   m_ObjectHideFlags: 0

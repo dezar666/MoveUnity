@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2427373583228608612}
   - component: {fileID: 2427373583228608613}
   - component: {fileID: 2427373583228608610}
-  - component: {fileID: 5072158665126849689}
+  - component: {fileID: 1518504879}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Obstacle
@@ -67,12 +67,12 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5072158665126849689
+--- !u!114 &1518504879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,44 +129,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76bdde0931be9ea40ab0711782ececc0, type: 3}
+  m_Script: {fileID: 11500000, guid: e5c8c23e77fc220448d69885d635853b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: 70a10f16-6550-4c55-b0de-40b4e7a7ea60
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: ff1f04a9-600a-4551-8b58-b102e07b889e
-      m_Path: <Touchscreen>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: d9b86604-dc00-4b05-a389-c32fb80337ca
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 23c09a8f-5929-4d63-b677-984c09ab26a9
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100
-  isMoving: 0
-  isPaused: 0
-  debugMode: 1
+  swipeResistance: 50
+  direction: {x: 0, y: 0}
+  startPos: {x: 0, y: 0}
+  endPos: {x: 0, y: 0}
+  debugMode: 0
+  onSwipeUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeRight:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeLeft:
+    m_PersistentCalls:
+      m_Calls: []
