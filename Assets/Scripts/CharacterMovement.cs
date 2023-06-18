@@ -9,7 +9,6 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public LevelManager levelManager;
     public InputAction move;
     public Stack<GameObject> greenGrass;
-    [SerializeField] private SwipeDetection swipeDetection;
     [SerializeField] private Animator animator;
 
     public bool isMoving;
@@ -31,6 +30,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     [SerializeField] GameObject GameObject;
     [SerializeField] Transform CheckPoint;
     [SerializeField] GameObject levelCompleatedUI;
+    [SerializeField] SwipeInput swipeInput;
 
     public int currentStep = 0;
 
@@ -38,9 +38,9 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Awake()
     {
-        move.Enable();
+        //move.Enable();
         //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
-        SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
+        //SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
     }
 
     public void LoadData(GameData data)
@@ -66,38 +66,18 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Update()
     {
-        if (!isMoving && isAlive)
+        if (!isMoving && isAlive && swipeInput.direction != Vector2.zero)
         {
-            if (Input.GetKeyDown(KeyCode.A))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.left));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
-            }
-
-            else if (Input.GetKeyDown(KeyCode.D))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.right));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
-            }
-
-            else if (Input.GetKeyDown(KeyCode.W)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.forward));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
-            }
-
-            else if (Input.GetKeyDown(KeyCode.S)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
-            }
+            StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
 
         if (isMoving)
         {
             animator.SetBool("isMoving", true);
-            swipeDetection.isMoving = true;
         }
         else
         {
             animator.SetBool("isMoving", false);
-            swipeDetection.isMoving = false;
         }
             
 
@@ -172,11 +152,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
             if (hit.collider.gameObject.tag == "DirectionBlock")
             {
+                swipeInput.direction = Vector2.zero;
                 StartCoroutine(MovePlayer(hit.collider.gameObject.transform.up));
             }
 
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
+                swipeInput.direction = Vector2.zero;
                 Vector3 NewDir = transform.position - hit.collider.transform.position;
 
                 NewDir.y = 0;

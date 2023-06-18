@@ -13,8 +13,8 @@ public class SwipeDetection : MonoBehaviour
 	private Vector2 initialPos;
 	private Vector2 currentPos => position.ReadValue<Vector2>();
 
-    public bool isMoving;
-    public bool isPaused;
+    public bool isMoving=false;
+    public bool isPaused=false;
     public bool debugMode;
 	private void Awake () 
 	{
