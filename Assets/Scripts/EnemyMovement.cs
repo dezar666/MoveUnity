@@ -23,6 +23,7 @@ public class EnemyMovement : MonoBehaviour
         wayIndex = 1;
         transform.position = Points[0].position;
         targetPos = Points[1].position;
+        transform.LookAt(targetPos);
     }
 
     // Update is called once per frame
@@ -48,8 +49,10 @@ public class EnemyMovement : MonoBehaviour
         {
             if (Vector3.Distance(this.transform.position, targetPos) < 0.1f)
             {
+                
                 targetPos = Points[wayIndex].position;
-                if(!rotatePath) { wayIndex++; }
+                transform.LookAt(targetPos);
+                if (!rotatePath) { wayIndex++; }
                 else { wayIndex--; }
             }
         }

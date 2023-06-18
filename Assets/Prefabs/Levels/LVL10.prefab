@@ -4071,10 +4071,11 @@ Transform:
   m_GameObject: {fileID: 7349059587744570818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11, y: 0.50000036, z: 15}
-  m_LocalScale: {x: 48, y: 48, z: 48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7349059589525714489}
+  - {fileID: 7095319779534250514}
   m_Father: {fileID: 7349059588419080744}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4159,7 +4160,7 @@ MonoBehaviour:
   - {fileID: 7349059587537235754}
   - {fileID: 7349059588470850433}
   player: {fileID: 0}
-  moveSpeed: 1.5
+  moveSpeed: 1
   checkDistance: 20
 --- !u!114 &7349059587744570816
 MonoBehaviour:
@@ -35803,3 +35804,69 @@ MonoBehaviour:
   yellowMaterialRef: {fileID: 8290782892783832528, guid: c6f2149a2dc83f648a62a9acb90aa62c, type: 3}
   grassRenderer: {fileID: 7349059589611573208}
   wasSteped: 0
+--- !u!1001 &7349059588744562169
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7349059587744570817}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_Name
+      value: SK_Dungeon_RockGolem_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: a72efc000d9eac444853112514239842, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e997c32aae8aa7541ae911b6869b700f, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a72efc000d9eac444853112514239842, type: 3}
+--- !u!4 &7095319779534250514 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a72efc000d9eac444853112514239842, type: 3}
+  m_PrefabInstance: {fileID: 7349059588744562169}
+  m_PrefabAsset: {fileID: 0}
