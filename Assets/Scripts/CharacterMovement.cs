@@ -70,6 +70,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     {
         if (!isMoving && isAlive && swipeInput.direction != Vector2.zero)
         {
+            RotatePlayer(swipeInput.direction);
             StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
 
@@ -91,6 +92,14 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             greenGrass.Clear();
         }
 
+    }
+
+    private void RotatePlayer(Vector2 direction)
+    {
+        if (direction == Vector2.up) {transform.rotation = Quaternion.Euler(-90, 0, 0);}
+        else if(direction == Vector2.down) { transform.rotation = Quaternion.Euler(-90,180,0); }
+        else if(direction == Vector2.left) { transform.rotation = Quaternion.Euler(-90, 270, 0); }
+        else transform.rotation = Quaternion.Euler(-90, 90, 0);
     }
 
     public void Respawn()
@@ -156,11 +165,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if (hit.collider.gameObject.tag == "DirectionBlock")
             {
                 swipeInput.direction = Vector2.zero;
+                RotatePlayer(hit.collider.gameObject.transform.up);
                 StartCoroutine(MovePlayer(hit.collider.gameObject.transform.up));
             }
 
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
+                RotatePlayer(-swipeInput.direction);
                 swipeInput.direction = Vector2.zero;
                 Vector3 NewDir = transform.position - hit.collider.transform.position;
 
@@ -175,10 +186,10 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 {
                     NewDir.x = 0;
                 }
-
+                
                 NewDir.Normalize();
                 isCharged = true;
-                Debug.Log("get charge");
+                Debug.Log("get charge");                
                 StartCoroutine(MovePlayer(NewDir));
             }
 
