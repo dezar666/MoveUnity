@@ -31,6 +31,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     [SerializeField] Transform CheckPoint;
     [SerializeField] GameObject levelCompleatedUI;
     [SerializeField] SwipeInput swipeInput;
+    public SwipeInput _swipeInput;
 
     public int currentStep = 0;
 
@@ -38,6 +39,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Awake()
     {
+        _swipeInput = swipeInput;
         //move.Enable();
         //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
         //SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
@@ -95,6 +97,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     {
         isMoving = false;
         isAlive = true;
+        swipeInput.direction = Vector2.zero;
         transform.position = spawnPos;
         currentStep = -1;
         levelManager.stepsOnLevel = -1;
@@ -126,8 +129,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
         Vector3 down = transform.TransformDirection(Vector3.back) * 10;
 
-        Debug.DrawRay(transform.position, down, Color.red, duration);
-        Debug.DrawRay(transform.position, direction, Color.magenta, duration);
+        //Debug.DrawRay(transform.position, down, Color.red, duration);
+        //Debug.DrawRay(transform.position, direction, Color.magenta, duration);
 
         Ray moveRay = new Ray(transform.position, direction);
         Ray checkRay = new Ray(transform.position, down);
@@ -220,6 +223,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
             if (deathkhit.collider.gameObject.tag == "WaterBlock")
             {
+                swipeInput.direction = Vector2.zero;
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
                 isAlive = false;
                 yield return new WaitForSeconds(1);                
@@ -229,6 +233,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
             if (deathkhit.collider.gameObject.tag == "DeathBlock")
             {
+                swipeInput.direction = Vector2.zero;
                 isAlive = false;
                 yield return new WaitForSeconds(1);
                 Respawn();
