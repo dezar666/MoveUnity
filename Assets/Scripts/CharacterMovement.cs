@@ -77,9 +77,11 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         if (isMoving)
         {
             animator.SetBool("isMoving", true);
+            swipeInput.canDetectSwipe = false;
         }
         else
         {
+            swipeInput.canDetectSwipe = true;
             animator.SetBool("isMoving", false);
         }
             

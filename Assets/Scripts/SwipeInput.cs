@@ -15,6 +15,7 @@ public class SwipeInput : MonoBehaviour
 
     [Header("Dev Settings")]
     public bool debugMode;
+    public bool canDetectSwipe;
 
     public UnityEvent onSwipeUp;
     public UnityEvent onSwipeDown;
@@ -23,17 +24,22 @@ public class SwipeInput : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (canDetectSwipe) { DetectSwipe(); }
+    }
+
+    private void DetectSwipe()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             this.startPos = Input.mousePosition;
         }
-        if(Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             this.endPos = Input.mousePosition;
             Vector2 delta = startPos - endPos;
-            if(Mathf.Abs(delta.x) > Mathf.Abs(delta.y) && Mathf.Abs(delta.x) > swipeResistance)
+            if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y) && Mathf.Abs(delta.x) > swipeResistance)
             {
-                if(delta.x < 0)
+                if (delta.x < 0)
                 {
                     if (debugMode) Debug.Log("Swipe Right");
                     direction = Vector2.right;
@@ -46,9 +52,9 @@ public class SwipeInput : MonoBehaviour
                     onSwipeLeft.Invoke();
                 }
             }
-            else if(Mathf.Abs(delta.y) > Mathf.Abs(delta.x) && Mathf.Abs(delta.y) > swipeResistance)
+            else if (Mathf.Abs(delta.y) > Mathf.Abs(delta.x) && Mathf.Abs(delta.y) > swipeResistance)
             {
-                if(delta.y < 0)
+                if (delta.y < 0)
                 {
                     if (debugMode) Debug.Log("Swipe Up");
                     direction = Vector2.up;
