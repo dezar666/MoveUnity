@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Steps : MonoBehaviour
+public class ScoreBar : MonoBehaviour
 {
     [SerializeField] private Text stepText;
-    [SerializeField] private Text maxStepText;
+    [SerializeField] private Text deathText;
 
     private int step;
     private int maxStep;
+    private int deathsCount;
 
     private CharacterMovement characterMovement;
 
@@ -19,15 +20,17 @@ public class Steps : MonoBehaviour
 
     private void Update()
     {
-        UpdateStepText();
+        UpdateText();
     }
 
 
-    public void UpdateStepText()
+    public void UpdateText()
     {
         step = characterMovement.currentStep;
-        stepText.text = string.Format("step: {0}", step);
+        deathsCount = characterMovement.levelManager.deathOnLevelCounter;
+        if (step == -1) { step= 0; }
         maxStep = characterMovement.levelManager.maxSteps;
-        maxStepText.text = string.Format("max steps: {0}", maxStep);
+        stepText.text = string.Format("Step: {0}/{1}", step, maxStep);
+        deathText.text = string.Format("Deaths: {0}", deathsCount);
     }
 }

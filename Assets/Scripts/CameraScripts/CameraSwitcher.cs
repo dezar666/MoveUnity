@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using Cinemachine.Editor;
-using System.Diagnostics.Contracts;
 
 public static class CameraSwitcher
 {
@@ -33,13 +31,13 @@ public static class CameraSwitcher
     public static void Register(CinemachineVirtualCamera camera)
     {
         cameras.Add(camera);
-        Debug.Log("Camera registered: " + camera);
+        //Debug.Log("Camera registered: " + camera);
     }
 
     public static void Unregister(CinemachineVirtualCamera camera)
     {
         cameras.Remove(camera);
-        Debug.Log("Camera unregistered: " + camera);
+        //Debug.Log("Camera unregistered: " + camera);
     }
 
 }

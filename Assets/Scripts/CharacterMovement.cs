@@ -4,19 +4,21 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour, IDatePersistence
 {
     public LevelManager levelManager;
     public InputAction move;
+    public Stack<GameObject> greenGrass;
+    [SerializeField] private Animator animator;
 
     public bool isMoving;
-    public bool isAlive = true;
+    public bool isAlive;
     public bool isCharged;
     private bool checkState;
     private bool stateFlag;
 
     private Vector3 origPos, targetPos, checkPos;
-    private Vector3 spawnPos;
+    public Vector3 spawnPos;
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
@@ -27,17 +29,33 @@ public class CharacterMovement : MonoBehaviour
     
     [SerializeField] GameObject GameObject;
     [SerializeField] Transform CheckPoint;
+    [SerializeField] GameObject levelCompleatedUI;
+    [SerializeField] SwipeInput swipeInput;
+    public SwipeInput _swipeInput;
 
     public int currentStep = 0;
 
     float duration = 5;
 
-    //private void Awake()
-    //{
-    //    move.Enable();
-    //    move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
-    //    SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
-    //}
+    private void Awake()
+    {
+        _swipeInput = swipeInput;
+        //move.Enable();
+        //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
+        //SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPos;
+        this.spawnPos = data.spawnPos;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+            data.playerPos = this.transform.position;
+            data.spawnPos = this.spawnPos;
+    }
 
     private void Start()
     {
@@ -45,44 +63,70 @@ public class CharacterMovement : MonoBehaviour
         isAlive = true;
         isCharged = false;
 
-        spawnPos = CheckPoint.position;
+        greenGrass = new Stack<GameObject>();
     }
 
     private void Update()
     {
-        if (!isMoving && isAlive)
+        if (!isMoving && isAlive && swipeInput.direction != Vector2.zero)
         {
-            if (Input.GetKeyDown(KeyCode.A))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.left));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
-            }
-
-            else if (Input.GetKeyDown(KeyCode.D))//if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.right));//StartCoroutine(MovePlayer(Input.GetAxis("Horizontal")) > 0 ? Vector3.right : Vector3.left));
-            }
-
-            else if (Input.GetKeyDown(KeyCode.W)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.forward));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
-            }
-
-            else if (Input.GetKeyDown(KeyCode.S)) // else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
-            {
-                StartCoroutine(MovePlayer(Vector3.back));//StartCoroutine(MovePlayer(Input.GetAxis("Vertical") > 0 ? Vector3.forward : Vector3.back));
-            }
+            RotatePlayer(swipeInput.direction);
+            StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
 
+        if (isMoving)
+        {
+            animator.SetBool("isMoving", true);
+            swipeInput.canDetectSwipe = false;
+        }
+        else
+        {
+            swipeInput.canDetectSwipe = true;
+            animator.SetBool("isMoving", false);
+        }
+            
+
+
         CheckStateChange();
-        
+
+        if (levelManager.levelIsReached)
+        {
+            greenGrass.Clear();
+        }
+
+    }
+
+    private void RotatePlayer(Vector2 direction)
+    {
+        if (direction == Vector2.up) {transform.rotation = Quaternion.Euler(-90, 0, 0);}
+        else if(direction == Vector2.down) { transform.rotation = Quaternion.Euler(-90,180,0); }
+        else if(direction == Vector2.left) { transform.rotation = Quaternion.Euler(-90, 270, 0); }
+        else transform.rotation = Quaternion.Euler(-90, 90, 0);
     }
 
     public void Respawn()
     {
         isMoving = false;
+        isAlive = true;
+        swipeInput.direction = Vector2.zero;
         transform.position = spawnPos;
-        currentStep = 0;
+        currentStep = -1;
+        levelManager.stepsOnLevel = -1;
         levelManager.deathOnLevelCounter++;
+        foreach (var grass in greenGrass)
+        {
+            grass.GetComponent<ChangeGrass>().turnBack();
+        }
+        greenGrass.Clear();
+
+        if (levelManager.allEnemies.Length != 0)
+        {
+            for (int i = 0; i < levelManager.allEnemies.Length; i++)
+            {
+                levelManager.allEnemies[i].SetActive(true);
+                levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
+            }
+        }
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -96,8 +140,8 @@ public class CharacterMovement : MonoBehaviour
 
         Vector3 down = transform.TransformDirection(Vector3.back) * 10;
 
-        Debug.DrawRay(transform.position, down, Color.red, duration);
-        Debug.DrawRay(transform.position, direction, Color.magenta, duration);
+        //Debug.DrawRay(transform.position, down, Color.red, duration);
+        //Debug.DrawRay(transform.position, direction, Color.magenta, duration);
 
         Ray moveRay = new Ray(transform.position, direction);
         Ray checkRay = new Ray(transform.position, down);
@@ -110,6 +154,7 @@ public class CharacterMovement : MonoBehaviour
                 if (checkhit.collider.gameObject.GetComponent<ChangeGrass>())
                 {
                     checkhit.collider.gameObject.GetComponent<ChangeGrass>().onSteped();
+                    greenGrass.Push(checkhit.collider.gameObject);
                 }
             }
         }
@@ -121,11 +166,15 @@ public class CharacterMovement : MonoBehaviour
 
             if (hit.collider.gameObject.tag == "DirectionBlock")
             {
+                swipeInput.direction = Vector2.zero;
+                RotatePlayer(hit.collider.gameObject.transform.up);
                 StartCoroutine(MovePlayer(hit.collider.gameObject.transform.up));
             }
 
             else if (hit.collider.gameObject.tag == "PushbackBlock")
             {
+                RotatePlayer(-swipeInput.direction);
+                swipeInput.direction = Vector2.zero;
                 Vector3 NewDir = transform.position - hit.collider.transform.position;
 
                 NewDir.y = 0;
@@ -139,10 +188,10 @@ public class CharacterMovement : MonoBehaviour
                 {
                     NewDir.x = 0;
                 }
-
+                
                 NewDir.Normalize();
                 isCharged = true;
-                Debug.Log("get charge");
+                Debug.Log("get charge");                
                 StartCoroutine(MovePlayer(NewDir));
             }
 
@@ -158,17 +207,17 @@ public class CharacterMovement : MonoBehaviour
 
             else
             {
-                MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
-                onMoveEnd.onMove();
+                //MovingBlock onMoveEnd = FindObjectOfType<MovingBlock>();
+                //onMoveEnd.onMove();
 
-                isCharged = false;
                 isMoving = false;
+                isCharged = false;
                 //currentStep++;
                 if (levelManager.levelIsReached)
                 {
-                    currentStep = 0;
-                    spawnPos = transform.position;
+                    //currentStep = 0;
                     levelManager.levelIsReached = false;
+                    spawnPos = transform.position;
                 }
             }
 
@@ -187,19 +236,20 @@ public class CharacterMovement : MonoBehaviour
 
             if (deathkhit.collider.gameObject.tag == "WaterBlock")
             {
+                swipeInput.direction = Vector2.zero;
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
-                yield return new WaitForSeconds(1);
+                isAlive = false;
+                yield return new WaitForSeconds(1);                
                 Respawn();
-                //GetComponent<ChangeGrass>().turnBack();
-                isMoving = false;
                 yield break;
             }
 
             if (deathkhit.collider.gameObject.tag == "DeathBlock")
             {
+                swipeInput.direction = Vector2.zero;
+                isAlive = false;
                 yield return new WaitForSeconds(1);
                 Respawn();
-                isMoving = false;
                 yield break;
             }
         }
@@ -233,7 +283,7 @@ public class CharacterMovement : MonoBehaviour
         {
             //WakeUp(collision);
             CheckPoint = collision.transform;
-            levelManager = collision .GetComponentInParent<LevelManager>();
+            levelManager = collision.GetComponentInParent<LevelManager>();
 
             Debug.Log("new lvl reached");
         } 
@@ -247,6 +297,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
                 levelManager.levelIsReached = true;
+                currentStep = -1;
                 Debug.Log("build wall");
             }                      
             
@@ -258,9 +309,10 @@ public class CharacterMovement : MonoBehaviour
 
         if (isMoving != checkState)
         {
-            if (stateFlag)
+            if (stateFlag && !levelManager.levelIsReached)
             {
                 currentStep++;
+                levelManager.stepsOnLevel++;
             }
             stateFlag = !stateFlag;
             checkState = isMoving;
