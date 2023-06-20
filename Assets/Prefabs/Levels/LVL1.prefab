@@ -218,7 +218,7 @@ MonoBehaviour:
   levelCompleatedScreen: {fileID: 0}
   nextLevel: {fileID: 0}
   allEnemies: []
-  spawnPos: {fileID: 0}
+  spawnPos: {fileID: 1557170721473988571}
   level: 2
   stepsOnLevel: 0
   maxSteps: 5
@@ -871,7 +871,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 544511275310427519, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_Name
-      value: CrystalPillar (3)
+      value: CrystalPillar (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_RootOrder
@@ -879,15 +879,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.99
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.973427
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.72
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11261,6 +11261,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2254317826328480699, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254317826328480699, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3012266829857458979, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
       propertyPath: m_Name
       value: CheckPoint
@@ -11317,6 +11325,11 @@ PrefabInstance:
     - {fileID: 1124999391562348445, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
     - {fileID: 4084084794823922769, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
+--- !u!4 &1557170721473988571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2254317826328480699, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
+  m_PrefabInstance: {fileID: 780491197431630944}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2529162767355856708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3012266829857458980, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
@@ -15217,7 +15230,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 544511275310427519, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_Name
-      value: CrystalPillar (2)
+      value: CrystalPillar
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_RootOrder
@@ -15225,15 +15238,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.990002
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.973427
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.720001
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2222258713928391696, guid: ede31f8bf61e2374cbae671fb3c8a9f8, type: 3}
       propertyPath: m_LocalRotation.w
