@@ -69,13 +69,13 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         }
 
         SetValues();
-        for (int i = 0; i < maxLevel; i++)
-        {
-            if (i < maxLevel)
-            {
-                buttons[i].GetComponent<LevelButton>().UnlockButton();
-            }
-        }
+        //for (int i = 0; i < maxLevel; i++)
+        //{
+        //    if (i < maxLevel)
+        //    {
+        //        buttons[i].GetComponent<LevelButton>().UnlockButton();
+        //    }
+        //}
     }
 
     public void ChangeSpawnPointAndLoadLevel()
