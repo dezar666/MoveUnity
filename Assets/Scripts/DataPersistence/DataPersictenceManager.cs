@@ -13,7 +13,7 @@ public class DataPersictenceManager : MonoBehaviour
     [SerializeField] private string fileName;
 
     private GameData gameData;
-    private List<IDatePersistence> dataPersistenceObjects;
+    public List<IDatePersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
 
     public static DataPersictenceManager instance { get; private set; }
@@ -47,6 +47,14 @@ public class DataPersictenceManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         this.dataPersistenceObjects = FindAllDataPersictenceObjects();
+        foreach (IDatePersistence pers in dataPersistenceObjects)
+        {
+            Debug.Log(pers);
+        }
+        if (dataPersistenceObjects.Count == 0)
+        {
+            Debug.Log("nuill");
+        }
         LoadGame();
     }
 

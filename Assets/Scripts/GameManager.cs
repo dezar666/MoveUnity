@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
 
     public int lastLevel;
     public int prevLevel;
+    public Vector3 spawnPos;
 
     private void Awake()
     {
