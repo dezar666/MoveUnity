@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public ChangeGrass[] allGrass;
 
     public int lastLevel;
+    public int maxLevel;
     public int prevLevel;
     public Vector3 spawnPos;
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public void LoadData(GameData data)
     {
         lastLevel = data.lastLevel;
+        maxLevel = data.maxLevel;
 
         if (lastLevel == 0)
         {
@@ -62,5 +64,6 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public void SaveData(ref GameData data)
     {
         data.lastLevel = lastLevel;
+        data.maxLevel = maxLevel;
     }
 }

@@ -6,30 +6,31 @@ using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
+    
+    [SerializeField] private Image image;
+
     private LevelLoader levelLoader;
 
-
+    public Button button;
     public Vector3 spawnPos;
     public int level;
 
     private void Awake()
     {
         levelLoader = FindAnyObjectByType<LevelLoader>();
-        Button button = GetComponent<Button>();
+        button = GetComponent<Button>();
+
         button.onClick.AddListener(() =>
         {
             levelLoader.SetNewLevel(spawnPos, level);
         });
     }
 
-    private IEnumerator WaitForSpawnPosAndUpdate()
+    public void UnlockButton()
     {
-        yield return new WaitForSeconds(1);
+        image.enabled = false;
+        button.interactable= true;
     }
-
-
-
-
 
 
 }

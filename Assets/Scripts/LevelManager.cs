@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
         levelCompleatedScreen.PanelFadeIn();
         FindObjectOfType<CharacterMovement>().spawnPos = spawnPos.position;
         FindObjectOfType<GameManager>().lastLevel = level;
+        FindObjectOfType<GameManager>().maxLevel = level+1;
         FindObjectOfType<DataPersictenceManager>().SaveGame();       
     }
 }

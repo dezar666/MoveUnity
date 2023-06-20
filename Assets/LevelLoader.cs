@@ -3,19 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 using static Cinemachine.DocumentationSortingAttribute;
 
 public class LevelLoader : MonoBehaviour, IDatePersistence
 {
     [SerializeField] private GameObject levelSelectiingScreen;
+    [SerializeField] private Button[] buttons;
 
     private DataPersictenceManager persictenceManager;
-    
     private MainMenu mainMenu;
-    [SerializeField] private Button[] buttons;
+
+    public Vector3[] allSpawnPoints =
+    {
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+    };
 
     public Vector3 spawnPos;
     public int level;
+    public int maxLevel;
 
     private void Awake()
     {
@@ -25,21 +46,17 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
 
     public void LoadData(GameData data)
     {
-        data.spawnPos = spawnPos;
-        data.playerPos = spawnPos;
-        data.lastLevel = level;
+        spawnPos = data.spawnPos;
+        maxLevel = data.lastLevel;
+        level = data.lastLevel;
     }
 
     public void SaveData(ref GameData data)
     {
-        this.spawnPos = data.spawnPos;
-        this.level = data.lastLevel;
-        this.spawnPos = data.playerPos;
+        data.spawnPos  = spawnPos;
+        data.playerPos = spawnPos;
+        data.lastLevel = level;
     }
-
-
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -50,13 +67,22 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
             buttons[i] = buttons[i+1];
             buttons[i+1] = temp;
         }
+
+        SetValues();
+        for (int i = 0; i < maxLevel; i++)
+        {
+            if (i < maxLevel)
+            {
+                buttons[i].GetComponent<LevelButton>().UnlockButton();
+            }
+        }
     }
 
     public void ChangeSpawnPointAndLoadLevel()
     {
-        //persictenceManager.SaveGame();
-        persictenceManager.LoadGame();
-        mainMenu.Load();
+        persictenceManager.SaveGame();
+        //persictenceManager.LoadGame();
+        //mainMenu.Load();
     }
 
     public void SetNewLevel(Vector3 pos, int lvl)
@@ -65,6 +91,18 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         level= lvl;
         //ChangeSpawnPointAndLoadLevel();
         StartCoroutine(WaitSomeTime());
+    }
+
+    private void SetValues()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponentInChildren<TMP_Text>().text = (i+1).ToString();
+            var button = buttons[i].GetComponent<LevelButton>();
+            button.spawnPos = allSpawnPoints[i];
+            button.level = i+1;
+            
+        }       
     }
 
     IEnumerator WaitSomeTime()
