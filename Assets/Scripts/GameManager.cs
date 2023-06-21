@@ -27,37 +27,50 @@ public class GameManager : MonoBehaviour, IDatePersistence
         lastLevel = data.lastLevel;
         maxLevel = data.maxLevel;
 
-        if (lastLevel == 0)
+        characterMovement.levelManager = levels[lastLevel-1].GetComponent<LevelManager>();
+        //foreach (LevelManager currentLevel in levels)
+        //{
+        //    if (currentLevel.level < lastLevel + 1)
+        //    {
+        //        currentLevel.levelCompleated = true;
+        //        if (currentLevel.level != 1)
+        //        {
+        //            wallBuilder = currentLevel.GetComponentInChildren<WallBuilder>();
+        //            wallBuilder.buildWall = true;
+        //        }
+        //    }
+        //    if (currentLevel.level < lastLevel + 1)
+        //    {
+        //        allGrass = currentLevel.GetComponentsInChildren<ChangeGrass>();
+        //        foreach (var grass in allGrass)
+        //        {
+        //            grass.onSteped();
+        //        }
+        //    }
+        //}
+
+        for (int i = 0; i < levels.Length;i++)
         {
-            prevLevel = 0;
-        }
-        else
-        {
-            prevLevel = lastLevel - 1;
-        }
-        characterMovement.levelManager = levels[prevLevel].GetComponent<LevelManager>();
-        foreach (LevelManager currentLevel in levels)
-        {
-            if (currentLevel.level <= lastLevel)
+            if (levels[i].level < lastLevel)
             {
-                currentLevel.levelCompleated = true;
-                allGrass = currentLevel.GetComponentsInChildren<ChangeGrass>();
+                levels[i].levelCompleated = true;
+                if (levels[i].level != 1)
+                {
+                    levels[i].GetComponentInChildren<WallBuilder>().buildWall = true;
+                }
+                allGrass = levels[i].GetComponentsInChildren<ChangeGrass>();
                 foreach (var grass in allGrass)
                 {
                     grass.onSteped();
                 }
-                if (currentLevel.level != 1)
-                {
-                    wallBuilder = currentLevel.GetComponentInChildren<WallBuilder>();
-                    wallBuilder.buildWall = true;
-                }
             }
         }
-        
-        if (lastLevel != 0)
+
+        if (lastLevel > 1)
         {
-            wallBuilder = GameObject.Find("LVL" + lastLevel.ToString()).GetComponentInChildren<WallBuilder>();
-            wallBuilder.buildWall = true;
+            //wallBuilder = GameObject.Find("LVL" + lastLevel.ToString()).GetComponentInChildren<WallBuilder>();
+            //wallBuilder.buildWall = true;
+            levels[lastLevel-1].GetComponentInChildren<WallBuilder>().buildWall = true;
         }
     }
 

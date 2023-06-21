@@ -16,6 +16,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
 
+    [Header("Level Selecting Screen")]
+    [SerializeField] private GameObject levelSelectingScreen;
+    [SerializeField] private LevelLoader levelLoader;
+
     private void Start()
     {
         if (!DataPersictenceManager.instance.HasGameData())
@@ -36,7 +40,13 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();
         Debug.Log("Continue game");
-        Load();
+        levelLoader.ChangeSpawnPointAndLoadLevel();
+    }
+
+    public void OnSelectLevelClicked()
+    {
+        levelSelectingScreen.SetActive(true);
+        levelLoader.ActivateButtons();
     }
 
     public void OnExitClicked()

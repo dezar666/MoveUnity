@@ -498,21 +498,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 732688261}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: AddNewDataPersistanceObj
+      - m_Target: {fileID: 1778172802}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: OnSelectLevelClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -520,7 +508,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &144697388
 MonoBehaviour:
@@ -3827,7 +3815,7 @@ MonoBehaviour:
   - {x: -15.5, y: 0.5, z: -55.5}
   - {x: -18.5, y: 0.5, z: -46.5}
   spawnPos: {x: -7.5, y: 0.5, z: -25.5}
-  level: 0
+  level: 1
   maxLevel: 0
 --- !u!4 &1670057399
 Transform:
@@ -4252,6 +4240,8 @@ MonoBehaviour:
   loadingSlider: {fileID: 170287156}
   newGameButton: {fileID: 2124227973}
   continueGameButton: {fileID: 1728098538}
+  levelSelectingScreen: {fileID: 732688261}
+  levelLoader: {fileID: 1670057398}
 --- !u!1 &1789241133
 GameObject:
   m_ObjectHideFlags: 0

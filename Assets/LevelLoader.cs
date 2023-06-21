@@ -55,7 +55,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
     {
         data.spawnPos  = spawnPos;
         data.playerPos = spawnPos;
-        data.lastLevel = level-1;
+        data.lastLevel = level;
     }
 
     // Start is called before the first frame update
@@ -68,14 +68,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
             buttons[i+1] = temp;
         }
 
-        SetValues();
-        for (int i = 0; i < maxLevel; i++)
-        {
-            if (i < maxLevel)
-            {
-                buttons[i].GetComponent<LevelButton>().UnlockButton();
-            }
-        }
+        SetValues(); 
     }
 
     public void ChangeSpawnPointAndLoadLevel()
@@ -103,6 +96,25 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
             button.level = i+1;
             
         }       
+    }
+
+    public void ActivateButtons()
+    {
+        for (int i = 0; i < maxLevel; i++)
+        {
+            if (i < maxLevel)
+            {
+                try
+                {
+                    buttons[i].GetComponent<LevelButton>().UnlockButton();
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError("ошибка при попытке активировать кнопку", buttons[i]);
+                }
+
+            }
+        }
     }
 
     IEnumerator WaitSomeTime()
