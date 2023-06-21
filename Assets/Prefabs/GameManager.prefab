@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 292817243618740320}
   - component: {fileID: 292817243618740321}
+  - component: {fileID: 582669756}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -50,4 +51,18 @@ MonoBehaviour:
   compleatedLevels: []
   allGrass: []
   lastLevel: 0
+  maxLevel: 0
   prevLevel: 0
+  spawnPos: {x: 0, y: 0, z: 0}
+--- !u!114 &582669756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292817243618740326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e37be2787134d4eb4516c2e984ca49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
