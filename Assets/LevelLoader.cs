@@ -117,7 +117,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         }
     }
 
-    IEnumerator WaitSomeTime()
+    public IEnumerator WaitSomeTime()
     {
         
         yield return new WaitForSecondsRealtime(2);
