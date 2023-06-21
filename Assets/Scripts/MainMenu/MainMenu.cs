@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
         continueGameButton.interactable = false;
     }
 
-    public void Load()
+    public   void Load()
     {
         loadingScreen.SetActive(true);
 

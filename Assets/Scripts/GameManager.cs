@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public void SaveData(ref GameData data)
     {
         data.lastLevel = lastLevel;
-        data.maxLevel = maxLevel;
+        if (maxLevel > data.maxLevel)
+            data.maxLevel = maxLevel;
     }
 }

@@ -18,8 +18,7 @@ public class GameData
     {
         playerPos = new Vector3(-7.5f, 0.75f, -25.5f);
         spawnPos = new Vector3(-7.5f, 0.75f, -25.5f);
-        lastLevel = 1;
-        maxLevel = 1;
+        lastLevel = 0;
         compleatedLevels = new SerializableDictionary<int, bool>();
         collectedItems = new SerializableDictionary<string, bool>();
     }

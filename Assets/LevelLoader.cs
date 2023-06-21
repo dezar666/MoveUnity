@@ -47,7 +47,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
     public void LoadData(GameData data)
     {
         spawnPos = data.spawnPos;
-        maxLevel = data.lastLevel;
+        maxLevel = data.maxLevel;
         level = data.lastLevel;
     }
 
@@ -55,7 +55,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
     {
         data.spawnPos  = spawnPos;
         data.playerPos = spawnPos;
-        data.lastLevel = level;
+        data.lastLevel = level-1;
     }
 
     // Start is called before the first frame update
@@ -69,20 +69,20 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         }
 
         SetValues();
-        //for (int i = 0; i < maxLevel; i++)
-        //{
-        //    if (i < maxLevel)
-        //    {
-        //        buttons[i].GetComponent<LevelButton>().UnlockButton();
-        //    }
-        //}
+        for (int i = 0; i < maxLevel; i++)
+        {
+            if (i < maxLevel)
+            {
+                buttons[i].GetComponent<LevelButton>().UnlockButton();
+            }
+        }
     }
 
     public void ChangeSpawnPointAndLoadLevel()
     {
         persictenceManager.SaveGame();
         //persictenceManager.LoadGame();
-        //mainMenu.Load();
+        mainMenu.Load();
     }
 
     public void SetNewLevel(Vector3 pos, int lvl)
