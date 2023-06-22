@@ -312,9 +312,12 @@ MonoBehaviour:
   - {fileID: 799131933369225702}
   - {fileID: 799131932081002447}
   nextLevel: {fileID: 0}
+  allEnemies: []
   spawnPos: {fileID: 1466961020496167149}
   level: 2
   maxSteps: 5
+  kills: 0
+  maxKills: 0
   deathOnLevelCounter: 0
   levelRecord: 0
   levelIsReached: 0
@@ -4847,6 +4850,10 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 319882366, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 319882367, guid: dcb3b73f2d839764d9ad2060b24f7dc0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 5

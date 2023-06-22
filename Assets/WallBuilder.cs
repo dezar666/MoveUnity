@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class WallBuilder : MonoBehaviour
 {
-    LevelManager levelManager;
-
     [SerializeField] private float buildingSpeed = 5f;
     [SerializeField] private GameObject stopWall;
 
     public bool buildWall;
-
-    private void Start()
-    {
-        levelManager = GetComponentInParent<LevelManager>();
-    }
 
     void Update()
     {

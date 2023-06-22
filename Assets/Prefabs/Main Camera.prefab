@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3126822171431641105
+--- !u!1 &2427373583228608614
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3126822171431641108}
-  - component: {fileID: 3126822171431641107}
-  - component: {fileID: 3126822171431641106}
-  - component: {fileID: 3126822171431641109}
-  - component: {fileID: 1452793522506349164}
+  - component: {fileID: 2427373583228608611}
+  - component: {fileID: 2427373583228608612}
+  - component: {fileID: 2427373583228608613}
+  - component: {fileID: 2427373583228608610}
+  - component: {fileID: 1518504879}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Obstacle
@@ -20,28 +20,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3126822171431641108
+--- !u!4 &2427373583228608611
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
-  m_LocalRotation: {x: 0.6318329, y: -0.21587239, z: 0.07547193, w: 0.74060136}
-  m_LocalPosition: {x: 40.969997, y: 16.373001, z: -15.57}
+  m_GameObject: {fileID: 2427373583228608614}
+  m_LocalRotation: {x: 0.6362894, y: -0.13449275, z: 0.0066819494, w: 0.7596071}
+  m_LocalPosition: {x: 30.094364, y: 26.373001, z: -43.612263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 75.571, y: -64.22, z: -40.25}
---- !u!20 &3126822171431641107
+  m_LocalEulerAnglesHint: {x: 75.571, y: -51.8, z: -40.25}
+--- !u!20 &2427373583228608612
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
@@ -62,37 +62,37 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.11
+  orthographic size: 16
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3126822171431641106
+--- !u!81 &2427373583228608613
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
---- !u!114 &3126822171431641109
+--- !u!114 &2427373583228608610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
@@ -120,50 +120,32 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1452793522506349164
+--- !u!114 &1518504879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3126822171431641105}
+  m_GameObject: {fileID: 2427373583228608614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76bdde0931be9ea40ab0711782ececc0, type: 3}
+  m_Script: {fileID: 11500000, guid: e5c8c23e77fc220448d69885d635853b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: b4b12e21-59c5-424f-a4fb-7d78a615c751
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 46310ebd-017f-4e29-acb0-cb480721bb8b
-      m_Path: <Touchscreen>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 7dbbbace-0fb3-4348-bc11-a3deab746430
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 83e66902-3231-4d2f-b5f9-fa6e138aab8b
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100
+  swipeResistance: 50
+  direction: {x: 0, y: 0}
+  startPos: {x: 0, y: 0}
+  endPos: {x: 0, y: 0}
+  debugMode: 0
+  onSwipeUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeRight:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeLeft:
+    m_PersistentCalls:
+      m_Calls: []
