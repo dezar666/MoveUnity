@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerKiller : MonoBehaviour
 {
+    //[SerializeField] private AudioClip clip;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,11 @@ public class PlayerKiller : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<CharacterMovement>().Respawn();
+            var go = collision.gameObject.GetComponent<CharacterMovement>();
+            go.StartVibrate();
+            //go.audioSource.clip = clip;
+            //go.audioSource.Play();
+            go.Respawn();
         }
     }
 }

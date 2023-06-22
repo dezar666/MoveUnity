@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 {
     public LevelManager levelManager;
     public InputAction move;
+    public AudioSource audioSource;
     public Stack<GameObject> greenGrass;
     [SerializeField] private Animator animator;
 
@@ -27,10 +28,15 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public GameObject DrownVFX;
 
     
-    [SerializeField] GameObject GameObject;
-    [SerializeField] Transform CheckPoint;
-    [SerializeField] GameObject levelCompleatedUI;
-    [SerializeField] SwipeInput swipeInput;
+    [SerializeField] private GameObject GameObject;
+    [SerializeField] private Transform CheckPoint;
+    [SerializeField] private GameObject levelCompleatedUI;
+    [SerializeField] private SwipeInput swipeInput;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip playerMoveAudio;
+    [SerializeField] private AudioClip playerDying;
+
     public SwipeInput _swipeInput;
 
     public int currentStep = 0;
@@ -40,6 +46,10 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     private void Awake()
     {
         _swipeInput = swipeInput;
+#if UNITY_ANDROID && !UNITY_EDITOR
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+#endif
         //move.Enable();
         //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
         //SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
@@ -59,6 +69,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         isMoving = false;
         isAlive = true;
         isCharged = false;
@@ -70,17 +82,20 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     {
         if (!isMoving && isAlive && swipeInput.direction != Vector2.zero)
         {
+            audioSource.clip = playerMoveAudio;
+            audioSource.Play();
             RotatePlayer(swipeInput.direction);
             StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
 
         if (isMoving)
-        {
+        {            
             animator.SetBool("isMoving", true);
             swipeInput.canDetectSwipe = false;
         }
         else
         {
+            audioSource.Stop();
             swipeInput.canDetectSwipe = true;
             animator.SetBool("isMoving", false);
         }
@@ -106,6 +121,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     public void Respawn()
     {
+        audioSource.clip = playerDying;
+        audioSource.Play();
         isMoving = false;
         isAlive = true;
         swipeInput.direction = Vector2.zero;
@@ -238,8 +255,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 swipeInput.direction = Vector2.zero;
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
-                isAlive = false;
-                yield return new WaitForSeconds(1);                
+                isAlive = false;                
+#if UNITY_ANDROID && !UNITY_EDITOR
+                StartVibrate();
+#else
+                Debug.Log("Vibrating");
+#endif
+                yield return new WaitForSeconds(1);
                 Respawn();
                 yield break;
             }
@@ -248,6 +270,11 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 swipeInput.direction = Vector2.zero;
                 isAlive = false;
+#if UNITY_ANDROID && !UNITY_EDITOR
+                StartVibrate();
+#else
+                Debug.Log("Vibrating");
+#endif                
                 yield return new WaitForSeconds(1);
                 Respawn();
                 yield break;
@@ -317,5 +344,10 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             stateFlag = !stateFlag;
             checkState = isMoving;
         }
+    }
+
+    public void StartVibrate()
+    {
+        Handheld.Vibrate();
     }
 }
