@@ -66,6 +66,10 @@ public class DataPersictenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
+        gameData.spawnPos = new Vector3(-7.5f, 0.5f, -25.5f);
+        gameData.playerPos = gameData.spawnPos;
+        gameData.lastLevel = 1;
+        gameData.maxLevel = 1;
     }
 
     public void LoadGame()

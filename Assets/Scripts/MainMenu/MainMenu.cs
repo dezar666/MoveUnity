@@ -32,11 +32,11 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();
         Debug.Log("Start New Game");
-        levelLoader.spawnPos = new Vector3(-7.5f,0.5f,-25.5f);
-        levelLoader.level = 1;
+        FindObjectOfType<DataPersictenceManager>().NewGame();
+        levelLoader.spawnPos = levelLoader.allSpawnPoints[0];
         levelLoader.maxLevel = 1;
-        StartCoroutine(levelLoader.WaitSomeTime());
-        levelLoader.ChangeSpawnPointAndLoadLevel();
+        levelLoader.level = 1;
+        Load();
     }
 
     public void OnContinueClicked()
