@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();
         Debug.Log("Start New Game");
-        levelLoader.spawnPos = new Vector3(-7.5f,0.5f,-25.5f);
+        levelLoader.spawnPos = new Vector3(-7.5f,0.5f,-9f);
         levelLoader.level = 1;
         levelLoader.maxLevel = 1;
         StartCoroutine(levelLoader.WaitSomeTime());
