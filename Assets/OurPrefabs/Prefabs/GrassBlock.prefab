@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenMaterialRef: {fileID: 2100000, guid: 1b7030f541d109c4c895e95be54e899c, type: 2}
   yellowMaterialRef: {fileID: 2100000, guid: cd7c2fad2e8ded747a99891ce14a2361, type: 2}
-  grassRenderer: {fileID: 0}
+  grassRenderer: {fileID: 5921367079305056255}
   wasSteped: 0
 --- !u!1001 &5038822498947896187
 PrefabInstance:
@@ -131,5 +131,10 @@ PrefabInstance:
 --- !u!4 &4785012072825255056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c6f2149a2dc83f648a62a9acb90aa62c, type: 3}
+  m_PrefabInstance: {fileID: 5038822498947896187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5921367079305056255 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c6f2149a2dc83f648a62a9acb90aa62c, type: 3}
   m_PrefabInstance: {fileID: 5038822498947896187}
   m_PrefabAsset: {fileID: 0}

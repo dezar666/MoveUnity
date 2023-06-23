@@ -37,6 +37,9 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     [SerializeField] private AudioClip playerMoveAudio;
     [SerializeField] private AudioClip playerDying;
 
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem charge;
+
     public SwipeInput _swipeInput;
 
     public int currentStep = 0;
@@ -108,6 +111,9 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         {
             greenGrass.Clear();
         }
+
+        if (isCharged) { charge.gameObject.SetActive(true); }
+        else { charge.gameObject.SetActive(false);}
 
     }
 

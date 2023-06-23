@@ -6853,7 +6853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764949918818378107, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.9996948
+      value: -2.9997559
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
@@ -18912,6 +18912,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1421088956}
     m_Modifications:
+    - target: {fileID: 2827628321470257735, guid: c7c82954fd804db46a609c0b1206952f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.165
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827628321470257735, guid: c7c82954fd804db46a609c0b1206952f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 39.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827628321470257735, guid: c7c82954fd804db46a609c0b1206952f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.967
+      objectReference: {fileID: 0}
     - target: {fileID: 3522417274206287697, guid: c7c82954fd804db46a609c0b1206952f, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -18968,6 +18980,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LVL9
       objectReference: {fileID: 0}
+    - target: {fileID: 5298750094491701458, guid: c7c82954fd804db46a609c0b1206952f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.142
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162296470060663120, guid: c7c82954fd804db46a609c0b1206952f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.14999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7c82954fd804db46a609c0b1206952f, type: 3}
 --- !u!4 &3522417275379393196 stripped
@@ -18982,6 +19002,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1421088956}
     m_Modifications:
+    - target: {fileID: 4939038547418877691, guid: 6e6140525976e864bb91ee350e5856c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8241178635146452217, guid: 6e6140525976e864bb91ee350e5856c8, type: 3}
       propertyPath: m_Name
       value: LVL0
@@ -19439,6 +19463,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7595232786117480025, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595232786117480025, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595232786117480025, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595232786117480025, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595232786117480025, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: m_Center.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595232786117480025, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: swipeInput
       value: 
@@ -19457,7 +19505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7993069684595574811, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.69999695
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7993069684595574811, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: m_LocalPosition.z
