@@ -36,6 +36,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     [Header("Audio")]
     [SerializeField] private AudioClip playerMoveAudio;
     [SerializeField] private AudioClip playerDying;
+    [SerializeField] private AudioClip buildWall;
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem charge;
@@ -329,6 +330,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if(levelManager.level != 1)
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
+                audioSource.clip = buildWall;
+                audioSource.Play();
                 levelManager.levelIsReached = true;
                 currentStep = -1;
                 Debug.Log("build wall");
