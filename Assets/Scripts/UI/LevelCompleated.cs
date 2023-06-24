@@ -20,7 +20,7 @@ public class LevelCompleated : MonoBehaviour
 
     public void SetText(int level, int step, int attemts)
     {
-        tailText.text = "Level " + level + " compleated!";
+        tailText.text = "Level compleated!";
         stepsText.text = "Steps: " + step;
         attemtsText.text = "Attempts: " + (attemts + 1);
     }
@@ -29,7 +29,7 @@ public class LevelCompleated : MonoBehaviour
     {
         canvasGroup.alpha = 0f;
         rectTransform.transform.localPosition= new Vector3(0f,1200f, 0f);
-        rectTransform.DOAnchorPos(new Vector2(0f, 700f), fadeTime, false).SetEase(Ease.OutElastic);
+        rectTransform.DOAnchorPos(new Vector2(0f, 630f), fadeTime, false).SetEase(Ease.OutElastic);
         canvasGroup.DOFade(1, fadeTime);
         StartCoroutine(WaitSomeTime());       
     }
@@ -37,7 +37,7 @@ public class LevelCompleated : MonoBehaviour
     private void PanelFadeOut()
     {
         canvasGroup.alpha = 1f;
-        rectTransform.transform.localPosition = new Vector3(0f, 700f, 0f);
+        rectTransform.transform.localPosition = new Vector3(0f, 630f, 0f);
         rectTransform.DOAnchorPos(new Vector2(0f, 1200f), fadeTime, false).SetEase(Ease.InOutQuint);
         canvasGroup.DOFade(0, fadeTime);
         

@@ -6,7 +6,6 @@ using UnityEngine.XR;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] GameObject[] allGrass;
-    [SerializeField] LevelCompleated levelCompleatedScreen;
     [SerializeField] LevelManager nextLevel;
 
     public GameObject[] allEnemies;
@@ -50,9 +49,7 @@ public class LevelManager : MonoBehaviour
             allGrass[i].GetComponent<ChangeGrass>().onSteped();
             
         }
-        levelCompleatedScreen.gameObject.SetActive(true);
-        levelCompleatedScreen.SetText(level, stepsOnLevel, deathOnLevelCounter);
-        levelCompleatedScreen.PanelFadeIn();
+
         FindObjectOfType<CharacterMovement>().spawnPos = spawnPos.position;
         FindObjectOfType<GameManager>().lastLevel = level+1;
         FindObjectOfType<GameManager>().maxLevel = level+1;

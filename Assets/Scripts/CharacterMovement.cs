@@ -164,8 +164,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
         Vector3 down = transform.TransformDirection(Vector3.back) * 10;
 
-        //Debug.DrawRay(transform.position, down, Color.red, duration);
-        //Debug.DrawRay(transform.position, direction, Color.magenta, duration);
+        Debug.DrawRay(transform.position, down, Color.red, duration);
+        Debug.DrawRay(transform.position, direction, Color.magenta, duration);
 
         Ray moveRay = new Ray(transform.position, direction);
         Ray checkRay = new Ray(transform.position, down);
