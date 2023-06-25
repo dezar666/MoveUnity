@@ -16,7 +16,7 @@ public class WallBuilder : MonoBehaviour
 
     private void BuildWall()
     {
-        if (buildWall && transform.position.y <= 0.5f)
+        if (buildWall && transform.position.y <= 1.5f)
         {
             transform.localPosition += Vector3.up * buildingSpeed * Time.deltaTime;
             stopWall.transform.localPosition -= Vector3.up * buildingSpeed * Time.deltaTime;
