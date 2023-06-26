@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8241178635146452222}
   - component: {fileID: 8241178635146452223}
+  - component: {fileID: 3743856215300630374}
   m_Layer: 0
   m_Name: LVL0
   m_TagString: Untagged
@@ -222,6 +223,18 @@ MonoBehaviour:
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
+--- !u!156049354 &3743856215300630374
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241178635146452217}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 1
 --- !u!1 &8241178635218986498
 GameObject:
   m_ObjectHideFlags: 0
