@@ -16,9 +16,14 @@ public class WallBuilder : MonoBehaviour
 
     private void BuildWall()
     {
-        if (buildWall && transform.position.y <= 1.5f)
+        if (buildWall && transform.localPosition.y <= Vector3.zero.y)
         {
             transform.localPosition += Vector3.up * buildingSpeed * Time.deltaTime;
+            if (transform.localPosition.y >= Vector3.zero.y) 
+            {
+                buildWall = false;
+                transform.localPosition = new Vector3(transform.localPosition.x, 0f, transform.localPosition.z);                
+            }
             stopWall.transform.localPosition -= Vector3.up * buildingSpeed * Time.deltaTime;
             gameObject.GetComponent<Collider>().enabled = true;
         }
