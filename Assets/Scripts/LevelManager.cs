@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] LevelManager nextLevel;
 
     public GameObject[] allEnemies;
+    public BlockState[] destroyableBlocks;
     public Transform spawnPos;
     
 
@@ -31,6 +32,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         maxKills = allEnemies.Length;
+        destroyableBlocks = GetComponentsInChildren<BlockState>();
 
     }
 

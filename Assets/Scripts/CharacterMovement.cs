@@ -151,6 +151,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
             }
         }
+
+        foreach (var block in levelManager.destroyableBlocks)
+        {
+            block.gameObject.SetActive(true);
+        }
+
+
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -221,7 +228,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
-                Destroy(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
                 //isCharged = false;
                 bShouldYield = false;
                 //isMoving = false; to move if we get stopped by block
