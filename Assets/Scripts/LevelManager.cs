@@ -43,6 +43,10 @@ public class LevelManager : MonoBehaviour
             if (nextLevel.levelIsReached)
             {
                 levelCompleated = true;
+                foreach(var block in destroyableBlocks)
+                {
+                    block.gameObject.SetActive(false);
+                }
                 OnLevelCompleated();
             }
         }        
