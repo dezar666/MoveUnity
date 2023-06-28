@@ -23,9 +23,18 @@ public class PlayerKiller : MonoBehaviour
         {
             var go = collision.gameObject.GetComponent<CharacterMovement>();
             go.StartVibrate();
+            go.isAlive = false;
+            go.isMoving = false;
+            go.StopAllCoroutines();
             //go.audioSource.clip = clip;
             //go.audioSource.Play();
+            StartCoroutine(DeathCoroutine());
             go.Respawn();
         }
+    }
+
+    IEnumerator DeathCoroutine()
+    {
+        yield return new WaitForSeconds(5);
     }
 }

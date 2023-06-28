@@ -118,8 +118,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020284547, y: 0.019999996, z: 0.022278806}
-  m_Center: {x: 0.000101031445, y: -9.067116e-18, z: -0.0011394045}
+  m_Size: {x: 0.7, y: 0.7, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7595232786117480031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   swipeInput: {fileID: 0}
   playerMoveAudio: {fileID: 8300000, guid: 6320a224947f5b7469d1138799b6f417, type: 3}
   playerDying: {fileID: 8300000, guid: 8e97248553994b541a9ede099c94b1db, type: 3}
+  buildWall: {fileID: 8300000, guid: b02c2ec5195183642a88f909edd2c713, type: 3}
   charge: {fileID: 2666894907474788377}
   _swipeInput: {fileID: 0}
   currentStep: 0
