@@ -14,6 +14,7 @@ public class PickUpMessage : MonoBehaviour
         _itemName.text = name;
         _itemIcon.sprite = icon;
         gameObject.SetActive(true);
+        FindObjectOfType<PlayerAudioManager>().SoundOnItemPickUp();
         StartCoroutine(DeactivateMessage());
     }
 

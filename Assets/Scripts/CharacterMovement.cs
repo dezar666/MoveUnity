@@ -8,7 +8,6 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 {
     public LevelManager levelManager;
     public InputAction move;
-    public AudioSource audioSource;
     public Stack<GameObject> greenGrass;
     [SerializeField] private Animator animator;
 
@@ -36,11 +35,14 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     [Header("Audio")]
     [SerializeField] private AudioClip playerMoveAudio;
     [SerializeField] private AudioClip playerDying;
+    [SerializeField] private AudioClip dropOnWater;
     [SerializeField] private AudioClip buildWall;
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem charge;
+    [SerializeField] private ParticleSystem destroyBlock;
 
+    private PlayerAudioManager playerAudioManager;
     private CollectedItems collectedItems;
 
     public SwipeInput _swipeInput;
@@ -75,7 +77,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        playerAudioManager = GetComponent<PlayerAudioManager>();
 
         isMoving = false;
         isAlive = true;
@@ -88,8 +90,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     {
         if (!isMoving && isAlive && swipeInput.direction != Vector2.zero)
         {
-            audioSource.clip = playerMoveAudio;
-            audioSource.Play();
+            playerAudioManager.SoundOnMove();
             RotatePlayer(swipeInput.direction);
             StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
@@ -101,7 +102,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         }
         else
         {
-            audioSource.Stop();
+            GetComponent<AudioSource>().Stop();
             swipeInput.canDetectSwipe = true;
             animator.SetBool("isMoving", false);
         }
@@ -133,6 +134,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         
         isMoving = false;
         isAlive = true;
+        isCharged = false;
         animator.SetBool("isAlive", true);
         swipeInput.direction = Vector2.zero;
         transform.position = spawnPos;
@@ -231,13 +233,16 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 
                 NewDir.Normalize();
                 isCharged = true;
-                Debug.Log("get charge");                
+                //Debug.Log("get charge");                
                 StartCoroutine(MovePlayer(NewDir));
             }
 
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
+                playerAudioManager.SoundOnDestroy();               
                 hit.collider.gameObject.SetActive(false);
+                Vector3 partSpawnPos = hit.collider.gameObject.transform.position;
+                Instantiate(destroyBlock, partSpawnPos, Quaternion.identity);
                 //isCharged = false;
                 bShouldYield = false;
                 //isMoving = false; to move if we get stopped by block
@@ -279,15 +284,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 swipeInput.direction = Vector2.zero;
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
                 isAlive = false;
-                audioSource.clip = playerDying;
-                audioSource.Play();
+                playerAudioManager.SoundOnWater();
 #if UNITY_ANDROID && !UNITY_EDITOR
                 StartVibrate();
 #else
                 Debug.Log("Vibrating");
 #endif
-                animator.SetBool("isAlive", false);
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1f);
                 Respawn();
                 yield break;
             }
@@ -296,8 +299,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 swipeInput.direction = Vector2.zero;
                 isAlive = false;
-                audioSource.clip = playerDying;
-                audioSource.Play();
+                playerAudioManager.SoundOnDie();
 #if UNITY_ANDROID && !UNITY_EDITOR
                 StartVibrate();
 #else
@@ -352,8 +354,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if(levelManager.level != 1)
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
-                audioSource.clip = buildWall;
-                audioSource.Play();
+                playerAudioManager.SoundOnCompleatingLevel();
                 levelManager.levelIsReached = true;
                 currentStep = -1;
                 Debug.Log("build wall");

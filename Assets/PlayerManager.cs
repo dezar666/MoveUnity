@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
         {
             var cureentItem = other.GetComponent<ItemPickUp>()._item;
             collectedItems.Items.Add(cureentItem);
-            pickUpMessage.ShowMessage(cureentItem.name, cureentItem.UIIcon);
+            pickUpMessage.ShowMessage(cureentItem.Name, cureentItem.UIIcon);
             Debug.Log("Item {0} added.", other.gameObject);
             other.gameObject.GetComponent<ItemPickUp>().collected = true;
             other.gameObject.SetActive(false);
