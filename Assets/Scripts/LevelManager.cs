@@ -12,8 +12,9 @@ public class LevelManager : MonoBehaviour
 
     private LastLevel lastLevel;
 
-    public GameObject[] allEnemies;
+    public EnemyManager[] allEnemies;
     public BlockState[] destroyableBlocks;
+    public TreeItem[] allTreeItems;
     public Transform spawnPos;
     
 
@@ -36,6 +37,8 @@ public class LevelManager : MonoBehaviour
         maxKills = allEnemies.Length;
         destroyableBlocks = GetComponentsInChildren<BlockState>();
         lastLevel= FindObjectOfType<LastLevel>();
+        allEnemies = GetComponentsInChildren<EnemyManager>();
+        allTreeItems = GetComponentsInChildren<TreeItem>();
 
     }
 
@@ -49,6 +52,13 @@ public class LevelManager : MonoBehaviour
                 foreach(var block in destroyableBlocks)
                 {
                     block.gameObject.SetActive(false);
+                }
+                if (allEnemies.Length > 0)
+                {
+                    foreach (var enemy in allEnemies)
+                    {
+                        enemy.gameObject.SetActive(false);
+                    }
                 }
                 OnLevelCompleated();
             }

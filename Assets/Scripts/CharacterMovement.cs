@@ -41,6 +41,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     [Header("Effects")]
     [SerializeField] private ParticleSystem charge;
 
+    private CollectedItems collectedItems;
+
     public SwipeInput _swipeInput;
 
     public int currentStep = 0;
@@ -137,6 +139,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         currentStep = -1;
         levelManager.stepsOnLevel = -1;
         levelManager.deathOnLevelCounter++;
+        #region RESET_MAP
         foreach (var grass in greenGrass)
         {
             grass.GetComponent<ChangeGrass>().turnBack();
@@ -147,7 +150,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         {
             for (int i = 0; i < levelManager.allEnemies.Length; i++)
             {
-                levelManager.allEnemies[i].SetActive(true);
+                levelManager.allEnemies[i].gameObject.SetActive(true);
                 levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
             }
         }
@@ -157,7 +160,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             block.gameObject.SetActive(true);
         }
 
+        foreach (var item in levelManager.allTreeItems)
+        {
+            item.GetComponent<ItemPickUp>().collected = false;
+            item.gameObject.SetActive(true);            
+        }
 
+        #endregion
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
