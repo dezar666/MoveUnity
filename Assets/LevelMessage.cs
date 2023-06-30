@@ -11,7 +11,7 @@ public class LevelMessage : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !other.gameObject.GetComponent<LevelManager>().isLastLevel)
             ShowMessage();
     }
 

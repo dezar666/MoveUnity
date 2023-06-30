@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject[] allGrass;
     [SerializeField] LevelManager nextLevel;
 
+    private LastLevel lastLevel;
+
     public GameObject[] allEnemies;
     public BlockState[] destroyableBlocks;
     public Transform spawnPos;
@@ -33,6 +35,7 @@ public class LevelManager : MonoBehaviour
     {
         maxKills = allEnemies.Length;
         destroyableBlocks = GetComponentsInChildren<BlockState>();
+        lastLevel= FindObjectOfType<LastLevel>();
 
     }
 
@@ -49,7 +52,12 @@ public class LevelManager : MonoBehaviour
                 }
                 OnLevelCompleated();
             }
-        }        
+        }
+        if (lastLevel.isGameCompleated)
+        {
+            ShakeGrass();
+        }
+        
     }
 
     private void OnLevelCompleated()

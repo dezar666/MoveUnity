@@ -25,6 +25,7 @@ public class SwipeInput : MonoBehaviour
     private void Update()
     {
         if (canDetectSwipe) { DetectSwipe(); }
+        
     }
 
     private void DetectSwipe()

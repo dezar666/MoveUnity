@@ -10,4 +10,12 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         FindObjectOfType<DataPersictenceManager>().SaveGame();
     }
+    public void OnPauseButtonClickFromGame()
+    {
+        FindObjectOfType<SwipeInput>().canDetectSwipe = false;
+    }
+    public void OnContinueButtonClick()
+    {
+        FindObjectOfType<SwipeInput>().canDetectSwipe = true;
+    }
 }
