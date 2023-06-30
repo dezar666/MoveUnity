@@ -130,10 +130,10 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     public void Respawn()
     {
-        audioSource.clip = playerDying;
-        audioSource.Play();
+        
         isMoving = false;
         isAlive = true;
+        animator.SetBool("isAlive", true);
         swipeInput.direction = Vector2.zero;
         transform.position = spawnPos;
         currentStep = -1;
@@ -278,13 +278,16 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 swipeInput.direction = Vector2.zero;
                 Instantiate(DrownVFX, transform.position, Quaternion.identity);
-                isAlive = false;                
+                isAlive = false;
+                audioSource.clip = playerDying;
+                audioSource.Play();
 #if UNITY_ANDROID && !UNITY_EDITOR
                 StartVibrate();
 #else
                 Debug.Log("Vibrating");
 #endif
-                yield return new WaitForSeconds(1);
+                animator.SetBool("isAlive", false);
+                yield return new WaitForSeconds(3f);
                 Respawn();
                 yield break;
             }
@@ -293,12 +296,15 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 swipeInput.direction = Vector2.zero;
                 isAlive = false;
+                audioSource.clip = playerDying;
+                audioSource.Play();
 #if UNITY_ANDROID && !UNITY_EDITOR
                 StartVibrate();
 #else
                 Debug.Log("Vibrating");
-#endif                
-                yield return new WaitForSeconds(1);
+#endif
+                animator.SetBool("isAlive", false);
+                yield return new WaitForSeconds(3f);
                 Respawn();
                 yield break;
             }

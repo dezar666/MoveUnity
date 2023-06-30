@@ -4,37 +4,34 @@ using UnityEngine;
 
 public class PlayerKiller : MonoBehaviour
 {
+    private CharacterMovement characterMovement;
     //[SerializeField] private AudioClip clip;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        characterMovement = FindObjectOfType<CharacterMovement>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            var go = collision.gameObject.GetComponent<CharacterMovement>();
-            go.StartVibrate();
-            go.isAlive = false;
-            go.isMoving = false;
-            go.StopAllCoroutines();
             //go.audioSource.clip = clip;
             //go.audioSource.Play();
+            characterMovement.isAlive = false;
+            characterMovement.StopAllCoroutines();
             StartCoroutine(DeathCoroutine());
-            go.Respawn();
+            
         }
     }
 
     IEnumerator DeathCoroutine()
-    {
-        yield return new WaitForSeconds(5);
+    {       
+        characterMovement.StartVibrate();        
+        characterMovement.isMoving = false;        
+        characterMovement.GetComponent<Animator>().SetBool("isAlive", false);
+        yield return new WaitForSeconds(2);
+        characterMovement.Respawn();
+        
     }
 }
