@@ -121,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7181368759566455727}
   m_LocalRotation: {x: 0.6358126, y: -0.09588972, z: -0.025518421, w: 0.76543874}
-  m_LocalPosition: {x: 2.96, y: 14.790001, z: -1.5699997}
+  m_LocalPosition: {x: 2.32, y: 14.790001, z: -0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -393,6 +393,8 @@ MonoBehaviour:
   - {fileID: 854994335684113884}
   nextLevel: {fileID: 0}
   allEnemies: []
+  destroyableBlocks: []
+  allTreeItems: []
   spawnPos: {fileID: 481227220847051326}
   level: 15
   stepsOnLevel: 0
