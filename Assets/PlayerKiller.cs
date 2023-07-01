@@ -37,7 +37,7 @@ public class PlayerKiller : MonoBehaviour
     {               
         characterMovement.isMoving = false;        
         characterMovement.GetComponent<Animator>().SetBool("isAlive", false);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         characterMovement.Respawn();
         
     }

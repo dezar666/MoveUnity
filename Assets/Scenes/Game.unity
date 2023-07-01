@@ -50477,6 +50477,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameCompleatedPanel: {fileID: 309221695}
   onGameUI: {fileID: 1277892917}
+--- !u!1 &1581219350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3998880396726561522, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+  m_PrefabInstance: {fileID: 8899413763428669695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1581240275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71060,6 +71065,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: DrownVFX
+      value: 
+      objectReference: {fileID: 1687118924408352, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
+    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
+      propertyPath: GameObject
+      value: 
+      objectReference: {fileID: 1581219350}
     - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: swipeInput
       value: 
