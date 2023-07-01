@@ -131,7 +131,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     public void Respawn()
     {
-        
+        GameObject.SetActive(true);
         isMoving = false;
         isAlive = true;
         isCharged = false;
@@ -282,7 +282,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if (deathkhit.collider.gameObject.tag == "WaterBlock")
             {
                 swipeInput.direction = Vector2.zero;
-                Instantiate(DrownVFX, transform.position, Quaternion.identity);
+                GameObject.SetActive(false);
+                Instantiate(DrownVFX, transform.position, Quaternion.Euler(90,0,0));
                 isAlive = false;
                 playerAudioManager.SoundOnWater();
 #if UNITY_ANDROID && !UNITY_EDITOR
