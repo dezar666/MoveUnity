@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ChangeGrass : MonoBehaviour
 {
+    private const float MAX_EDGE = 2;
+    private const string EDGE_KEY = "_Edge";
+
 
     public Material greenMaterialRef;
     public Material yellowMaterialRef;
@@ -28,7 +31,7 @@ public class ChangeGrass : MonoBehaviour
         if (!wasSteped)
         {
             wasSteped=true;
-            grassRenderer.material = greenMaterialRef;;
+            StartCoroutine(ChangeColor());
         }
     }
 
@@ -38,7 +41,19 @@ public class ChangeGrass : MonoBehaviour
         if (wasSteped)
         {
             wasSteped = false;
-            grassRenderer.material = yellowMaterialRef; ;
+            grassRenderer.material.SetFloat(EDGE_KEY, 0) ;
+        }
+    }
+
+    private IEnumerator ChangeColor()
+    {
+        float edge = 0;
+
+        while (edge < MAX_EDGE)
+        {
+            edge += Time.deltaTime;
+            grassRenderer.material.SetFloat(EDGE_KEY, edge);
+            yield return null;
         }
     }
 }
