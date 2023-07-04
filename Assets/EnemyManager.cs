@@ -19,11 +19,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ReviveEnemy();
-        if (isDead)
-        {
-            playerMovement.levelManager.kills++;
-        }
+        
     }
 
     private void ReviveEnemy()

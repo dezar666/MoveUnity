@@ -462,10 +462,9 @@ MonoBehaviour:
   level: 11
   stepsOnLevel: 0
   maxSteps: 8
-  kills: 0
-  maxKills: 0
   deathOnLevelCounter: 0
   levelRecord: 0
+  collectedItemsOnLevel: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -2397,6 +2396,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7349059587766514143}
     m_Modifications:
+    - target: {fileID: 2422468268825713032, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
+      propertyPath: id
+      value: b24d700b-9969-40b7-8e19-38a592bd2a9c
+      objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713034, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_Name
       value: Item (1)
@@ -12829,6 +12832,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7349059587766514143}
     m_Modifications:
+    - target: {fileID: 2422468268825713032, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
+      propertyPath: id
+      value: e27bc8b1-341d-4ad7-a8fd-ac3b27de7834
+      objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713034, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_Name
       value: Item (1)

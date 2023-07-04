@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class BlockState : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private ParticleSystem destroyBlock;
 
-    // Update is called once per frame
-    void Update()
+    public bool isDestroyed;
+
+    public void DestroyBlock()
     {
-        
+        isDestroyed = true;
+        gameObject.SetActive(false);
+        Instantiate(destroyBlock, transform.position, Quaternion.identity);
     }
 }
