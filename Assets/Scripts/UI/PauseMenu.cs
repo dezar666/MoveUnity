@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    private SwipeInput swipeInput;
+
+    private void Awake()
+    {
+        swipeInput = FindObjectOfType<SwipeInput>();
+    }
     public void OnMainMenuButtonClick()
     {
         SceneManager.LoadScene("MainMenu");
@@ -12,10 +18,18 @@ public class PauseMenu : MonoBehaviour
     }
     public void OnPauseButtonClickFromGame()
     {
-        FindObjectOfType<SwipeInput>().canDetectSwipe = false;
+        swipeInput.canDetectSwipe = false;
+        swipeInput.isOnMenu = true;
     }
     public void OnContinueButtonClick()
     {
-        FindObjectOfType<SwipeInput>().canDetectSwipe = true;
+        swipeInput.canDetectSwipe = true;
+        swipeInput.isOnMenu = false;
+        FindObjectOfType<DataPersictenceManager>().SaveGame();
+    }
+
+    public void OnSettingsButtonClick()
+    {
+        FindObjectOfType<DataPersictenceManager>().LoadGame();
     }
 }
