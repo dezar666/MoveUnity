@@ -5910,6 +5910,7 @@ GameObject:
   - component: {fileID: 4025668894947980642}
   - component: {fileID: 8583520888763929710}
   - component: {fileID: 9001205677865166314}
+  - component: {fileID: 1656296789}
   m_Layer: 5
   m_Name: PickUpMessage
   m_TagString: Untagged
@@ -5991,6 +5992,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: {fileID: 7081546931211163895}
   _itemIcon: {fileID: 4171232708763872039}
+  canvasGroup: {fileID: 1656296789}
+  rectTransform: {fileID: 7245205748652591762}
+  fadeTime: 1
+  showingTime: 1
+--- !u!225 &1656296789
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7584201769337053852}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7764949918818378106
 GameObject:
   m_ObjectHideFlags: 0

@@ -22650,6 +22650,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9001205677865166314, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+      propertyPath: fadeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001205677865166314, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 1656296789}
+    - target: {fileID: 9001205677865166314, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+      propertyPath: showingTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001205677865166314, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 1656296792}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
 --- !u!114 &759182918 stripped
@@ -22668,7 +22684,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9001205677865166314, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
   m_PrefabInstance: {fileID: 759182917}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1656296788}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1782dc3f66eb64145a3d517bce32085e, type: 3}
@@ -52264,6 +52280,28 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8180316336918004323, guid: 1e4f49afacfb1774db32a9b1f2e72e4a, type: 3}
   m_PrefabInstance: {fileID: 1654414037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1656296788 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7584201769337053852, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+  m_PrefabInstance: {fileID: 759182917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1656296789
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656296788}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!224 &1656296792 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7245205748652591762, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+  m_PrefabInstance: {fileID: 759182917}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1660659482
 PrefabInstance:
