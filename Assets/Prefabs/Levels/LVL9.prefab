@@ -648,6 +648,7 @@ MonoBehaviour:
   deathOnLevelCounter: 0
   levelRecord: 0
   collectedItemsOnLevel: 0
+  totalItemsOnLevel: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -677,7 +678,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3522417274388611218}
   m_LocalRotation: {x: 0.6363205, y: -0.12918639, z: 0.0022396147, w: 0.76052755}
-  m_LocalPosition: {x: 4.06, y: 14.790001, z: -1.5699997}
+  m_LocalPosition: {x: 3.49, y: 14.790001, z: -1.5699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4355,7 +4356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713035, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713035, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16286,7 +16287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713035, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713035, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_LocalPosition.z
