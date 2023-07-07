@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public int maxLevel;
     public int prevLevel;
     public Vector3 spawnPos;
+    public Vector3 prevSpawnPos;
 
     private void Awake()
     {
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour, IDatePersistence
     {
         lastLevel = data.lastLevel;
         maxLevel = data.maxLevel;
+        prevLevel = levels[lastLevel - 1].GetComponent<LevelManager>().level;
+        spawnPos = data.spawnPos;
+        prevSpawnPos = levels[prevLevel].GetComponent<LevelManager>().spawnPos.transform.position;
 
         characterMovement.levelManager = levels[lastLevel-1].GetComponent<LevelManager>();
         //foreach (LevelManager currentLevel in levels)

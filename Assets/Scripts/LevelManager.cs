@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] LevelManager nextLevel;
 
     private LastLevel lastLevel;
+    private GameManager gameManager;
 
     public EnemyManager[] allEnemies;
     public BlockState[] destroyableBlocks;
@@ -78,8 +79,11 @@ public class LevelManager : MonoBehaviour
         ShakeGrass();
 
         FindObjectOfType<CharacterMovement>().spawnPos = spawnPos.position;
-        FindObjectOfType<GameManager>().lastLevel = level+1;
-        FindObjectOfType<GameManager>().maxLevel = level+1;
+        gameManager.lastLevel = level+1;
+        gameManager.maxLevel = level+1;
+        gameManager.prevLevel= level;
+        gameManager.spawnPos = spawnPos.position;
+        gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;
         FindObjectOfType<DataPersictenceManager>().SaveGame();       
     }
 

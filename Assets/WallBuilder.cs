@@ -7,8 +7,14 @@ public class WallBuilder : MonoBehaviour
     [SerializeField] private float buildingSpeed = 5f;
     [SerializeField] private GameObject stopWall;
 
+    public Vector3 startPos;
+
     public bool buildWall;
 
+    private void Awake()
+    {
+        startPos = transform.localPosition;
+    }
     void Update()
     {
         BuildWall();

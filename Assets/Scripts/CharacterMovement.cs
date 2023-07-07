@@ -19,6 +19,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private Vector3 origPos, targetPos, checkPos;
     public Vector3 spawnPos;
+    public Vector3 prevSpawnPos;
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;

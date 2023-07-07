@@ -21152,11 +21152,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4924683109167740373, guid: 80c1305101746b543802285b180dd283, type: 3}
   m_PrefabInstance: {fileID: 709287251}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &713286382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3998880396726561522, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-  m_PrefabInstance: {fileID: 8899413763428669695}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &714064784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22648,6 +22643,10 @@ PrefabInstance:
       value: UserUI
       objectReference: {fileID: 0}
     - target: {fileID: 841231797918590567, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1059388042}
+    - target: {fileID: 1067073439397876342, guid: 5a44e0806f33b9e47bfa916b3eb794ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1059388042}
@@ -31569,7 +31568,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
   m_PrefabInstance: {fileID: 8899413763428669695}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744213206}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14187b19d8b1802469a90f1c91c700f2, type: 3}
@@ -55076,29 +55075,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8180316336918004323, guid: 1e4f49afacfb1774db32a9b1f2e72e4a, type: 3}
   m_PrefabInstance: {fileID: 1741147280}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1744213206 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7324759736076931745, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-  m_PrefabInstance: {fileID: 8899413763428669695}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1744213215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744213206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55302aa074fb9444197369ad42b4456a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  step: {fileID: 8300000, guid: 9a30d43c55f4a3249875e41d36edce6d, type: 3}
-  die: {fileID: 8300000, guid: 48da9b3c2543da7478f9125627635df4, type: 3}
-  dieOnWater: {fileID: 8300000, guid: 530ef394613fa2543b995d1abe5f9e4d, type: 3}
-  pickUpItem: {fileID: 8300000, guid: f4a0a74ac4e5c4e4c945f5c9bc28f9c8, type: 3}
-  destroyBlock: {fileID: 8300000, guid: 92438f0bd16cb4f43a067644a77c8c4f, type: 3}
-  buildWall: {fileID: 8300000, guid: b02c2ec5195183642a88f909edd2c713, type: 3}
 --- !u!1001 &1747509302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70182,54 +70158,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1059388050, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059388050, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -8670079872562123951, guid: e7a560e46350106429ca1920177af0d2, type: 2}
-    - target: {fileID: 1218462539045957244, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: m_Range
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218462539045957244, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: m_Intensity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666894907474788377, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: lengthInSec
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7324759736076931745, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: DrownVFX
-      value: 
-      objectReference: {fileID: 1687118924408352, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
-    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: GameObject
-      value: 
-      objectReference: {fileID: 713286382}
-    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: swipeInput
       value: 
       objectReference: {fileID: 1518504879}
-    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: dropOnWater
-      value: 
-      objectReference: {fileID: 8300000, guid: 530ef394613fa2543b995d1abe5f9e4d, type: 3}
-    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: playerDying
-      value: 
-      objectReference: {fileID: 8300000, guid: 48da9b3c2543da7478f9125627635df4, type: 3}
-    - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
-      propertyPath: destroyBlock
-      value: 
-      objectReference: {fileID: 198499209413112314, guid: f01c1eba69de19e44b04d8d651aaac37, type: 3}
     - target: {fileID: 7595232786117480031, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: levelCompleatedUI
       value: 
