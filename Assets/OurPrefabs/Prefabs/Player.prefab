@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8593000558711917626}
   - component: {fileID: 1059388041}
   - component: {fileID: 1059388050}
+  - component: {fileID: 1744213215}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -196,17 +197,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   raycastLength: 1
-  DrownVFX: {fileID: 8205706795460263314, guid: 326e86d5729c54e479798cacab220bb2, type: 3}
-  GameObject: {fileID: 7324759736076931745}
+  DrownVFX: {fileID: 1687118924408352, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
+  GameObject: {fileID: 3998880396726561522}
   CheckPoint: {fileID: 0}
   levelCompleatedUI: {fileID: 0}
   swipeInput: {fileID: 0}
   playerMoveAudio: {fileID: 8300000, guid: 6320a224947f5b7469d1138799b6f417, type: 3}
-  playerDying: {fileID: 8300000, guid: 8e97248553994b541a9ede099c94b1db, type: 3}
-  dropOnWater: {fileID: 0}
+  playerDying: {fileID: 8300000, guid: 48da9b3c2543da7478f9125627635df4, type: 3}
+  dropOnWater: {fileID: 8300000, guid: 530ef394613fa2543b995d1abe5f9e4d, type: 3}
   buildWall: {fileID: 8300000, guid: b02c2ec5195183642a88f909edd2c713, type: 3}
   charge: {fileID: 2666894907474788377}
-  destroyBlock: {fileID: 0}
   _swipeInput: {fileID: 0}
   currentStep: 0
 --- !u!114 &8593000558711917626
@@ -223,6 +223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedItems: {fileID: 0}
   pickUpMessage: {fileID: 0}
+  collectedItemsOnLevel: 0
+  totalItemsOnLevel: 0
 --- !u!95 &1059388041
 Animator:
   serializedVersion: 5
@@ -253,9 +255,9 @@ AudioSource:
   m_GameObject: {fileID: 7324759736076931745}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8670079872562123951, guid: e7a560e46350106429ca1920177af0d2, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -340,6 +342,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1744213215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324759736076931745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55302aa074fb9444197369ad42b4456a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: {fileID: 8300000, guid: 9a30d43c55f4a3249875e41d36edce6d, type: 3}
+  die: {fileID: 8300000, guid: 48da9b3c2543da7478f9125627635df4, type: 3}
+  dieOnWater: {fileID: 8300000, guid: 530ef394613fa2543b995d1abe5f9e4d, type: 3}
+  pickUpItem: {fileID: 8300000, guid: f4a0a74ac4e5c4e4c945f5c9bc28f9c8, type: 3}
+  destroyBlock: {fileID: 8300000, guid: 92438f0bd16cb4f43a067644a77c8c4f, type: 3}
+  buildWall: {fileID: 8300000, guid: b02c2ec5195183642a88f909edd2c713, type: 3}
 --- !u!1001 &4305310785445681059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,6 +421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81bd24d19c174546b096c9bff36bce2, type: 3}
+--- !u!1 &3998880396726561522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e81bd24d19c174546b096c9bff36bce2, type: 3}
+  m_PrefabInstance: {fileID: 4305310785445681059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4338426748033609800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e81bd24d19c174546b096c9bff36bce2, type: 3}
@@ -495,9 +520,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7993069684595574811}
     m_Modifications:
+    - target: {fileID: 6810471105834413002, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
       propertyPath: m_Name
       value: Buff
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739937971770705327, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+      propertyPath: m_Range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739937971770705327, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+      propertyPath: m_Intensity
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8029142899459995171, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
       propertyPath: m_RootOrder
