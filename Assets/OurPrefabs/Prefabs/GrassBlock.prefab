@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1b2b73624f5e5419e835c6a2d9229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenMaterialRef: {fileID: 2100000, guid: e11820def211aac499d1bcf50c3e3f8a, type: 2}
-  yellowMaterialRef: {fileID: 8290782892783832528, guid: c6f2149a2dc83f648a62a9acb90aa62c, type: 3}
+  greenMaterialRef: {fileID: 2100000, guid: 1b7030f541d109c4c895e95be54e899c, type: 2}
+  yellowMaterialRef: {fileID: 2100000, guid: cd7c2fad2e8ded747a99891ce14a2361, type: 2}
   grassRenderer: {fileID: 5921367079305056255}
   wasSteped: 0
 --- !u!1001 &5038822498947896187
@@ -117,7 +117,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c6f2149a2dc83f648a62a9acb90aa62c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 8290782892783832528, guid: c6f2149a2dc83f648a62a9acb90aa62c, type: 3}
+      objectReference: {fileID: 2100000, guid: 2d68c916c73f7e1428ff7186227f6781, type: 2}
     - target: {fileID: 919132149155446097, guid: c6f2149a2dc83f648a62a9acb90aa62c, type: 3}
       propertyPath: m_Name
       value: P_GrassYellow

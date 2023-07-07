@@ -40,7 +40,6 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem charge;
-    [SerializeField] private ParticleSystem destroyBlock;
 
     private PlayerAudioManager playerAudioManager;
     private CollectedItems collectedItems;
@@ -138,10 +137,12 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         animator.SetBool("isAlive", true);
         swipeInput.direction = Vector2.zero;
         transform.position = spawnPos;
+        FindObjectOfType<PlayerManager>().collectedItemsOnLevel = 0;
+        #region RESET_MAP
         currentStep = -1;
         levelManager.stepsOnLevel = -1;
         levelManager.deathOnLevelCounter++;
-        #region RESET_MAP
+        
         foreach (var grass in greenGrass)
         {
             grass.GetComponent<ChangeGrass>().turnBack();
@@ -239,10 +240,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
-                playerAudioManager.SoundOnDestroy();               
-                hit.collider.gameObject.SetActive(false);
-                Vector3 partSpawnPos = hit.collider.gameObject.transform.position;
-                Instantiate(destroyBlock, partSpawnPos, Quaternion.identity);
+                playerAudioManager.SoundOnDestroy();
+                hit.collider.gameObject.GetComponent<BlockState>().DestroyBlock();
                 //isCharged = false;
                 bShouldYield = false;
                 //isMoving = false; to move if we get stopped by block

@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    CharacterMovement characterMovement;
+    LevelManager level;
     [SerializeField] private CollectedItems collectedItems;
     [SerializeField] private PickUpMessage pickUpMessage;
 
+    public int collectedItemsOnLevel;
+    public int totalItemsOnLevel;
+
     private void Start()
     {
-        characterMovement = GetComponent<CharacterMovement>();
+        level = GetComponent<CharacterMovement>().levelManager;
+        totalItemsOnLevel = level.totalItemsOnLevel;
+        foreach (var item in level.allTreeItems)
+        {
+            if (level.level == 10) { Debug.Log($"{item.id}, {level}, {item.collected}"); }
+            if (item.collected)
+            {
+                collectedItemsOnLevel++;
+            }
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,14 +34,16 @@ public class PlayerManager : MonoBehaviour
         //    Debug.Log("Inventory cleared.");
         //}
 
-        if (other.tag == "Item")
+        if (other.GetComponent<TreeItem>())
         {
             var cureentItem = other.GetComponent<ItemPickUp>()._item;
             collectedItems.Items.Add(cureentItem);
-            pickUpMessage.ShowMessage(cureentItem.Name, cureentItem.UIIcon);
+            collectedItemsOnLevel++;
+            pickUpMessage.ShowMessage(cureentItem.Name, cureentItem.UIIcon, collectedItemsOnLevel, totalItemsOnLevel);
             Debug.Log("Item {0} added.", other.gameObject);
             other.gameObject.GetComponent<ItemPickUp>().collected = true;
             other.gameObject.SetActive(false);
+            FindObjectOfType<DataPersictenceManager>().SaveGame();
             //Destroy(other.gameObject);
         }
     }

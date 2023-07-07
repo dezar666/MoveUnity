@@ -662,10 +662,9 @@ MonoBehaviour:
   level: 4
   stepsOnLevel: 0
   maxSteps: 12
-  kills: 0
-  maxKills: 0
   deathOnLevelCounter: 0
   levelRecord: 0
+  collectedItemsOnLevel: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -8781,6 +8780,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3035855058534370873}
     m_Modifications:
+    - target: {fileID: 2422468268825713032, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
+      propertyPath: id
+      value: 105eaa4e-e624-4c03-8449-2b8241208a27
+      objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713034, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_Name
       value: Item (1)
@@ -19161,6 +19164,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3035855058534370873}
     m_Modifications:
+    - target: {fileID: 2422468268825713032, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
+      propertyPath: id
+      value: d0b550f8-6c5a-4b92-9759-2924e289656e
+      objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713034, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_Name
       value: Item (1)
@@ -19285,6 +19292,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3035855058534370873}
     m_Modifications:
+    - target: {fileID: 2422468268825713032, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
+      propertyPath: id
+      value: b4d625e9-d385-4f25-b2c3-6e9dde77fe07
+      objectReference: {fileID: 0}
     - target: {fileID: 2422468268825713034, guid: e7d69a51d26349447a74aeda02f8340f, type: 3}
       propertyPath: m_Name
       value: Item (1)

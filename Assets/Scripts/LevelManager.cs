@@ -14,33 +14,32 @@ public class LevelManager : MonoBehaviour
 
     public EnemyManager[] allEnemies;
     public BlockState[] destroyableBlocks;
-    public TreeItem[] allTreeItems;
+    public ItemPickUp[] allTreeItems;
     public Transform spawnPos;
     
 
     public int level;
     public int stepsOnLevel;
     public int maxSteps;
-    public int kills, maxKills;
     public int deathOnLevelCounter;
     public int levelRecord;
+    public int collectedItemsOnLevel;
+    public int totalItemsOnLevel;
 
     public bool levelCompleated = false;
     public bool levelIsReached = false;
     public bool isLastLevel = false;
 
-    private GameObject[] sortedGrass;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        maxKills = allEnemies.Length;
         destroyableBlocks = GetComponentsInChildren<BlockState>();
-        lastLevel= FindObjectOfType<LastLevel>();
+        lastLevel = FindObjectOfType<LastLevel>();
         allEnemies = GetComponentsInChildren<EnemyManager>();
-        allTreeItems = GetComponentsInChildren<TreeItem>();
-
+        allTreeItems = GetComponentsInChildren<ItemPickUp>();
+        
+        totalItemsOnLevel = allTreeItems.Length;
     }
+
 
     void Update()
     {
@@ -49,6 +48,10 @@ public class LevelManager : MonoBehaviour
             if (nextLevel.levelIsReached)
             {
                 levelCompleated = true;
+                var player = FindObjectOfType<PlayerManager>();
+                player.collectedItemsOnLevel = 0;
+                player.totalItemsOnLevel = nextLevel.totalItemsOnLevel;
+
                 foreach(var block in destroyableBlocks)
                 {
                     block.gameObject.SetActive(false);
@@ -85,6 +88,13 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < allGrass.Length; i++)
         {
             allGrass[i].GetComponent<ChangeGrass>().onSteped();
+        }
+        foreach (var block in destroyableBlocks)
+        {
+            if (!block.isDestroyed)
+            {
+                block.DestroyBlock();
+            }
         }
     }
 }
