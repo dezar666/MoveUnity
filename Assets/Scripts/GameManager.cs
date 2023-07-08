@@ -27,9 +27,10 @@ public class GameManager : MonoBehaviour, IDatePersistence
     {
         lastLevel = data.lastLevel;
         maxLevel = data.maxLevel;
-        prevLevel = levels[lastLevel - 1].GetComponent<LevelManager>().level;
+        prevLevel = levels[lastLevel - 1].GetComponent<LevelManager>().level - 1;
         spawnPos = data.spawnPos;
         prevSpawnPos = levels[prevLevel].GetComponent<LevelManager>().spawnPos.transform.position;
+        prevSpawnPos = new Vector3(prevSpawnPos.x, 1.01f, prevSpawnPos.z);
 
         characterMovement.levelManager = levels[lastLevel-1].GetComponent<LevelManager>();
         //foreach (LevelManager currentLevel in levels)

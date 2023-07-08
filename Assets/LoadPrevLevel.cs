@@ -21,27 +21,33 @@ public class LoadPrevLevel : MonoBehaviour
         gameManager.lastLevel = gameManager.prevLevel;
         gameManager.spawnPos = gameManager.prevSpawnPos;
         characterMovement.spawnPos = gameManager.prevSpawnPos;
+        
         foreach (var grass in characterMovement.levelManager.GetComponentsInChildren<ChangeGrass>())
         {
             grass.GetComponent<ChangeGrass>().turnBack();
         }
-        characterMovement.levelManager = gameManager.levels[gameManager.prevLevel];        
+        characterMovement.levelManager = gameManager.levels[gameManager.prevLevel-1];
+        characterMovement.levelManager.levelCompleated = false;
         foreach (var grass in characterMovement.levelManager.GetComponentsInChildren<ChangeGrass>())
         {
             grass.GetComponent<ChangeGrass>().turnBack();
         }
-        gameManager.levels[gameManager.prevLevel].gameObject.GetComponentInChildren<WallBuilder>().buildWall = true;
-        gameManager.levels[gameManager.prevLevel + 1].gameObject.GetComponentInChildren<WallBuilder>().gameObject.transform.localPosition =
-            gameManager.levels[gameManager.prevLevel + 1].gameObject.GetComponentInChildren<WallBuilder>().startPos;
+        gameManager.levels[gameManager.prevLevel-1].gameObject.GetComponentInChildren<WallBuilder>().buildWall = true;
+        gameManager.levels[gameManager.prevLevel].gameObject.GetComponentInChildren<WallBuilder>().gameObject.transform.localPosition =
+            gameManager.levels[gameManager.prevLevel].gameObject.GetComponentInChildren<WallBuilder>().startPos;
         playerManager.totalItemsOnLevel = characterMovement.levelManager.totalItemsOnLevel;
+
+        foreach (var block in characterMovement.levelManager.destroyableBlocks)
+        {
+            block.gameObject.SetActive(true);
+        }
         foreach (var item in characterMovement.levelManager.allTreeItems)
         {
             if (item.collected)
             {
                 playerManager.collectedItemsOnLevel++;
             }
-
         }
-        characterMovement.Respawn();
+        characterMovement.transform.position = gameManager.spawnPos;
     }
 }

@@ -138,7 +138,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         animator.SetBool("isAlive", true);
         swipeInput.direction = Vector2.zero;
         transform.position = spawnPos;
-        FindObjectOfType<PlayerManager>().collectedItemsOnLevel = 0;
+        //FindObjectOfType<PlayerManager>().collectedItemsOnLevel = 0;
         #region RESET_MAP
         currentStep = -1;
         levelManager.stepsOnLevel = -1;
@@ -164,11 +164,11 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             block.gameObject.SetActive(true);
         }
 
-        foreach (var item in levelManager.allTreeItems)
-        {
-            item.GetComponent<ItemPickUp>().collected = false;
-            item.gameObject.SetActive(true);            
-        }
+        //foreach (var item in levelManager.allTreeItems)
+        //{
+        //    item.GetComponent<ItemPickUp>().collected = false;
+        //    item.gameObject.SetActive(true);            
+        //}
 
         #endregion
     }

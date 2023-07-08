@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     {
         destroyableBlocks = GetComponentsInChildren<BlockState>();
         lastLevel = FindObjectOfType<LastLevel>();
+        gameManager = FindObjectOfType<GameManager>();
         allEnemies = GetComponentsInChildren<EnemyManager>();
         allTreeItems = GetComponentsInChildren<ItemPickUp>();
         
