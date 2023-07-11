@@ -20,7 +20,7 @@ public class LevelCompleated : MonoBehaviour
 
     public void SetText(int level, int step, int attemts)
     {
-        tailText.text = "Level compleated!";
+        tailText.text = "Level completed!";
         stepsText.text = "Steps: " + step;
         attemtsText.text = "Attempts: " + (attemts + 1);
     }

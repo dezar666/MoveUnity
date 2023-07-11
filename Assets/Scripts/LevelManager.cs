@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
 using UnityEngine.XR;
@@ -85,7 +86,8 @@ public class LevelManager : MonoBehaviour
         gameManager.prevLevel= level;
         gameManager.spawnPos = spawnPos.position;
         gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;
-        FindObjectOfType<DataPersictenceManager>().SaveGame();       
+        FindObjectOfType<DataPersictenceManager>().SaveGame();
+        FindObjectOfType<LoadPrevLevel>().GetComponentInChildren<Button>().interactable = true;
     }
 
     private void ShakeGrass()
