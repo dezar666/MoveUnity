@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour, IDatePersistence
 {
@@ -25,11 +26,16 @@ public class GameManager : MonoBehaviour, IDatePersistence
     [SerializeField] private Slider _music;
     [SerializeField] private Slider _nature;
     [SerializeField] private Slider _effect;
+    [SerializeField] private AudioMixer _mixer;
+    public string musicParam = "music";
+    public string natureParam = "nature";
+    public string effectsParam = "effects";
 
     private void Awake()
     {
         characterMovement = FindAnyObjectByType<CharacterMovement>();
         levels = GameObject.Find("Levels").GetComponentsInChildren<LevelManager>();
+        
     }
 
     public void LoadData(GameData data)
@@ -42,6 +48,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
         _musicValue = data.musicVolume;
         _natureValue = data.natureVolume;
         _effectsValue = data.effectsVolume;
+        
 
         prevSpawnPos = levels[prevLevel].GetComponent<LevelManager>().spawnPos.transform.position;
         prevSpawnPos = new Vector3(prevSpawnPos.x, 1.01f, prevSpawnPos.z);
@@ -101,6 +108,13 @@ public class GameManager : MonoBehaviour, IDatePersistence
         data.musicVolume = _musicValue;
         data.natureVolume = _natureValue;
         data.effectsVolume = _effectsValue;
+    }
+
+    private void Start()
+    {
+        _mixer.SetFloat(musicParam, _musicValue);
+        _mixer.SetFloat(natureParam, _natureValue);
+        _mixer.SetFloat(effectsParam, _effectsValue);
     }
 
     public void SetSliderValues()
