@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class GameManager : MonoBehaviour, IDatePersistence
@@ -17,6 +18,14 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public Vector3 spawnPos;
     public Vector3 prevSpawnPos;
 
+    [Header("Sounds")]
+    public float _musicValue;
+    public float _natureValue;
+    public float _effectsValue;
+    [SerializeField] private Slider _music;
+    [SerializeField] private Slider _nature;
+    [SerializeField] private Slider _effect;
+
     private void Awake()
     {
         characterMovement = FindAnyObjectByType<CharacterMovement>();
@@ -29,6 +38,11 @@ public class GameManager : MonoBehaviour, IDatePersistence
         maxLevel = data.maxLevel;
         prevLevel = levels[lastLevel - 1].GetComponent<LevelManager>().level - 1;
         spawnPos = data.spawnPos;
+
+        _musicValue = data.musicVolume;
+        _natureValue = data.natureVolume;
+        _effectsValue = data.effectsVolume;
+
         prevSpawnPos = levels[prevLevel].GetComponent<LevelManager>().spawnPos.transform.position;
         prevSpawnPos = new Vector3(prevSpawnPos.x, 1.01f, prevSpawnPos.z);
 
@@ -84,5 +98,15 @@ public class GameManager : MonoBehaviour, IDatePersistence
         data.lastLevel = lastLevel;
         if (maxLevel > data.maxLevel)
             data.maxLevel = maxLevel;
+        data.musicVolume = _musicValue;
+        data.natureVolume = _natureValue;
+        data.effectsVolume = _effectsValue;
+    }
+
+    public void SetSliderValues()
+    {
+        _music.value = Mathf.Pow(10f, _musicValue / 20);
+        _nature.value = Mathf.Pow(10f, _natureValue / 20);
+        _effect.value = Mathf.Pow(10f, _effectsValue / 20);
     }
 }

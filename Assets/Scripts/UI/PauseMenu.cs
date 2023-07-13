@@ -6,15 +6,18 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private SwipeInput swipeInput;
+    private DataPersictenceManager dataPersictenceManager;
 
     private void Awake()
     {
         swipeInput = FindObjectOfType<SwipeInput>();
+        dataPersictenceManager = FindAnyObjectByType<DataPersictenceManager>();
+
     }
     public void OnMainMenuButtonClick()
     {
-        SceneManager.LoadScene("MainMenu");
-        FindObjectOfType<DataPersictenceManager>().SaveGame();
+        dataPersictenceManager.SaveGame();
+        SceneManager.LoadScene("MainMenu");     
     }
     public void OnPauseButtonClickFromGame()
     {
@@ -25,11 +28,15 @@ public class PauseMenu : MonoBehaviour
     {
         swipeInput.canDetectSwipe = true;
         swipeInput.isOnMenu = false;
-        FindObjectOfType<DataPersictenceManager>().SaveGame();
+        dataPersictenceManager.SaveGame();
     }
 
+    public void OnBackButtonClick()
+    {
+        //dataPersictenceManager.SaveGame();
+    }
     public void OnSettingsButtonClick()
     {
-        FindObjectOfType<DataPersictenceManager>().LoadGame();
+        
     }
 }

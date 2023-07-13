@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class SoundController : MonoBehaviour,IDatePersistence
 {
     private const float MULTIPLIER = 20f;
+    private DataPersictenceManager dataPersictenceManager;
+    private GameManager gameManager;
 
     [Header("Sliders")]
     [SerializeField] private Slider _musicSlider;
@@ -27,6 +29,8 @@ public class SoundController : MonoBehaviour,IDatePersistence
 
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        dataPersictenceManager = FindObjectOfType<DataPersictenceManager>();
         _musicSlider.onValueChanged.AddListener(HandleMusicSliderValueChanged);
         _natureSlider.onValueChanged.AddListener(HandleNatureSliderValueChanged);
         _effectsSlider.onValueChanged.AddListener(HandleEffectsSliderValueChanged);
@@ -36,27 +40,28 @@ public class SoundController : MonoBehaviour,IDatePersistence
     {
         _musicValue = Mathf.Log10(value) * MULTIPLIER;
         _mixer.SetFloat(musicParam, _musicValue);
+        gameManager._musicValue = _musicValue;
+        dataPersictenceManager.SaveGame();
     }
     private void HandleNatureSliderValueChanged(float value)
     {
         _natureValue = Mathf.Log10(value) * MULTIPLIER;
         _mixer.SetFloat(natureParam, _natureValue);
+        gameManager._natureValue = _natureValue;
+        dataPersictenceManager.SaveGame();
     }
 
     private void HandleEffectsSliderValueChanged(float value)
     {
         _effectsValue = Mathf.Log10(value) * MULTIPLIER;
         _mixer.SetFloat(effectsParam, _effectsValue);
+        gameManager._effectsValue = _effectsValue;
+        dataPersictenceManager.SaveGame();
     }
 
     public void LoadData(GameData data)
     {
-        this._musicValue = data.musicVolume;
-        this._natureValue = data.natureVolume;
-        this._effectsValue = data.effectsVolume;
-        _musicSlider.value = Mathf.Pow(10f, _musicValue / MULTIPLIER);
-        _natureSlider.value = Mathf.Pow(10f, _natureValue / MULTIPLIER);
-        _effectsSlider.value = Mathf.Pow(10f, _effectsValue / MULTIPLIER);
+
     }
 
     public void SaveData(ref GameData data)
