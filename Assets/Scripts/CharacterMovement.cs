@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public bool isMoving;
     public bool isAlive;
     public bool isCharged;
+    public bool canTeleport;
     private bool checkState;
     private bool stateFlag;
 
@@ -257,6 +258,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
                 isMoving = false;
                 isCharged = false;
+                canTeleport = true;
                 //currentStep++;
                 if (levelManager.levelIsReached)
                 {
