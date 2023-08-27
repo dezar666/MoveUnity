@@ -23,7 +23,7 @@ public class Teleport : MonoBehaviour
         if (other.gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
         {
             _timer += Time.deltaTime;
-            if (_timer >= 2f && characterMovement.canTeleport) 
+            if (_timer >= 0f && characterMovement.canTeleport) 
             {
                 characterMovement.canTeleport = false;
                 characterMovement.isMoving = false;
