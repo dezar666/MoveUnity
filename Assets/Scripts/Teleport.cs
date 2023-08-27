@@ -5,6 +5,7 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private Transform _targetPos;
+    [SerializeField, Range(0, 1)] private float _awaitTime = 0.25f;
 
     private float _timer;
 
@@ -14,7 +15,7 @@ public class Teleport : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
         {
-            _timer = 0f;
+            _timer = _awaitTime;
         }
     }
 
@@ -23,7 +24,7 @@ public class Teleport : MonoBehaviour
         if (other.gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
         {
             _timer += Time.deltaTime;
-            if (_timer >= 0f && characterMovement.canTeleport) 
+            if (_timer >= _awaitTime && characterMovement.canTeleport) 
             {
                 characterMovement.canTeleport = false;
                 characterMovement.isMoving = false;
