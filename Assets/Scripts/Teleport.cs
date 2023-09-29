@@ -9,29 +9,29 @@ public class Teleport : MonoBehaviour
 
     private float _timer;
 
+    public Transform TargetPos { get { return _targetPos; } }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
         {
-            _timer = _awaitTime;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
-        {
-            _timer += Time.deltaTime;
-            if (_timer >= _awaitTime && characterMovement.canTeleport) 
-            {
-                characterMovement.canTeleport = false;
-                characterMovement.isMoving = false;
-                characterMovement._swipeInput.direction = Vector2.zero;
-                characterMovement.transform.position = _targetPos.position;
-            }
             
         }
     }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
+    //    {
+    //        _timer += Time.deltaTime;
+    //        if (_timer >= _awaitTime && characterMovement.canTeleport) 
+    //        {
+    //            characterMovement.canTeleport = false;
+    //            characterMovement.isMoving = false;
+    //            characterMovement._swipeInput.direction = Vector2.zero;
+    //            characterMovement.transform.position = TargetPos.position;
+    //        }
+            
+    //    }
+    //}
 }
