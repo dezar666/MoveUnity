@@ -233,7 +233,7 @@ Grid:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8241178635146452217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CellSize: {x: 1, y: 1, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
@@ -7525,6 +7525,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5272615155216428586, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272615155216428586, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_TagString
+      value: WaterBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921367079305056255, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27ca8bb37990cd64b8598fe2cb19c4ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a03a92d158b233a49be71517328d065d, type: 3}
 --- !u!1 &5317933260924806291 stripped
@@ -8759,9 +8771,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6559886981415862582, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559886981415862582, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559886982704925564, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559886982704925564, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0921817
+      objectReference: {fileID: 0}
     - target: {fileID: 7008544463220313445, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
       propertyPath: m_Name
       value: BigGate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624607075430282889, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624607075430282889, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0921817
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624607076842290371, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624607076842290371, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254db89d36b9a4b42a6305bb67ec1cc4, type: 3}
@@ -8949,6 +8993,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5272615155216428586, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272615155216428586, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_TagString
+      value: WaterBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921367079305056255, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27ca8bb37990cd64b8598fe2cb19c4ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a03a92d158b233a49be71517328d065d, type: 3}
 --- !u!4 &6509087794522266854 stripped
@@ -9331,6 +9387,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5272615155216428586, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272615155216428586, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_TagString
+      value: WaterBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921367079305056255, guid: a03a92d158b233a49be71517328d065d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27ca8bb37990cd64b8598fe2cb19c4ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a03a92d158b233a49be71517328d065d, type: 3}
 --- !u!1 &7053165813864455849 stripped
