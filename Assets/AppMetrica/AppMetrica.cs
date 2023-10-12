@@ -80,6 +80,8 @@ public class AppMetrica : MonoBehaviour
     private void Start()
     {
         Instance.ResumeSession();
+        AppMetrica.Instance.ReportEvent("game_started");
+        AppMetrica.Instance.SendEventsBuffer();
     }
 
     private void OnEnable()

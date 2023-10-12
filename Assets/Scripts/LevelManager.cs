@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
     public BlockState[] destroyableBlocks;
     public ItemPickUp[] allTreeItems;
     public Transform spawnPos;
-    
+
 
     public int level;
     public int stepsOnLevel;
@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         allEnemies = GetComponentsInChildren<EnemyManager>();
         allTreeItems = GetComponentsInChildren<ItemPickUp>();
-        
+
         totalItemsOnLevel = allTreeItems.Length;
     }
 
@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
                 player.collectedItemsOnLevel = 0;
                 player.totalItemsOnLevel = nextLevel.totalItemsOnLevel;
 
-                foreach(var block in destroyableBlocks)
+                foreach (var block in destroyableBlocks)
                 {
                     block.gameObject.SetActive(false);
                 }
@@ -66,6 +66,7 @@ public class LevelManager : MonoBehaviour
                         enemy.gameObject.SetActive(false);
                     }
                 }
+
                 OnLevelCompleated();
             }
         }
@@ -73,7 +74,19 @@ public class LevelManager : MonoBehaviour
         {
             ShakeGrass();
         }
-        
+
+    }
+    public void LevelEnd(int levelNumber,int steps, int deaths)
+    {
+        Dictionary<string, object> parameters = new Dictionary<string, object>()
+    {
+        { "level_number", levelNumber },
+        { "steps_on_level", steps },
+        { "deaths_on_level", deaths }
+    };
+
+        AppMetrica.Instance.ReportEvent($"level_{level}_end", parameters);
+        AppMetrica.Instance.SendEventsBuffer();
     }
 
     private void OnLevelCompleated()
@@ -81,9 +94,9 @@ public class LevelManager : MonoBehaviour
         ShakeGrass();
 
         FindObjectOfType<CharacterMovement>().spawnPos = spawnPos.position;
-        gameManager.lastLevel = level+1;
-        gameManager.maxLevel = level+1;
-        gameManager.prevLevel= level;
+        gameManager.lastLevel = level + 1;
+        gameManager.maxLevel = level + 1;
+        gameManager.prevLevel = level;
         gameManager.spawnPos = spawnPos.position;
         gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;
         FindObjectOfType<DataPersictenceManager>().SaveGame();

@@ -348,6 +348,9 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         if(collision.tag == "CheckPoint")
         {
             //WakeUp(collision);
+
+            levelManager.LevelEnd(levelManager.level, levelManager.stepsOnLevel, levelManager.deathOnLevelCounter);
+
             CheckPoint = collision.transform;
             levelManager = collision.GetComponentInParent<LevelManager>();
 

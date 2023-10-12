@@ -30,20 +30,24 @@ public class MainMenu : MonoBehaviour
 
     public void OnNewGameClicked()
     {
-        DisableMenuButtons();
+        DisableMenuButtons();        
         Debug.Log("Start New Game");
         FindObjectOfType<DataPersictenceManager>().NewGame();
         levelLoader.spawnPos = levelLoader.allSpawnPoints[0];
         levelLoader.maxLevel = 1;
         levelLoader.level = 1;
         Load();
+        AppMetrica.Instance.ReportEvent("new_game_started");
+        AppMetrica.Instance.SendEventsBuffer();
     }
 
     public void OnContinueClicked()
     {
-        DisableMenuButtons();
+        DisableMenuButtons();       
         Debug.Log("Continue game");
         levelLoader.ChangeSpawnPointAndLoadLevel();
+        AppMetrica.Instance.ReportEvent("loaded_last_played_level");
+        AppMetrica.Instance.SendEventsBuffer();
     }
 
     public void OnSelectLevelClicked()
@@ -55,6 +59,8 @@ public class MainMenu : MonoBehaviour
     public void OnExitClicked()
     {
         Application.Quit();
+        AppMetrica.Instance.ReportEvent("game_closed");
+        AppMetrica.Instance.SendEventsBuffer();
     }
 
 
@@ -64,7 +70,7 @@ public class MainMenu : MonoBehaviour
         continueGameButton.interactable = false;
     }
 
-    public   void Load()
+    public void Load()
     {
         loadingScreen.SetActive(true);
 
