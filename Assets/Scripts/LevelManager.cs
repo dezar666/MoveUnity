@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!isLastLevel)
         {
-            if (nextLevel.levelIsReached)
+            if (nextLevel != null && nextLevel.levelIsReached)
             {
                 levelCompleated = true;
                 var player = FindObjectOfType<PlayerManager>();
@@ -69,7 +69,7 @@ public class LevelManager : MonoBehaviour
                 OnLevelCompleated();
             }
         }
-        if (lastLevel.isGameCompleated)
+        if (isLastLevel && lastLevel.isGameCompleated)
         {
             ShakeGrass();
         }
