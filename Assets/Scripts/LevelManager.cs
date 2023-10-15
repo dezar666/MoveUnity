@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
 using UnityEngine.XR;
+using System.Security.Cryptography;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Unity.VisualScripting;
 
 public class LevelManager : MonoBehaviour
 {
@@ -27,6 +30,7 @@ public class LevelManager : MonoBehaviour
     public int levelRecord;
     public int collectedItemsOnLevel;
     public int totalItemsOnLevel;
+    public int restarts;
 
     public bool levelCompleated = false;
     public bool levelIsReached = false;
@@ -41,6 +45,17 @@ public class LevelManager : MonoBehaviour
         allTreeItems = GetComponentsInChildren<ItemPickUp>();
 
         totalItemsOnLevel = allTreeItems.Length;
+    }
+
+    private void Start()
+    {
+        restarts = 0;
+        CharacterMovement character = FindObjectOfType(typeof(CharacterMovement)) as CharacterMovement;
+        if (character.levelManager.level == level)
+        {            
+            Debug.Log($"{level} started");
+            LevelStart(level);
+        }
     }
 
 
@@ -76,14 +91,27 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-    public void LevelEnd(int levelNumber,int steps, int deaths)
+
+    public void LevelStart(int levelNumber)
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>()
     {
         { "level_number", levelNumber },
-        { "steps_on_level", steps },
-        { "deaths_on_level", deaths }
     };
+
+        AppMetrica.Instance.ReportEvent($"level_{level}_start", parameters);
+        AppMetrica.Instance.SendEventsBuffer();
+    }
+
+    public void LevelEnd(int levelNumber,int steps, int deaths,int restarts)
+    {
+        Dictionary<string, object> parameters = new Dictionary<string, object>()
+        {
+            { "level_number", levelNumber },
+            { "steps_on_level", steps },
+            { "deaths_on_level", deaths },
+            {"restarts", restarts },
+        };
 
         AppMetrica.Instance.ReportEvent($"level_{level}_end", parameters);
         AppMetrica.Instance.SendEventsBuffer();

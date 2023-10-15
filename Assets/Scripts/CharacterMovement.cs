@@ -349,7 +349,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         {
             //WakeUp(collision);
 
-            levelManager.LevelEnd(levelManager.level, levelManager.stepsOnLevel, levelManager.deathOnLevelCounter);
+            levelManager.LevelEnd(levelManager.level, levelManager.stepsOnLevel, levelManager.deathOnLevelCounter, levelManager.restarts);
 
             CheckPoint = collision.transform;
             levelManager = collision.GetComponentInParent<LevelManager>();
@@ -397,6 +397,11 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             }
                
         }
+    }
+
+    public void LevelRestart()
+    {
+        levelManager.restarts++;
     }
 
     private void CheckStateChange()
