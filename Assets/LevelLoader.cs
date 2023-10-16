@@ -71,19 +71,21 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         SetValues(); 
     }
 
-    public void ChangeSpawnPointAndLoadLevel()
+    public void ChangeSpawnPointAndLoadLevel(int sceneToLoad)
     {
         persictenceManager.SaveGame();
         //persictenceManager.LoadGame();
-        mainMenu.Load();
+        mainMenu.Load(sceneToLoad);
     }
 
     public void SetNewLevel(Vector3 pos, int lvl)
     {
         spawnPos = pos;
         level= lvl;
-        //ChangeSpawnPointAndLoadLevel();
-        StartCoroutine(WaitSomeTime());
+        if (level < 16)
+            StartCoroutine(WaitSomeTime(1));
+        else
+            StartCoroutine(WaitSomeTime(2));
     }
 
     private void SetValues()
@@ -117,10 +119,10 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         }
     }
 
-    public IEnumerator WaitSomeTime()
+    public IEnumerator WaitSomeTime(int sceneToLoad)
     {
         
         yield return new WaitForSecondsRealtime(2);
-        ChangeSpawnPointAndLoadLevel();
+        ChangeSpawnPointAndLoadLevel(sceneToLoad);
     }
 }

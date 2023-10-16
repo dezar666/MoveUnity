@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WallBuilder : MonoBehaviour
 {
+    [SerializeField] private Key _key;
     [SerializeField] private float buildingSpeed = 5f;
     [SerializeField] private GameObject stopWall;
 

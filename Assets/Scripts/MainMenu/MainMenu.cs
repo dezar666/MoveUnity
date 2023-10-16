@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
         levelLoader.spawnPos = levelLoader.allSpawnPoints[0];
         levelLoader.maxLevel = 1;
         levelLoader.level = 1;
-        Load();
+        Load(1);
         AppMetrica.Instance.ReportEvent("new_game_started");
         AppMetrica.Instance.SendEventsBuffer();
     }
@@ -45,7 +45,11 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();       
         Debug.Log("Continue game");
-        levelLoader.ChangeSpawnPointAndLoadLevel();
+        if (levelLoader.maxLevel < 16)
+            levelLoader.ChangeSpawnPointAndLoadLevel(1);
+        else
+            levelLoader.ChangeSpawnPointAndLoadLevel(2);
+        levelLoader.ChangeSpawnPointAndLoadLevel(levelLoader.maxLevel);
         AppMetrica.Instance.ReportEvent("loaded_last_played_level");
         AppMetrica.Instance.SendEventsBuffer();
     }
@@ -70,14 +74,14 @@ public class MainMenu : MonoBehaviour
         continueGameButton.interactable = false;
     }
 
-    public void Load()
+    public void Load(int sceneToLoad)
     {
         loadingScreen.SetActive(true);
 
-        StartCoroutine(LoadAsync());
+        StartCoroutine(LoadAsync(sceneToLoad));
     }
 
-    IEnumerator LoadAsync()
+    IEnumerator LoadAsync(int sceneToLoad)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
 
