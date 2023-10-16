@@ -16,6 +16,7 @@ public class SwipeInput : MonoBehaviour
     [Header("Dev Settings")]
     public bool debugMode;
     public bool canDetectSwipe;
+    public bool isOnMenu;
 
     public UnityEvent onSwipeUp;
     public UnityEvent onSwipeDown;
@@ -24,7 +25,7 @@ public class SwipeInput : MonoBehaviour
 
     private void Update()
     {
-        if (canDetectSwipe) { DetectSwipe(); }
+        if (canDetectSwipe && !isOnMenu) { DetectSwipe(); }        
     }
 
     private void DetectSwipe()

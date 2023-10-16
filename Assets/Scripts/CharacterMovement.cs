@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 
 public class CharacterMovement : MonoBehaviour, IDatePersistence
@@ -14,11 +15,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public bool isMoving;
     public bool isAlive;
     public bool isCharged;
+    public bool canTeleport = true ;
     private bool checkState;
     private bool stateFlag;
 
     private Vector3 origPos, targetPos, checkPos;
     public Vector3 spawnPos;
+    public Vector3 prevSpawnPos;
 
     public float timeToMove = 0.05f;
     public LayerMask obstacleLayer;
@@ -27,19 +30,40 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public GameObject DrownVFX;
 
     
-    [SerializeField] GameObject GameObject;
-    [SerializeField] Transform CheckPoint;
-    [SerializeField] GameObject levelCompleatedUI;
-    [SerializeField] SwipeInput swipeInput;
+    [SerializeField] private GameObject GameObject;
+    [SerializeField] private Transform CheckPoint;
+    [SerializeField] private GameObject levelCompleatedUI;
+    [SerializeField] private SwipeInput swipeInput;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip playerMoveAudio;
+    [SerializeField] private AudioClip playerDying;
+    [SerializeField] private AudioClip dropOnWater;
+    [SerializeField] private AudioClip buildWall;
+
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem charge;
+
+    private PlayerAudioManager playerAudioManager;
+    private CollectedItems collectedItems;
+
     public SwipeInput _swipeInput;
 
     public int currentStep = 0;
 
+    [field: SerializeField] public int TeleportFlag { get; private set; }
+
     float duration = 5;
+
+    private Coroutine _playerMoving;
 
     private void Awake()
     {
         _swipeInput = swipeInput;
+#if UNITY_ANDROID && !UNITY_EDITOR
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+#endif
         //move.Enable();
         //move.performed += context => { StartCoroutine(MovePlayer(new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y))); };
         //SwipeDetection.instance.swipePerformed += context => { StartCoroutine(MovePlayer(new Vector3(context.x, 0f, context.y))); };
@@ -59,6 +83,9 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Start()
     {
+        TeleportFlag = 0;
+        playerAudioManager = GetComponent<PlayerAudioManager>();
+
         isMoving = false;
         isAlive = true;
         isCharged = false;
@@ -70,17 +97,19 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     {
         if (!isMoving && isAlive && swipeInput.direction != Vector2.zero)
         {
+            playerAudioManager.SoundOnMove();
             RotatePlayer(swipeInput.direction);
-            StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
+            _playerMoving = StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
 
         if (isMoving)
-        {
+        {            
             animator.SetBool("isMoving", true);
             swipeInput.canDetectSwipe = false;
         }
         else
         {
+            GetComponent<AudioSource>().Stop();
             swipeInput.canDetectSwipe = true;
             animator.SetBool("isMoving", false);
         }
@@ -94,6 +123,9 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             greenGrass.Clear();
         }
 
+        if (isCharged) { charge.gameObject.SetActive(true); }
+        else { charge.gameObject.SetActive(false);}
+
     }
 
     private void RotatePlayer(Vector2 direction)
@@ -106,13 +138,19 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     public void Respawn()
     {
+        GameObject.SetActive(true);
         isMoving = false;
         isAlive = true;
+        isCharged = false;
+        animator.SetBool("isAlive", true);
         swipeInput.direction = Vector2.zero;
         transform.position = spawnPos;
+        FindObjectOfType<PlayerManager>().collectedItemsOnLevel = 0;
+        #region RESET_MAP
         currentStep = -1;
         levelManager.stepsOnLevel = -1;
         levelManager.deathOnLevelCounter++;
+        
         foreach (var grass in greenGrass)
         {
             grass.GetComponent<ChangeGrass>().turnBack();
@@ -123,10 +161,23 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         {
             for (int i = 0; i < levelManager.allEnemies.Length; i++)
             {
-                levelManager.allEnemies[i].SetActive(true);
+                levelManager.allEnemies[i].gameObject.SetActive(true);
                 levelManager.allEnemies[i].GetComponentInParent<EnemyManager>().isDead = false;
             }
         }
+
+        foreach (var block in levelManager.destroyableBlocks)
+        {
+            block.gameObject.SetActive(true);
+        }
+
+        foreach (var item in levelManager.allTreeItems)
+        {
+            item.GetComponent<ItemPickUp>().collected = false;
+            item.gameObject.SetActive(true);
+        }
+
+        #endregion
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -140,8 +191,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
         Vector3 down = transform.TransformDirection(Vector3.back) * 10;
 
-        //Debug.DrawRay(transform.position, down, Color.red, duration);
-        //Debug.DrawRay(transform.position, direction, Color.magenta, duration);
+        Debug.DrawRay(transform.position, down, Color.red, duration);
+        Debug.DrawRay(transform.position, direction, Color.magenta, duration);
 
         Ray moveRay = new Ray(transform.position, direction);
         Ray checkRay = new Ray(transform.position, down);
@@ -191,13 +242,14 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 
                 NewDir.Normalize();
                 isCharged = true;
-                Debug.Log("get charge");                
+                //Debug.Log("get charge");                
                 StartCoroutine(MovePlayer(NewDir));
             }
 
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
-                Destroy(hit.collider.gameObject);
+                playerAudioManager.SoundOnDestroy();
+                hit.collider.gameObject.GetComponent<BlockState>().DestroyBlock();
                 //isCharged = false;
                 bShouldYield = false;
                 //isMoving = false; to move if we get stopped by block
@@ -237,9 +289,16 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if (deathkhit.collider.gameObject.tag == "WaterBlock")
             {
                 swipeInput.direction = Vector2.zero;
-                Instantiate(DrownVFX, transform.position, Quaternion.identity);
+                GameObject.SetActive(false);
+                Instantiate(DrownVFX, transform.position, Quaternion.Euler(90,0,0));
                 isAlive = false;
-                yield return new WaitForSeconds(1);                
+                playerAudioManager.SoundOnWater();
+#if UNITY_ANDROID && !UNITY_EDITOR
+                StartVibrate();
+#else
+                Debug.Log("Vibrating");
+#endif
+                yield return new WaitForSeconds(1f);
                 Respawn();
                 yield break;
             }
@@ -248,7 +307,14 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 swipeInput.direction = Vector2.zero;
                 isAlive = false;
-                yield return new WaitForSeconds(1);
+                playerAudioManager.SoundOnDie();
+#if UNITY_ANDROID && !UNITY_EDITOR
+                StartVibrate();
+#else
+                Debug.Log("Vibrating");
+#endif
+                animator.SetBool("isAlive", false);
+                yield return new WaitForSeconds(1f);
                 Respawn();
                 yield break;
             }
@@ -282,12 +348,30 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         if(collision.tag == "CheckPoint")
         {
             //WakeUp(collision);
+
+            levelManager.LevelEnd(levelManager.level, levelManager.stepsOnLevel, levelManager.deathOnLevelCounter, levelManager.restarts);
+
             CheckPoint = collision.transform;
             levelManager = collision.GetComponentInParent<LevelManager>();
 
             Debug.Log("new lvl reached");
-        } 
-        
+        }
+
+        else if (collision.gameObject.TryGetComponent<Teleport>(out Teleport teleport))
+        {
+            TeleportFlag++;
+            if (canTeleport && TeleportFlag <= 1)
+            {
+                canTeleport = false;
+                Debug.Log("Telepor");
+                StopAllCoroutines();
+                _swipeInput.direction = Vector2.zero;
+                isMoving = false;
+                transform.position = teleport.TargetPos.position;               
+            }
+                                    
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -296,12 +380,27 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if(levelManager.level != 1)
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
+                playerAudioManager.SoundOnCompleatingLevel();
                 levelManager.levelIsReached = true;
                 currentStep = -1;
                 Debug.Log("build wall");
             }                      
             
         }
+        else if (other.gameObject.TryGetComponent<Teleport>(out Teleport teleport))
+        {
+            if (TeleportFlag == 2)
+            {
+                canTeleport = true;
+                TeleportFlag = 0;
+            }
+               
+        }
+    }
+
+    public void LevelRestart()
+    {
+        levelManager.restarts++;
     }
 
     private void CheckStateChange()
@@ -317,5 +416,10 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             stateFlag = !stateFlag;
             checkState = isMoving;
         }
+    }
+
+    public void StartVibrate()
+    {
+        Handheld.Vibrate();
     }
 }

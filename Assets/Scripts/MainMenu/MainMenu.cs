@@ -16,6 +16,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
 
+    [Header("Level Selecting Screen")]
+    [SerializeField] private GameObject levelSelectingScreen;
+    [SerializeField] private LevelLoader levelLoader;
+
     private void Start()
     {
         if (!DataPersictenceManager.instance.HasGameData())
@@ -26,22 +30,41 @@ public class MainMenu : MonoBehaviour
 
     public void OnNewGameClicked()
     {
-        DisableMenuButtons();
+        DisableMenuButtons();        
         Debug.Log("Start New Game");
-        DataPersictenceManager.instance.NewGame();
-        Load();
+        FindObjectOfType<DataPersictenceManager>().NewGame();
+        levelLoader.spawnPos = levelLoader.allSpawnPoints[0];
+        levelLoader.maxLevel = 1;
+        levelLoader.level = 1;
+        Load(1);
+        AppMetrica.Instance.ReportEvent("new_game_started");
+        AppMetrica.Instance.SendEventsBuffer();
     }
 
     public void OnContinueClicked()
     {
-        DisableMenuButtons();
+        DisableMenuButtons();       
         Debug.Log("Continue game");
-        Load();
+        if (levelLoader.maxLevel < 16)
+            levelLoader.ChangeSpawnPointAndLoadLevel(1);
+        else
+            levelLoader.ChangeSpawnPointAndLoadLevel(2);
+        levelLoader.ChangeSpawnPointAndLoadLevel(levelLoader.maxLevel);
+        AppMetrica.Instance.ReportEvent("loaded_last_played_level");
+        AppMetrica.Instance.SendEventsBuffer();
+    }
+
+    public void OnSelectLevelClicked()
+    {
+        levelSelectingScreen.SetActive(true);
+        levelLoader.ActivateButtons();
     }
 
     public void OnExitClicked()
     {
         Application.Quit();
+        AppMetrica.Instance.ReportEvent("game_closed");
+        AppMetrica.Instance.SendEventsBuffer();
     }
 
 
@@ -51,14 +74,14 @@ public class MainMenu : MonoBehaviour
         continueGameButton.interactable = false;
     }
 
-    private void Load()
+    public void Load(int sceneToLoad)
     {
         loadingScreen.SetActive(true);
 
-        StartCoroutine(LoadAsync());
+        StartCoroutine(LoadAsync(sceneToLoad));
     }
 
-    IEnumerator LoadAsync()
+    IEnumerator LoadAsync(int sceneToLoad)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
 
