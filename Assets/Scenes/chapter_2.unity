@@ -464,6 +464,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -670,6 +671,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -991,6 +993,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -1012,7 +1015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.78
+      value: 70.03
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1020,7 +1023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -128.3
+      value: -5.3
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1266,6 +1269,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -1304,6 +1308,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -1443,6 +1448,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -1570,6 +1576,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -1765,6 +1772,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -1907,6 +1915,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 1
@@ -2021,6 +2030,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -2059,6 +2069,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -2316,6 +2327,7 @@ MonoBehaviour:
   levelRecord: 0
   collectedItemsOnLevel: 0
   totalItemsOnLevel: 0
+  restarts: 0
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
@@ -2388,6 +2400,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e7f781d4262004d8a456b75b411a8d, type: 3}
+--- !u!1001 &891427026528326735
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691492, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793379692519691493, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
+      propertyPath: m_Name
+      value: ALVL1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cad637a169e24c04f83980c0b6a3d379, type: 3}
 --- !u!1001 &1906621093184539876
 PrefabInstance:
   m_ObjectHideFlags: 0
