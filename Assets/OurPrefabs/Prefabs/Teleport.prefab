@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ea21c7cb004f48a9eab69c8bc08e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainColor: {r: 0.8113208, g: 0.6717331, b: 0.19517621, a: 0.5686275}
   _targetPos: {fileID: 5493344469102928956}
   _awaitTime: 0.25
 --- !u!1001 &7042215251829484878
@@ -173,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 3280519133223516629, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280519133390621004, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
       propertyPath: m_Name
@@ -240,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3280519133430969737, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
       propertyPath: m_Intensity
-      value: 0
+      value: 2.9305463
       objectReference: {fileID: 0}
     - target: {fileID: 7893921968227561089, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
       propertyPath: m_Materials.Array.size
@@ -278,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ea21c7cb004f48a9eab69c8bc08e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainColor: {r: 0.8396226, g: 0.09109115, b: 0.09109115, a: 0.62352943}
   _targetPos: {fileID: 5493344470603041989}
   _awaitTime: 0.25
 --- !u!4 &5493344469102928956 stripped
