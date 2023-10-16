@@ -15,7 +15,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public bool isMoving;
     public bool isAlive;
     public bool isCharged;
-    private bool canTeleport = true ;
+    public bool canTeleport = true ;
     private bool checkState;
     private bool stateFlag;
 
@@ -364,7 +364,6 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 canTeleport = false;
                 Debug.Log("Telepor");
-                StopCoroutine(_playerMoving);
                 StopAllCoroutines();
                 _swipeInput.direction = Vector2.zero;
                 isMoving = false;
