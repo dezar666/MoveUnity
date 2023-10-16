@@ -61,12 +61,12 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 2; i < buttons.Length;i+=2)
-        {
-            var temp = buttons[i];
-            buttons[i] = buttons[i+1];
-            buttons[i+1] = temp;
-        }
+        //for(int i = 2; i < buttons.Length;i+=2)
+        //{
+        //    var temp = buttons[i];
+        //    buttons[i] = buttons[i+1];
+        //    buttons[i+1] = temp;
+        //}
 
         SetValues(); 
     }
