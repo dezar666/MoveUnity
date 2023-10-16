@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 
 public class CharacterMovement : MonoBehaviour, IDatePersistence
@@ -14,6 +15,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     public bool isMoving;
     public bool isAlive;
     public bool isCharged;
+    private bool canTeleport = true ;
     private bool checkState;
     private bool stateFlag;
 
@@ -49,7 +51,11 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     public int currentStep = 0;
 
+    [field: SerializeField] public int TeleportFlag { get; private set; }
+
     float duration = 5;
+
+    private Coroutine _playerMoving;
 
     private void Awake()
     {
@@ -77,6 +83,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Start()
     {
+        TeleportFlag = 0;
         playerAudioManager = GetComponent<PlayerAudioManager>();
 
         isMoving = false;
@@ -92,7 +99,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         {
             playerAudioManager.SoundOnMove();
             RotatePlayer(swipeInput.direction);
-            StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
+            _playerMoving = StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
 
         if (isMoving)
@@ -341,12 +348,31 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         if(collision.tag == "CheckPoint")
         {
             //WakeUp(collision);
+
+            levelManager.LevelEnd(levelManager.level, levelManager.stepsOnLevel, levelManager.deathOnLevelCounter, levelManager.restarts);
+
             CheckPoint = collision.transform;
             levelManager = collision.GetComponentInParent<LevelManager>();
 
             Debug.Log("new lvl reached");
-        } 
-        
+        }
+
+        else if (collision.gameObject.TryGetComponent<Teleport>(out Teleport teleport))
+        {
+            TeleportFlag++;
+            if (canTeleport && TeleportFlag <= 1)
+            {
+                canTeleport = false;
+                Debug.Log("Telepor");
+                StopCoroutine(_playerMoving);
+                StopAllCoroutines();
+                _swipeInput.direction = Vector2.zero;
+                isMoving = false;
+                transform.position = teleport.TargetPos.position;               
+            }
+                                    
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -362,6 +388,20 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             }                      
             
         }
+        else if (other.gameObject.TryGetComponent<Teleport>(out Teleport teleport))
+        {
+            if (TeleportFlag == 2)
+            {
+                canTeleport = true;
+                TeleportFlag = 0;
+            }
+               
+        }
+    }
+
+    public void LevelRestart()
+    {
+        levelManager.restarts++;
     }
 
     private void CheckStateChange()
