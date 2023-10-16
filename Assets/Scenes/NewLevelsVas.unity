@@ -1012,31 +1012,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 53.239998
+      value: 45.78
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.04
+      value: 37.9
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 55.260002
+      value: -128.3
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.49755663
+      value: 0.8083467
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.39767203
+      value: 0.5790821
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.64561826
+      value: -0.104695395
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.42127374
+      value: 0.016688934
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608611, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1060,7 +1060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608612, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: orthographic size
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2427373583228608612, guid: 8f067cba12f593240bd9af98707585b6, type: 3}
       propertyPath: m_OcclusionCulling
@@ -1098,44 +1098,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 145883454523059126, guid: c6e7f781d4262004d8a456b75b411a8d, type: 3}
   m_PrefabInstance: {fileID: 64030517785432551}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &849039128 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3613270136893296938, guid: e8a304c290f6474449ce758fc63ffcca, type: 3}
-  m_PrefabInstance: {fileID: 5542802933411841862}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &849039129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 524143309758304062, guid: e8a304c290f6474449ce758fc63ffcca, type: 3}
   m_PrefabInstance: {fileID: 5542802933411841862}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &849039130
+--- !u!114 &849039130 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 849039130, guid: e8a304c290f6474449ce758fc63ffcca, type: 3}
+  m_PrefabInstance: {fileID: 5542802933411841862}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849039128}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ae215536733d444ca9b144a574a8908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allGrass: []
-  nextLevel: {fileID: 849039130}
-  allEnemies: []
-  destroyableBlocks: []
-  allTreeItems: []
-  spawnPos: {fileID: 0}
-  level: 14
-  stepsOnLevel: 0
-  maxSteps: 0
-  deathOnLevelCounter: 0
-  levelRecord: 0
-  collectedItemsOnLevel: 0
-  totalItemsOnLevel: 0
-  levelCompleated: 0
-  levelIsReached: 0
-  isLastLevel: 0
 --- !u!1 &850861751 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 145883455476255904, guid: c6e7f781d4262004d8a456b75b411a8d, type: 3}
@@ -1329,44 +1307,22 @@ MonoBehaviour:
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
---- !u!1 &1279116702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6044728874104491744, guid: b69abc12d7856b84f841c10e880e0046, type: 3}
-  m_PrefabInstance: {fileID: 5948107192518704115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1279116703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 580654760352289662, guid: b69abc12d7856b84f841c10e880e0046, type: 3}
   m_PrefabInstance: {fileID: 5948107192518704115}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1279116704
+--- !u!114 &1279116704 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1279116704, guid: b69abc12d7856b84f841c10e880e0046, type: 3}
+  m_PrefabInstance: {fileID: 5948107192518704115}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279116702}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ae215536733d444ca9b144a574a8908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allGrass: []
-  nextLevel: {fileID: 1279116704}
-  allEnemies: []
-  destroyableBlocks: []
-  allTreeItems: []
-  spawnPos: {fileID: 0}
-  level: 12
-  stepsOnLevel: 0
-  maxSteps: 0
-  deathOnLevelCounter: 0
-  levelRecord: 0
-  collectedItemsOnLevel: 0
-  totalItemsOnLevel: 0
-  levelCompleated: 0
-  levelIsReached: 0
-  isLastLevel: 0
 --- !u!1 &1294936152 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 145883455348253202, guid: c6e7f781d4262004d8a456b75b411a8d, type: 3}
@@ -1719,11 +1675,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7993069684595574811, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.5000001
       objectReference: {fileID: 0}
     - target: {fileID: 7993069684595574811, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52
+      value: -79
       objectReference: {fileID: 0}
     - target: {fileID: 7993069684595574811, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1763,44 +1719,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dff775e1c3af821428c8058bcece05a2, type: 3}
---- !u!1 &1686486197 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2829341864828446693, guid: 5dd2392293b542d44b8401e81b4f5e21, type: 3}
-  m_PrefabInstance: {fileID: 6564754225567187768}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1686486198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8469749063770628209, guid: 5dd2392293b542d44b8401e81b4f5e21, type: 3}
   m_PrefabInstance: {fileID: 6564754225567187768}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1686486199
+--- !u!114 &1686486199 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1686486199, guid: 5dd2392293b542d44b8401e81b4f5e21, type: 3}
+  m_PrefabInstance: {fileID: 6564754225567187768}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686486197}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ae215536733d444ca9b144a574a8908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allGrass: []
-  nextLevel: {fileID: 1686486199}
-  allEnemies: []
-  destroyableBlocks: []
-  allTreeItems: []
-  spawnPos: {fileID: 0}
-  level: 13
-  stepsOnLevel: 0
-  maxSteps: 0
-  deathOnLevelCounter: 0
-  levelRecord: 0
-  collectedItemsOnLevel: 0
-  totalItemsOnLevel: 0
-  levelCompleated: 0
-  levelIsReached: 0
-  isLastLevel: 0
 --- !u!4 &1716728961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9182123527656110461, guid: c346ea1c1caa3cc449f54565f3ceca33, type: 3}
@@ -2868,6 +2802,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 615606513}
     m_Modifications:
+    - target: {fileID: 1279116704, guid: b69abc12d7856b84f841c10e880e0046, type: 3}
+      propertyPath: nextLevel
+      value: 
+      objectReference: {fileID: 1686486199}
     - target: {fileID: 580654760352289662, guid: b69abc12d7856b84f841c10e880e0046, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -2925,6 +2863,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 615606513}
     m_Modifications:
+    - target: {fileID: 1686486199, guid: 5dd2392293b542d44b8401e81b4f5e21, type: 3}
+      propertyPath: nextLevel
+      value: 
+      objectReference: {fileID: 849039130}
     - target: {fileID: 2829341864828446693, guid: 5dd2392293b542d44b8401e81b4f5e21, type: 3}
       propertyPath: m_Name
       value: LVL12

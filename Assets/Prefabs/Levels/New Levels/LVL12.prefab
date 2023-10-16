@@ -138,6 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8469749063770628209}
+  - component: {fileID: 1686486199}
   m_Layer: 0
   m_Name: LVL12
   m_TagString: Untagged
@@ -152,7 +153,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2829341864828446693}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 41.96381, y: 30.423338, z: -71.34896}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -166,6 +167,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686486199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829341864828446693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae215536733d444ca9b144a574a8908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allGrass: []
+  nextLevel: {fileID: 0}
+  allEnemies: []
+  destroyableBlocks: []
+  allTreeItems: []
+  spawnPos: {fileID: 0}
+  level: 13
+  stepsOnLevel: 0
+  maxSteps: 0
+  deathOnLevelCounter: 0
+  levelRecord: 0
+  collectedItemsOnLevel: 0
+  totalItemsOnLevel: 0
+  levelCompleated: 0
+  levelIsReached: 0
+  isLastLevel: 0
 --- !u!1 &3788951583407832838
 GameObject:
   m_ObjectHideFlags: 0
@@ -10153,7 +10182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1771948829993652320, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1771948829993652320, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12995,7 +13024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1771948829993652320, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1771948829993652320, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
       propertyPath: m_LocalPosition.z
