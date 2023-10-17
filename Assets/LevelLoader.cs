@@ -82,7 +82,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
     {
         spawnPos = pos;
         level= lvl;
-        if (level < 16)
+        if (level < 17)
             StartCoroutine(WaitSomeTime(1));
         else
             StartCoroutine(WaitSomeTime(2));

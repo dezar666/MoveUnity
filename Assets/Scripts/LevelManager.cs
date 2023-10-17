@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
         restarts = 0;
         CharacterMovement character = FindObjectOfType(typeof(CharacterMovement)) as CharacterMovement;
         if (character.levelManager.level == level)
-        {            
+        {    
             Debug.Log($"{level} started");
             LevelStart(level);
         }
