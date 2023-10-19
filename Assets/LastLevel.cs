@@ -3,8 +3,11 @@ using UnityEngine;
 public class LastLevel : MonoBehaviour
 {
     public bool isGameCompleated;
-    [SerializeField] private bool nextChapter;
-    [SerializeField] private int nextChapterIndex;
+    [SerializeField] private bool _nextChapter;
+    [SerializeField] private int _nextChapterIndex;
+    [SerializeField] private Vector3 _nextChapterSpawnPos;
+    [SerializeField] private int _nextChapterLevel;
+    [SerializeField] private LevelManager _levelManager;
 
     private void Start()
     {
@@ -15,7 +18,7 @@ public class LastLevel : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (!nextChapter)
+            if (!_nextChapter)
             {
                 isGameCompleated = true;
                 FindObjectOfType<SwipeInput>().canDetectSwipe = false;
@@ -23,7 +26,8 @@ public class LastLevel : MonoBehaviour
             }
             else
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(nextChapterIndex);
+                _levelManager.OnLevelCompleated(_nextChapterLevel,_nextChapterSpawnPos,_nextChapter);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(_nextChapterIndex);
             }
         }
     }

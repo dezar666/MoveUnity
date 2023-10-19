@@ -69757,12 +69757,40 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
+      propertyPath: _nextChapter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
+      propertyPath: _levelManager
+      value: 
+      objectReference: {fileID: 358593078}
+    - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
       propertyPath: isGameCompleated
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
       propertyPath: nextChapterIndex
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
+      propertyPath: _nextChapterIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
+      propertyPath: _nextChapterLevel
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
+      propertyPath: _nextChapterSpawnPos.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
+      propertyPath: _nextChapterSpawnPos.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315020663381570189, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
+      propertyPath: _nextChapterSpawnPos.z
+      value: 54
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 337b3a643aeec7c4091a268071ec4929, type: 3}
