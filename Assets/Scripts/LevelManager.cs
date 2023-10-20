@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     public bool levelCompleated = false;
     public bool levelIsReached = false;
     public bool isLastLevel = false;
+    public bool isGateOpened = false;
 
     private void Awake()
     {
