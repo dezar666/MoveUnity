@@ -50,8 +50,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1551252683338110221}
+  - component: {fileID: 6321140162088506309}
   m_Layer: 0
-  m_Name: ALVL6
+  m_Name: LVL12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,6 +79,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6321140162088506309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894551709579672650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae215536733d444ca9b144a574a8908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allGrass: []
+  nextLevel: {fileID: 0}
+  allEnemies: []
+  destroyableBlocks: []
+  allTreeItems: []
+  spawnPos: {fileID: 0}
+  level: 0
+  stepsOnLevel: 0
+  maxSteps: 0
+  deathOnLevelCounter: 0
+  levelRecord: 0
+  collectedItemsOnLevel: 0
+  totalItemsOnLevel: 0
+  restarts: 0
+  levelCompleated: 0
+  levelIsReached: 0
+  isLastLevel: 0
 --- !u!1 &2247083527263633102
 GameObject:
   m_ObjectHideFlags: 0
@@ -11119,6 +11149,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2568625368872006553}
     m_Modifications:
+    - target: {fileID: 6623814882067018067, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6623814882067018077, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -11615,6 +11649,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2568625368872006553}
     m_Modifications:
+    - target: {fileID: 6623814882067018067, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6623814882067018077, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -11801,6 +11839,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2568625368872006553}
     m_Modifications:
+    - target: {fileID: 6623814882067018067, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6623814882067018077, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -11863,6 +11905,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2568625368872006553}
     m_Modifications:
+    - target: {fileID: 6623814882067018067, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6623814882067018077, guid: 65625dda11127f64db1a4ba98adc2adb, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -11928,6 +11974,14 @@ PrefabInstance:
     - target: {fileID: 2865654639910670936, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
       propertyPath: m_Name
       value: PushBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058697720419417050, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058697720419417050, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3458952601913710846, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
       propertyPath: m_RootOrder
