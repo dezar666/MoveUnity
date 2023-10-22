@@ -49,7 +49,6 @@ public class MainMenu : MonoBehaviour
             levelLoader.ChangeSpawnPointAndLoadLevel(1);
         else
             levelLoader.ChangeSpawnPointAndLoadLevel(2);
-        levelLoader.ChangeSpawnPointAndLoadLevel(levelLoader.maxLevel);
         AppMetrica.Instance.ReportEvent("loaded_last_played_level");
         AppMetrica.Instance.SendEventsBuffer();
     }

@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     public bool levelCompleated = false;
     public bool levelIsReached = false;
     public bool isLastLevel = false;
+    public bool isGateOpened = false;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class LevelManager : MonoBehaviour
         restarts = 0;
         CharacterMovement character = FindObjectOfType(typeof(CharacterMovement)) as CharacterMovement;
         if (character.levelManager.level == level)
-        {            
+        {    
             Debug.Log($"{level} started");
             LevelStart(level);
         }
@@ -82,7 +83,7 @@ public class LevelManager : MonoBehaviour
                     }
                 }
 
-                OnLevelCompleated();
+                OnLevelCompleated(level, spawnPos.position);
             }
         }
         if (isLastLevel && lastLevel.isGameCompleated)
@@ -117,18 +118,22 @@ public class LevelManager : MonoBehaviour
         AppMetrica.Instance.SendEventsBuffer();
     }
 
-    private void OnLevelCompleated()
+    public void OnLevelCompleated(int level, Vector3 spawnPos, bool isNextChapter = false)
     {
         ShakeGrass();
-
-        FindObjectOfType<CharacterMovement>().spawnPos = spawnPos.position;
+        FindObjectOfType<CharacterMovement>().spawnPos = spawnPos;
+        gameManager.spawnPos = spawnPos;
         gameManager.lastLevel = level + 1;
         gameManager.maxLevel = level + 1;
         gameManager.prevLevel = level;
-        gameManager.spawnPos = spawnPos.position;
-        gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;
+
+        if (!isNextChapter)
+        {                                                
+            gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;            
+            FindObjectOfType<LoadPrevLevel>().GetComponentInChildren<Button>().interactable = true;
+        }
+
         FindObjectOfType<DataPersictenceManager>().SaveGame();
-        FindObjectOfType<LoadPrevLevel>().GetComponentInChildren<Button>().interactable = true;
     }
 
     private void ShakeGrass()

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078141136}
   - component: {fileID: 1078141137}
+  - component: {fileID: 2706644071073613057}
   m_Layer: 0
   m_Name: Point (3)
   m_TagString: Untagged
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2706644071073613057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078141135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1d878154b161d419b4f31750a7a111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &450713061641809751
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6217985119673304797}
   - component: {fileID: 7938161693420518512}
+  - component: {fileID: 1423688111099652851}
   m_Layer: 0
   m_Name: Point (1)
   m_TagString: Untagged
@@ -150,6 +164,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1423688111099652851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678642237249941860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1d878154b161d419b4f31750a7a111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1771948829993652323
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,6 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1771948831654241732}
   - component: {fileID: 1771948831654241733}
+  - component: {fileID: 6012164394867452010}
   m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
@@ -244,6 +271,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6012164394867452010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771948831654241735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1d878154b161d419b4f31750a7a111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3530244790940587698
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7818134035854159503}
   - component: {fileID: 7120069295572599265}
+  - component: {fileID: 7903825919762244136}
   m_Layer: 0
   m_Name: Point (2)
   m_TagString: Untagged
@@ -289,6 +329,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7903825919762244136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530244790940587698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1d878154b161d419b4f31750a7a111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7676807590195745070
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b51ae1aa96d14e40a819b8c413a5321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lineMaterial: {fileID: 2100000, guid: 7830ea6f371507c48800d70990f63526, type: 2}
+  _lineMaterial: {fileID: 2100000, guid: ec2b0036e6e00234ebfbc2f594b4e2a6, type: 2}
   _lineColor: {r: 0.6981132, g: 0.21404415, b: 0.21404415, a: 1}
   _points:
   - {fileID: 1771948831654241732}

@@ -44,7 +44,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     [Header("Effects")]
     [SerializeField] private ParticleSystem charge;
 
-    private PlayerAudioManager playerAudioManager;
+    public PlayerAudioManager PlayerAudioManager { get; private set; }
     private CollectedItems collectedItems;
 
     public SwipeInput _swipeInput;
@@ -84,7 +84,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     private void Start()
     {
         TeleportFlag = 0;
-        playerAudioManager = GetComponent<PlayerAudioManager>();
+        PlayerAudioManager = GetComponent<PlayerAudioManager>();
 
         isMoving = false;
         isAlive = true;
@@ -97,7 +97,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
     {
         if (!isMoving && isAlive && swipeInput.direction != Vector2.zero)
         {
-            playerAudioManager.SoundOnMove();
+            PlayerAudioManager.SoundOnMove();
             RotatePlayer(swipeInput.direction);
             _playerMoving = StartCoroutine(MovePlayer(new Vector3(swipeInput.direction.x, 0f, swipeInput.direction.y)));
         }
@@ -248,7 +248,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
             else if (hit.collider.gameObject.CompareTag("Destroyable") && isCharged)
             {
-                playerAudioManager.SoundOnDestroy();
+                PlayerAudioManager.SoundOnDestroy();
                 hit.collider.gameObject.GetComponent<BlockState>().DestroyBlock();
                 //isCharged = false;
                 bShouldYield = false;
@@ -292,7 +292,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 GameObject.SetActive(false);
                 Instantiate(DrownVFX, transform.position, Quaternion.Euler(90,0,0));
                 isAlive = false;
-                playerAudioManager.SoundOnWater();
+                PlayerAudioManager.SoundOnWater();
 #if UNITY_ANDROID && !UNITY_EDITOR
                 StartVibrate();
 #else
@@ -307,7 +307,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             {
                 swipeInput.direction = Vector2.zero;
                 isAlive = false;
-                playerAudioManager.SoundOnDie();
+                PlayerAudioManager.SoundOnDie();
 #if UNITY_ANDROID && !UNITY_EDITOR
                 StartVibrate();
 #else
@@ -380,7 +380,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if(levelManager.level != 1)
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
-                playerAudioManager.SoundOnCompleatingLevel();
+                PlayerAudioManager.SoundOnCompleatingLevel();
                 levelManager.levelIsReached = true;
                 currentStep = -1;
                 Debug.Log("build wall");

@@ -31,12 +31,6 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public string natureParam = "nature";
     public string effectsParam = "effects";
 
-    private void Awake()
-    {
-        characterMovement = FindAnyObjectByType<CharacterMovement>();
-        levels = GameObject.Find("Levels").GetComponentsInChildren<LevelManager>();
-        
-    }
 
     public void LoadData(GameData data)
     {
@@ -48,12 +42,12 @@ public class GameManager : MonoBehaviour, IDatePersistence
         _musicValue = data.musicVolume;
         _natureValue = data.natureVolume;
         _effectsValue = data.effectsVolume;
-        
+
 
         prevSpawnPos = levels[prevLevel].GetComponent<LevelManager>().spawnPos.transform.position;
         prevSpawnPos = new Vector3(prevSpawnPos.x, 1.01f, prevSpawnPos.z);
 
-        characterMovement.levelManager = levels[lastLevel-1].GetComponent<LevelManager>();
+        characterMovement.levelManager = levels[lastLevel - 1].GetComponent<LevelManager>();
         //foreach (LevelManager currentLevel in levels)
         //{
         //    if (currentLevel.level < lastLevel + 1)
@@ -75,7 +69,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
         //    }
         //}
 
-        for (int i = 0; i < levels.Length;i++)
+        for (int i = 0; i < levels.Length; i++)
         {
             if (levels[i].level < lastLevel)
             {
@@ -96,7 +90,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
         {
             //wallBuilder = GameObject.Find("LVL" + lastLevel.ToString()).GetComponentInChildren<WallBuilder>();
             //wallBuilder.buildWall = true;
-            levels[lastLevel-1].GetComponentInChildren<WallBuilder>().buildWall = true;
+            levels[lastLevel - 1].GetComponentInChildren<WallBuilder>().buildWall = true;
         }
     }
 
@@ -109,6 +103,14 @@ public class GameManager : MonoBehaviour, IDatePersistence
         data.natureVolume = _natureValue;
         data.effectsVolume = _effectsValue;
     }
+
+    private void Awake()
+    {
+        characterMovement = FindAnyObjectByType<CharacterMovement>();
+        levels = GameObject.Find("Levels").GetComponentsInChildren<LevelManager>();
+        
+    }
+
 
     private void Start()
     {
