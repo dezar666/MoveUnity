@@ -470,6 +470,7 @@ MonoBehaviour:
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
+  isGateOpened: 0
 --- !u!1 &7349059588223533230
 GameObject:
   m_ObjectHideFlags: 0
@@ -23026,6 +23027,10 @@ PrefabInstance:
       propertyPath: Points.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1078141135, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1771948829993652320, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
       propertyPath: m_RootOrder
       value: 48
@@ -23073,6 +23078,10 @@ PrefabInstance:
     - target: {fileID: 1771948829993652323, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3530244790940587698, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6217985119673304797, guid: b39dc3276d27d3c469a61d9e7fd41714, type: 3}
       propertyPath: m_LocalPosition.x
