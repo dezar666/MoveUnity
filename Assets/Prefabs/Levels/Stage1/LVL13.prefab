@@ -419,6 +419,7 @@ MonoBehaviour:
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
+  isGateOpened: 0
 --- !u!1 &2498393656583296919
 GameObject:
   m_ObjectHideFlags: 0
@@ -16051,6 +16052,14 @@ PrefabInstance:
     - target: {fileID: 2865654639910670936, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
       propertyPath: m_Name
       value: PushBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058697720419417050, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
+      propertyPath: m_Size.z
+      value: 1.0093946
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058697720419417050, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
+      propertyPath: m_Center.z
+      value: 0.04876089
       objectReference: {fileID: 0}
     - target: {fileID: 3458952601913710846, guid: 835837fa248b9b54ea860454235bf48e, type: 3}
       propertyPath: m_RootOrder
