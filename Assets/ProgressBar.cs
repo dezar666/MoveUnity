@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class ProgressBar : MonoBehaviour
 
     private GameManager gameManager;
 
-    private int maxLevels;
-    private int currentLevel;
+    public int maxLevels;
+    public int currentLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,15 @@ public class ProgressBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentLevel = gameManager.lastLevel;
+        if (SceneManager.GetActiveScene().name == "chapter_1") 
+        {
+            currentLevel = gameManager.lastLevel;
+        }
+        else
+        {
+            currentLevel = gameManager.lastLevel - 17;
+        }
+        slider.maxValue = maxLevels;
         slider.value = currentLevel;
     }
 }

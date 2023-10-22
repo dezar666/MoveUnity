@@ -738,6 +738,7 @@ MonoBehaviour:
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
+  isGateOpened: 0
 --- !u!1001 &10613805840463540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22779,6 +22780,14 @@ PrefabInstance:
     - target: {fileID: 233840180575720489, guid: 8731e09ccd7fd6f49bc2f434091317d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 820023127738376193, guid: 8731e09ccd7fd6f49bc2f434091317d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 820023127738376193, guid: 8731e09ccd7fd6f49bc2f434091317d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.000002
       objectReference: {fileID: 0}
     - target: {fileID: 7401628496568494841, guid: 8731e09ccd7fd6f49bc2f434091317d4, type: 3}
       propertyPath: m_Name

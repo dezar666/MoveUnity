@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, IDatePersistence
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public LevelManager[] levels;
     public LevelManager[] compleatedLevels;
     public ChangeGrass[] allGrass;
+    public List<Vector3> spawnPoints;
 
     public int lastLevel;
     public int maxLevel;
@@ -36,18 +38,40 @@ public class GameManager : MonoBehaviour, IDatePersistence
     {
         lastLevel = data.lastLevel;
         maxLevel = data.maxLevel;
-        prevLevel = levels[lastLevel - 1].GetComponent<LevelManager>().level - 1;
+        if (SceneManager.GetActiveScene().name == "chapter_1") 
+        {
+            prevLevel = levels[lastLevel - 1].GetComponent<LevelManager>().level - 1;
+        }
+        else
+        {
+            prevLevel = levels[lastLevel - 17].GetComponent<LevelManager>().level - 1;
+        }
+        
         spawnPos = data.spawnPos;
 
         _musicValue = data.musicVolume;
         _natureValue = data.natureVolume;
         _effectsValue = data.effectsVolume;
 
-
-        prevSpawnPos = levels[prevLevel].GetComponent<LevelManager>().spawnPos.transform.position;
+        if (SceneManager.GetActiveScene().name == "chapter_1")
+        {
+            prevSpawnPos = levels[prevLevel].GetComponent<LevelManager>().spawnPos.transform.position;
+        }
+        else
+        {
+            prevSpawnPos = levels[prevLevel - 16].GetComponent<LevelManager>().spawnPos.transform.position;
+        }
         prevSpawnPos = new Vector3(prevSpawnPos.x, 1.01f, prevSpawnPos.z);
 
-        characterMovement.levelManager = levels[lastLevel - 1].GetComponent<LevelManager>();
+        
+        if (SceneManager.GetActiveScene().name == "chapter_1")
+        {
+            characterMovement.levelManager = levels[prevLevel].GetComponent<LevelManager>();
+        }
+        else
+        {
+            characterMovement.levelManager = levels[prevLevel - 16].GetComponent<LevelManager>();
+        }
         //foreach (LevelManager currentLevel in levels)
         //{
         //    if (currentLevel.level < lastLevel + 1)
@@ -71,17 +95,37 @@ public class GameManager : MonoBehaviour, IDatePersistence
 
         for (int i = 0; i < levels.Length; i++)
         {
-            if (levels[i].level < lastLevel)
+            
+            if (SceneManager.GetActiveScene().name == "chapter_1")
             {
-                levels[i].levelCompleated = true;
-                if (levels[i].level != 1)
+                if (levels[i].level < lastLevel)
                 {
-                    levels[i].GetComponentInChildren<WallBuilder>().buildWall = true;
+                    levels[i].levelCompleated = true;
+                    if (levels[i].level != 1)
+                    {
+                        levels[i].GetComponentInChildren<WallBuilder>().buildWall = true;
+                    }
+                    allGrass = levels[i].GetComponentsInChildren<ChangeGrass>();
+                    foreach (var grass in allGrass)
+                    {
+                        grass.onSteped();
+                    }
                 }
-                allGrass = levels[i].GetComponentsInChildren<ChangeGrass>();
-                foreach (var grass in allGrass)
+            }
+            else
+            {
+                if (levels[i].level < lastLevel - 16)
                 {
-                    grass.onSteped();
+                    levels[i].levelCompleated = true;
+                    if (levels[i].level != 1)
+                    {
+                        levels[i].GetComponentInChildren<WallBuilder>().buildWall = true;
+                    }
+                    allGrass = levels[i].GetComponentsInChildren<ChangeGrass>();
+                    foreach (var grass in allGrass)
+                    {
+                        grass.onSteped();
+                    }
                 }
             }
         }
@@ -90,7 +134,16 @@ public class GameManager : MonoBehaviour, IDatePersistence
         {
             //wallBuilder = GameObject.Find("LVL" + lastLevel.ToString()).GetComponentInChildren<WallBuilder>();
             //wallBuilder.buildWall = true;
-            levels[lastLevel - 1].GetComponentInChildren<WallBuilder>().buildWall = true;
+            if (SceneManager.GetActiveScene().name == "chapter_1")
+            {
+                levels[prevLevel].GetComponentInChildren<WallBuilder>().buildWall = true;
+            }
+            else
+            {
+                levels[prevLevel - 16].GetComponentInChildren<WallBuilder>().buildWall = true;
+            }
+
+            
         }
     }
 
@@ -108,6 +161,10 @@ public class GameManager : MonoBehaviour, IDatePersistence
     {
         characterMovement = FindAnyObjectByType<CharacterMovement>();
         levels = GameObject.Find("Levels").GetComponentsInChildren<LevelManager>();
+        foreach (var level in levels)
+        {
+            spawnPoints.Add(level.spawnPos.position);
+        }
         
     }
 

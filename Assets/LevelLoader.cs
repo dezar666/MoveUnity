@@ -14,6 +14,9 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
     private DataPersictenceManager persictenceManager;
     private MainMenu mainMenu;
 
+    public List<Vector3> chapter1spawnPos;
+    public List<Vector3> chapter2spawnPos;
+
     public Vector3[] allSpawnPoints =
     {
         new Vector3(),
@@ -122,7 +125,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
     public IEnumerator WaitSomeTime(int sceneToLoad)
     {
         
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(0.2f);
         ChangeSpawnPointAndLoadLevel(sceneToLoad);
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine.XR;
 using System.Security.Cryptography;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -128,9 +129,17 @@ public class LevelManager : MonoBehaviour
         gameManager.prevLevel = level;
 
         if (!isNextChapter)
-        {                                                
-            gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;            
+        {
+            if (SceneManager.GetActiveScene().name == "chapter_1")
+            {
+                gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;                
+            }
+            else
+            {
+                gameManager.prevSpawnPos = gameManager.levels[level - 16].spawnPos.position;
+            }
             FindObjectOfType<LoadPrevLevel>().GetComponentInChildren<Button>().interactable = true;
+
         }
 
         FindObjectOfType<DataPersictenceManager>().SaveGame();
