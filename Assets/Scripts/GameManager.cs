@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
         }
         else
         {
-            prevSpawnPos = levels[prevLevel - 16].GetComponent<LevelManager>().spawnPos.transform.position;
+            prevSpawnPos = levels[prevLevel - 17].GetComponent<LevelManager>().spawnPos.transform.position;
         }
         prevSpawnPos = new Vector3(prevSpawnPos.x, 1.01f, prevSpawnPos.z);
 
