@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class LoadPrevLevel : MonoBehaviour
 {
@@ -36,15 +38,32 @@ public class LoadPrevLevel : MonoBehaviour
             grass.GetComponent<ChangeGrass>().turnBack();
         }
         ResetLevels();
-        characterMovement.levelManager = gameManager.levels[gameManager.prevLevel-1];
+        if (SceneManager.GetActiveScene().name == "chapter_1")
+        {
+            characterMovement.levelManager = gameManager.levels[gameManager.prevLevel - 1];
+        }
+        else
+        {
+            characterMovement.levelManager = gameManager.levels[gameManager.prevLevel - 16];
+        }
         characterMovement.levelManager.levelCompleated = false;
         foreach (var grass in characterMovement.levelManager.GetComponentsInChildren<ChangeGrass>())
         {
             grass.GetComponent<ChangeGrass>().turnBack();
         }
-        gameManager.levels[gameManager.prevLevel-1].gameObject.GetComponentInChildren<WallBuilder>().buildWall = true;
-        gameManager.levels[gameManager.prevLevel].gameObject.GetComponentInChildren<WallBuilder>().gameObject.transform.localPosition =
-            gameManager.levels[gameManager.prevLevel].gameObject.GetComponentInChildren<WallBuilder>().startPos;
+        if (SceneManager.GetActiveScene().name == "chapter_1")
+        {
+            gameManager.levels[gameManager.prevLevel - 1].gameObject.GetComponentInChildren<WallBuilder>().buildWall = true;
+            gameManager.levels[gameManager.prevLevel].gameObject.GetComponentInChildren<WallBuilder>().gameObject.transform.localPosition =
+                gameManager.levels[gameManager.prevLevel].gameObject.GetComponentInChildren<WallBuilder>().startPos;
+        }
+        else
+        {
+            gameManager.levels[gameManager.prevLevel - 17].gameObject.GetComponentInChildren<WallBuilder>().buildWall = true;
+            gameManager.levels[gameManager.prevLevel - 16].gameObject.GetComponentInChildren<WallBuilder>().gameObject.transform.localPosition =
+                gameManager.levels[gameManager.prevLevel - 16].gameObject.GetComponentInChildren<WallBuilder>().startPos;
+        }
+        
         playerManager.totalItemsOnLevel = characterMovement.levelManager.totalItemsOnLevel;
         ResetLevels();
         characterMovement.transform.position = gameManager.spawnPos;

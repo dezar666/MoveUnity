@@ -141,6 +141,10 @@ public class LevelManager : MonoBehaviour
             FindObjectOfType<LoadPrevLevel>().GetComponentInChildren<Button>().interactable = true;
 
         }
+        if (isNextChapter)
+        {
+            FindObjectOfType<CharacterMovement>().transform.position = spawnPos;
+        }
 
         FindObjectOfType<DataPersictenceManager>().SaveGame();
     }
