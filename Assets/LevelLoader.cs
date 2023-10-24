@@ -100,7 +100,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
             button.spawnPos = allSpawnPoints[i];
             button.level = i+1;
             
-        }   
+        }       
     }
 
     public void ActivateButtons()
