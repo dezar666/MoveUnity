@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
         levelLoader.spawnPos = levelLoader.allSpawnPoints[0];
         levelLoader.maxLevel = 1;
         levelLoader.level = 1;
-        Load(1);
+        FadedSceneLoader.instance.LoadScene("chapter_1");
         AppMetrica.Instance.ReportEvent("new_game_started");
         AppMetrica.Instance.SendEventsBuffer();
     }
@@ -46,9 +46,9 @@ public class MainMenu : MonoBehaviour
         DisableMenuButtons();       
         Debug.Log("Continue game");
         if (levelLoader.maxLevel < 16)
-            levelLoader.ChangeSpawnPointAndLoadLevel(1);
+            levelLoader.ChangeSpawnPointAndLoadLevel("chapter_1");
         else
-            levelLoader.ChangeSpawnPointAndLoadLevel(2);
+            levelLoader.ChangeSpawnPointAndLoadLevel("chapter_2_");
         AppMetrica.Instance.ReportEvent("loaded_last_played_level");
         AppMetrica.Instance.SendEventsBuffer();
     }

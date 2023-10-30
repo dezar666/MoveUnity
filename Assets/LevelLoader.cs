@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using static Cinemachine.DocumentationSortingAttribute;
+using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour, IDatePersistence
 {
@@ -74,11 +75,11 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         SetValues(); 
     }
 
-    public void ChangeSpawnPointAndLoadLevel(int sceneToLoad)
+    public void ChangeSpawnPointAndLoadLevel(string sceneToLoad)
     {
         persictenceManager.SaveGame();
         //persictenceManager.LoadGame();
-        mainMenu.Load(sceneToLoad);
+        FadedSceneLoader.instance.LoadScene(sceneToLoad);
     }
 
     public void SetNewLevel(Vector3 pos, int lvl)
@@ -86,9 +87,9 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         spawnPos = pos;
         level= lvl;
         if (level < 17)
-            StartCoroutine(WaitSomeTime(1));
+            StartCoroutine(WaitSomeTime("chapter_1"));
         else
-            StartCoroutine(WaitSomeTime(2));
+            StartCoroutine(WaitSomeTime("chapter_2_"));
     }
 
     private void SetValues()
@@ -122,7 +123,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         }
     }
 
-    public IEnumerator WaitSomeTime(int sceneToLoad)
+    public IEnumerator WaitSomeTime(string sceneToLoad)
     {
         
         yield return new WaitForSecondsRealtime(0.2f);
