@@ -2,11 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class ItemPickUp : MonoBehaviour, IDatePersistence
 {
     public string id;
 
+    private AudioSource _souse;
+
     [ContextMenu("Generate guid for id")]
+
+    private void Start()
+    {
+        _souse = GetComponent<AudioSource>();
+        _souse.clip = _item.PickUpSound;
+    }
 
     private void GenerateGuid()
     {
@@ -34,5 +43,10 @@ public class ItemPickUp : MonoBehaviour, IDatePersistence
             data.collectedItems.Remove(id);
         }
         data.collectedItems.Add(id, collected);
-    }   
+    }
+    
+    public void PlaySound()
+    {
+        _souse.Play();
+    }
 }

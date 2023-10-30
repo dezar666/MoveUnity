@@ -5,27 +5,36 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private Color _mainColor;
-    [SerializeField] private Transform _targetPos;
-    [SerializeField, Range(0, 1)] private float _awaitTime = 0.25f;
+    [SerializeField] private float _mainColorAlpha = 0.7f;
+    [SerializeField] private AudioClip _teleportSound;
 
-    private Light _light;
+    public TeleportPoint teleportTargetA; 
+    public TeleportPoint teleportTargetB;
 
-    private float _timer;
-
-    public Transform TargetPos { get { return _targetPos; } }
+    private Light _lightA;
+    private Light _lightB;
 
     private void Start()
     {
-        _light= GetComponentInChildren<Light>();
-        _mainColor.a = 0.7f;
-        _light.color = _mainColor;
+        SetTeleportsValues();
+        SetTeleportsColors(_mainColor, _mainColorAlpha);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void SetTeleportsValues()
     {
-        if (other.gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
-        {
-            
-        }
+        teleportTargetA.SetTargetPoint(teleportTargetB);
+        teleportTargetB.SetTargetPoint(teleportTargetA);
+        teleportTargetA.SetState(false);
+        teleportTargetB.SetState(true);
+        teleportTargetA.SetAudio(_teleportSound);
+        teleportTargetB.SetAudio(_teleportSound);
+    }
+
+    private void SetTeleportsColors(Color color, float alpha)
+    {
+        color.a = alpha;
+        _lightA = teleportTargetA.GetComponentInChildren<Light>();
+        _lightB = teleportTargetB.GetComponentInChildren<Light>();
+        _lightA.color = _lightB.color = color;
     }
 }

@@ -10,11 +10,15 @@ public class PlayerAudioManager : MonoBehaviour
     [SerializeField] private AudioClip die;
     [SerializeField] private AudioClip dieOnWater;
     [SerializeField] private AudioClip pickUpItem;
+    [SerializeField] private AudioClip pickUpKey;
     [SerializeField] private AudioClip destroyBlock;
     [SerializeField] private AudioClip buildWall;
 
+    public static PlayerAudioManager instance;
+
     private void Awake()
     {
+        instance = this;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -57,6 +61,13 @@ public class PlayerAudioManager : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.clip = buildWall;
+        audioSource.Play();
+    }
+
+    public void SoundOnPickUpKey()
+    {
+        audioSource.Stop();
+        audioSource.clip = pickUpKey;
         audioSource.Play();
     }
 }

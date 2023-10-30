@@ -9,8 +9,11 @@ public class Gate : MonoBehaviour
     [SerializeField] private GameObject _gateWall;
     [SerializeField] private bool _isNeedKey = false;
 
+    private Sequence _sequence;
+
     private void Start()
     {
+        _sequence = DOTween.Sequence();
         if (_isNeedKey == false)
         {
             _key.gameObject.SetActive(false);
@@ -20,6 +23,14 @@ public class Gate : MonoBehaviour
 
     public void OpenGate()
     {
-        _gateWall.transform.DOMoveY(-1f, 2f);
+        PlayerAudioManager.instance.SoundOnCompleatingLevel();
+        _sequence.Append(_gateWall.transform.DOMoveY(-1f, 2f))
+            .OnComplete(TurnOfKey);
+        
+    }
+
+    private void TurnOfKey()
+    {
+        _key.gameObject.SetActive(false);
     }
 }

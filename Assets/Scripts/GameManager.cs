@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
     public string musicParam = "music";
     public string natureParam = "nature";
     public string effectsParam = "effects";
+    public string itemsParam = "items";
 
 
     public void LoadData(GameData data)
@@ -174,6 +175,7 @@ public class GameManager : MonoBehaviour, IDatePersistence
         _mixer.SetFloat(musicParam, _musicValue);
         _mixer.SetFloat(natureParam, _natureValue);
         _mixer.SetFloat(effectsParam, _effectsValue);
+        _mixer.SetFloat(itemsParam, _effectsValue + 30);
     }
 
     public void SetSliderValues()

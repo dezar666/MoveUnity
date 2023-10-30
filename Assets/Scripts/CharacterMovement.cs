@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
-
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour, IDatePersistence
 {
@@ -71,7 +71,15 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.playerPos;
+        if (SceneManager.GetActiveScene().name == "chapter_1")
+        {
+            this.transform.position = data.playerPos;
+        }
+        else
+        {
+            this.transform.position = data.spawnPos;
+        }
+        
         this.spawnPos = data.spawnPos;
     }
 
@@ -175,6 +183,10 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
         {
             item.GetComponent<ItemPickUp>().collected = false;
             item.gameObject.SetActive(true);
+        }
+        foreach (var teleport in levelManager.allTeleports)
+        {
+            teleport.SetTeleportsValues();
         }
 
         #endregion
@@ -355,22 +367,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             levelManager = collision.GetComponentInParent<LevelManager>();
 
             Debug.Log("new lvl reached");
-        }
-
-        else if (collision.gameObject.TryGetComponent<Teleport>(out Teleport teleport))
-        {
-            TeleportFlag++;
-            if (canTeleport && TeleportFlag <= 1)
-            {
-                canTeleport = false;
-                Debug.Log("Telepor");
-                StopAllCoroutines();
-                _swipeInput.direction = Vector2.zero;
-                isMoving = false;
-                transform.position = teleport.TargetPos.position;               
-            }
-                                    
-        }
+        }                      
 
     }
     private void OnTriggerExit(Collider other)
@@ -384,17 +381,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
                 levelManager.levelIsReached = true;
                 currentStep = -1;
                 Debug.Log("build wall");
-            }                      
-            
-        }
-        else if (other.gameObject.TryGetComponent<Teleport>(out Teleport teleport))
-        {
-            if (TeleportFlag == 2)
-            {
-                canTeleport = true;
-                TeleportFlag = 0;
-            }
-               
+            }                                 
         }
     }
 
@@ -416,6 +403,13 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             stateFlag = !stateFlag;
             checkState = isMoving;
         }
+    }
+
+    public void StopMovement()
+    {
+        StopAllCoroutines();
+        _swipeInput.direction = Vector2.zero;
+        isMoving = false;
     }
 
     public void StartVibrate()

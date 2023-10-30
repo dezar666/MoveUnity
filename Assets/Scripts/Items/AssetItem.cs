@@ -8,7 +8,10 @@ public class AssetItem : ScriptableObject, IItem
     public Sprite UIIcon => _icon;
     public GameObject modelPrefab => _prefab;
 
+    public AudioClip PickUpSound => _pickUpSound;
+
     [SerializeField] private string _name;
     [SerializeField] private Sprite _icon;
     [SerializeField] private GameObject _prefab;
+    [SerializeField] private AudioClip _pickUpSound;
 }

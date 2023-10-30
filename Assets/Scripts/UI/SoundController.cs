@@ -20,6 +20,7 @@ public class SoundController : MonoBehaviour,IDatePersistence
     public string musicParam = "music";
     public string natureParam = "nature";
     public string effectsParam = "effects";
+    public string itemsParam = "items";
 
     private float _musicValue;
     private float _natureValue;
@@ -55,6 +56,7 @@ public class SoundController : MonoBehaviour,IDatePersistence
     {
         _effectsValue = Mathf.Log10(value) * MULTIPLIER;
         _mixer.SetFloat(effectsParam, _effectsValue);
+        _mixer.SetFloat(itemsParam, _effectsValue + 30);
         gameManager._effectsValue = _effectsValue;
         dataPersictenceManager.SaveGame();
     }

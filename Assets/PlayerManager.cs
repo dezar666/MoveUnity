@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterMovement))]
 public class PlayerManager : MonoBehaviour
 {
     LevelManager level;
     [SerializeField] private CollectedItems collectedItems;
     [SerializeField] private PickUpMessage pickUpMessage;
 
+    private CharacterMovement _characterMovement;
+
     public int collectedItemsOnLevel;
     public int totalItemsOnLevel;
 
+
     private void Start()
     {
-        level = GetComponent<CharacterMovement>().levelManager;
+        _characterMovement = GetComponent<CharacterMovement>();
+        level = _characterMovement.levelManager;
         totalItemsOnLevel = level.totalItemsOnLevel;
         foreach (var item in level.allTreeItems)
         {
@@ -28,23 +33,17 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.tag == "CheckPoint")
-        //{
-        //    collectedItems.Items.Clear();
-        //    Debug.Log("Inventory cleared.");
-        //}
-
-        if (other.GetComponent<TreeItem>())
+        if (other.TryGetComponent<ItemPickUp>(out ItemPickUp treeItem))
         {
-            var cureentItem = other.GetComponent<ItemPickUp>()._item;
+            var cureentItem = treeItem._item;
+            treeItem.PlaySound();
             collectedItems.Items.Add(cureentItem);
             collectedItemsOnLevel++;
             pickUpMessage.ShowMessage(cureentItem.Name, cureentItem.UIIcon, collectedItemsOnLevel, totalItemsOnLevel);
-            Debug.Log("Item {0} added.", other.gameObject);
-            other.gameObject.GetComponent<ItemPickUp>().collected = true;
-            other.gameObject.SetActive(false);
-            FindObjectOfType<DataPersictenceManager>().SaveGame();
-            //Destroy(other.gameObject);
+            Debug.Log($"Item {0} added.", other.gameObject);
+            treeItem.collected = true;
+            treeItem.gameObject.SetActive(false);
+            DataPersictenceManager.instance.SaveGame();
         }
     }
 }

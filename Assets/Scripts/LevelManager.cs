@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     public EnemyManager[] allEnemies;
     public BlockState[] destroyableBlocks;
     public ItemPickUp[] allTreeItems;
+    public Teleport[] allTeleports;
     public Transform spawnPos;
 
 
@@ -45,6 +46,7 @@ public class LevelManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         allEnemies = GetComponentsInChildren<EnemyManager>();
         allTreeItems = GetComponentsInChildren<ItemPickUp>();
+        allTeleports = GetComponentsInChildren<Teleport>();
 
         totalItemsOnLevel = allTreeItems.Length;
     }
