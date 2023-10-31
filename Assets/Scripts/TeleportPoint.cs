@@ -32,7 +32,11 @@ public class TeleportPoint : MonoBehaviour
     {
         if (other.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement) )
         {
-            if(_target.IsActive) _target.SwitchState();
+            if (_target.IsActive) 
+            {
+                _target.SwitchState();
+                SwitchState();
+            } 
             if(!IsActive) SwitchState();
         }
     }
