@@ -24,7 +24,7 @@ public class Teleport : MonoBehaviour
     {
         teleportTargetA.SetTargetPoint(teleportTargetB);
         teleportTargetB.SetTargetPoint(teleportTargetA);
-        teleportTargetA.SetState(false);
+        teleportTargetA.SetState(true);
         teleportTargetB.SetState(true);
         teleportTargetA.SetAudio(_teleportSound);
         teleportTargetB.SetAudio(_teleportSound);
