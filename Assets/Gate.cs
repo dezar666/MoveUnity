@@ -24,7 +24,7 @@ public class Gate : MonoBehaviour
     public void OpenGate()
     {
         PlayerAudioManager.instance.SoundOnCompleatingLevel();
-        _sequence.Append(_gateWall.transform.DOMoveY(-1f, 2f))
+        _sequence.Append(_gateWall.transform.DOMoveY(-1f, 1f))
             .OnComplete(TurnOfKey);
         
     }

@@ -377,7 +377,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
             if(levelManager.level != 1)
             {
                 other.GetComponentInChildren<WallBuilder>().buildWall = true;
-                PlayerAudioManager.SoundOnCompleatingLevel();
+                //PlayerAudioManager.SoundOnCompleatingLevel();
                 levelManager.levelIsReached = true;
                 currentStep = -1;
                 Debug.Log("build wall");

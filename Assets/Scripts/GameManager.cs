@@ -176,6 +176,8 @@ public class GameManager : MonoBehaviour, IDatePersistence
         _mixer.SetFloat(natureParam, _natureValue);
         _mixer.SetFloat(effectsParam, _effectsValue);
         _mixer.SetFloat(itemsParam, _effectsValue + 30);
+        AdmobAdsScript.instance.LoadBannerAd();
+        AdmobAdsScript.instance.LoadInterstitialAd();
     }
 
     public void SetSliderValues()

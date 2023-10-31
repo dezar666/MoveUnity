@@ -27,6 +27,7 @@ public class LastLevel : MonoBehaviour
             else
             {
                 _levelManager.OnLevelCompleated(_nextChapterLevel,_nextChapterSpawnPos,_nextChapter);
+                AdmobAdsScript.instance.ShowInterstitialAd();
                 UnityEngine.SceneManagement.SceneManager.LoadScene(_nextChapterIndex);
             }
         }
