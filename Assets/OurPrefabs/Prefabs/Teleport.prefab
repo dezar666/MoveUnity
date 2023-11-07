@@ -49,7 +49,7 @@ MonoBehaviour:
   _mainColor: {r: 0.8679245, g: 0.10234957, b: 0.10234957, a: 0}
   _mainColorAlpha: 0.7
   _teleportSound: {fileID: 8300000, guid: 6d6b158299c4ff543841c3e478a4321b, type: 3}
-  teleportTargetA: {fileID: 5152943221949218453}
+  teleportTargetA: {fileID: 5930286080913377026}
   teleportTargetB: {fileID: 5930286080553332731}
 --- !u!1001 &7042215251470206391
 PrefabInstance:
@@ -218,11 +218,18 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4375934034114845365, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+    - {fileID: 2753977537526922018, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
---- !u!114 &5152943221949218453 stripped
+--- !u!4 &5493344470603041989 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3280519133390621042, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+  m_PrefabInstance: {fileID: 7042215251470206391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5930286080913377026 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2753977537526922018, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3744288652469027509, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
   m_PrefabInstance: {fileID: 7042215251470206391}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -231,11 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796739703b77426449b83d8777a4783a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &5493344470603041989 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3280519133390621042, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
-  m_PrefabInstance: {fileID: 7042215251470206391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7042215251829484878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,7 +401,9 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4375934034114845365, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+    - {fileID: 2753977537526922018, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
 --- !u!4 &5493344469102928956 stripped
 Transform:

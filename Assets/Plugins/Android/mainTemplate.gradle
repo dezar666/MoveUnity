@@ -42,6 +42,10 @@ android {
       exclude ('/lib/x86_64/*' + '*')
   }
 }
+repositories {
+jcenter()
+google()
+}
 // Android Resolver Exclusions End
 android {
     compileSdkVersion **APIVERSION**

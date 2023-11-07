@@ -7,7 +7,6 @@ public class LevelMessage : MonoBehaviour
 {
     [SerializeField] private LevelCompleated levelCompleated;
 
-
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
