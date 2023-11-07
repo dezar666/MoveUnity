@@ -8,6 +8,8 @@ public class Teleport : MonoBehaviour
     [SerializeField] private float _mainColorAlpha = 0.7f;
     [SerializeField] private AudioClip _teleportSound;
 
+    
+
     public TeleportPoint teleportTargetA; 
     public TeleportPoint teleportTargetB;
 

@@ -51,6 +51,8 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     public int currentStep = 0;
 
+    public int teleportsCount = 1;
+
     [field: SerializeField] public int TeleportFlag { get; private set; }
 
     float duration = 5;
@@ -59,6 +61,7 @@ public class CharacterMovement : MonoBehaviour, IDatePersistence
 
     private void Awake()
     {
+        teleportsCount = 1;
         _swipeInput = swipeInput;
 #if UNITY_ANDROID && !UNITY_EDITOR
         QualitySettings.vSyncCount = 0;

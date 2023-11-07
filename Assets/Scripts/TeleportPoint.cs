@@ -18,26 +18,34 @@ public class TeleportPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter trigger");
-        if (other.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement) && IsActive)
+        if (other.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement) 
+            && IsActive && characterMovement.teleportsCount % 2 != 0)
         {
+            IsActive = true;
             characterMovement.StopMovement();
             characterMovement.transform.position = _target.transform.position;
+            StartCoroutine(ResetTeleportFlag());
             Handheld.Vibrate();
             Debug.Log("vibrate");
             _source.Play();
+            characterMovement.teleportsCount++;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement) )
+        if (other.TryGetComponent<CharacterMovement>(out CharacterMovement characterMovement))
         {
-            if (_target.IsActive) 
+            if (_target.IsActive)
             {
                 _target.SwitchState();
                 SwitchState();
-            } 
-            if(!IsActive) SwitchState();
+            }
+            if (!IsActive) SwitchState();
+            if (characterMovement.teleportsCount == 2)
+            {
+                characterMovement.teleportsCount = 1;
+            }
         }
     }
 
@@ -59,5 +67,16 @@ public class TeleportPoint : MonoBehaviour
     public void SetAudio(AudioClip clip)
     {
         _source.clip = clip;
+    }
+
+    private IEnumerator ResetTeleportFlag()
+    {
+        
+
+        // ∆дем некоторое врем€, чтобы избежать зацикливани€ телепортации
+        yield return new WaitForSeconds(1f);
+
+        // —брасываем флаг телепортации
+        IsActive = false;
     }
 }
