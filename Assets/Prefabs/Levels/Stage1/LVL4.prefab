@@ -658,6 +658,7 @@ MonoBehaviour:
   allEnemies: []
   destroyableBlocks: []
   allTreeItems: []
+  allTeleports: []
   spawnPos: {fileID: 3848734941683268941}
   level: 4
   stepsOnLevel: 0
@@ -670,6 +671,7 @@ MonoBehaviour:
   levelCompleated: 0
   levelIsReached: 0
   isLastLevel: 0
+  isGateOpened: 0
 --- !u!1 &3035855058944310677
 GameObject:
   m_ObjectHideFlags: 0

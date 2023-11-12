@@ -590,6 +590,7 @@ MonoBehaviour:
   allEnemies: []
   destroyableBlocks: []
   allTreeItems: []
+  allTeleports: []
   spawnPos: {fileID: 4189697138275576135}
   level: 16
   stepsOnLevel: 0
@@ -15472,6 +15473,30 @@ PrefabInstance:
     - target: {fileID: 1735899639063755372, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133824197515808414, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
+      propertyPath: _nextChapter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133824197515808414, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
+      propertyPath: _levelManager
+      value: 
+      objectReference: {fileID: 28928516458117756}
+    - target: {fileID: 3133824197515808414, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
+      propertyPath: _nextChapterIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133824197515808414, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
+      propertyPath: _nextChapterLevel
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133824197515808414, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
+      propertyPath: _nextChapterSpawnPos.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133824197515808414, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
+      propertyPath: _nextChapterSpawnPos.y
+      value: 1.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e00fa9aa7735db4ca94ab091934b496, type: 3}
