@@ -42,13 +42,13 @@ public class AdmobAdsScript : MonoBehaviour
 
     private void Start()
     {
-        MobileAds.RaiseAdEventsOnUnityMainThread = true;
-        MobileAds.Initialize(initStatus => {
+        //MobileAds.RaiseAdEventsOnUnityMainThread = true;
+        //MobileAds.Initialize(initStatus => {
 
-            print("Ads Initialised !!");
-            LoadBannerAd();
+        //    print("Ads Initialised !!");
+        //    //LoadBannerAd();
 
-        });      
+        //});      
     }
 
     #region Banner
