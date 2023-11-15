@@ -75,11 +75,11 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         SetValues(); 
     }
 
-    public void ChangeSpawnPointAndLoadLevel(string sceneToLoad)
+    public void ChangeSpawnPointAndLoadLevel(int sceneToLoad)
     {
         persictenceManager.SaveGame();
         //persictenceManager.LoadGame();
-        FadedSceneLoader.instance.LoadScene(sceneToLoad);
+        mainMenu.Load(sceneToLoad);
     }
 
     public void SetNewLevel(Vector3 pos, int lvl)
@@ -87,9 +87,9 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         spawnPos = pos;
         level= lvl;
         if (level < 17)
-            StartCoroutine(WaitSomeTime("chapter_1"));
+            StartCoroutine(WaitSomeTime(1));
         else
-            StartCoroutine(WaitSomeTime("chapter_2_"));
+            StartCoroutine(WaitSomeTime(2));
     }
 
     private void SetValues()
@@ -123,7 +123,7 @@ public class LevelLoader : MonoBehaviour, IDatePersistence
         }
     }
 
-    public IEnumerator WaitSomeTime(string sceneToLoad)
+    public IEnumerator WaitSomeTime(int sceneToLoad)
     {
         
         yield return new WaitForSecondsRealtime(0.2f);
