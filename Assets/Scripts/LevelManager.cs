@@ -56,8 +56,7 @@ public class LevelManager : MonoBehaviour
         restarts = 0;
         CharacterMovement character = FindObjectOfType(typeof(CharacterMovement)) as CharacterMovement;
         if (character.levelManager.level == level)
-        {    
-            Debug.Log($"{level} started");
+        {
             LevelStart(level);
         }
     }
@@ -107,7 +106,7 @@ public class LevelManager : MonoBehaviour
         AppMetrica.Instance.SendEventsBuffer();
     }
 
-    public void LevelEnd(int levelNumber,int steps, int deaths,int restarts)
+    public void LevelEnd(int levelNumber, int steps, int deaths, int restarts)
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>()
         {
@@ -134,17 +133,24 @@ public class LevelManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "chapter_1")
             {
-                gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;                
+                gameManager.prevSpawnPos = gameManager.levels[level - 1].spawnPos.position;
             }
             else
             {
                 gameManager.prevSpawnPos = gameManager.levels[level - 16].spawnPos.position;
             }
-            FindObjectOfType<LoadPrevLevel>().GetComponentInChildren<Button>().interactable = true;
+            var loadPrevLevel = FindObjectOfType<LoadPrevLevel>();
+            if (loadPrevLevel != null)
+                loadPrevLevel.GetComponentInChildren<Button>().interactable = true;
 
         }
 
         FindObjectOfType<DataPersictenceManager>().SaveGame();
+
+        if (level % 5 == 0)
+        {
+            IronSourceADV.CallInterstitialAds();
+        }
     }
 
     private void ShakeGrass()
