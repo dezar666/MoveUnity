@@ -489,11 +489,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineMaterial: {fileID: 2100000, guid: ec2b0036e6e00234ebfbc2f594b4e2a6, type: 2}
   _lineColor: {r: 0.6981132, g: 0.21404415, b: 0.21404415, a: 1}
-  _points:
-  - {fileID: 1771948831654241732}
-  - {fileID: 6217985119673304797}
-  - {fileID: 7818134035854159503}
-  - {fileID: 1078141136}
 --- !u!1001 &1077482885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -689,7 +684,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -61,10 +61,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    //private void OnApplicationPause(bool pauseStatus)
-    //{
-    //    Service.OnApplicationPause(pauseStatus);
-    //}
+
 
     void Update()
     {

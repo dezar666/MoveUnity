@@ -14,6 +14,10 @@ public class IronSourceADV : MonoBehaviour
         ADVService = new IronSourceService.ServiceProvider(autoLoadInterstitial: true).AddEventsListeners(onInterstitialFailed: InterAdsLoadFailed, onInterstitialClosed: InterAdsLoad);
     }
 
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        ADVService.OnApplicationPause(pauseStatus);
+    }
 
     private static int attempt = 0;
     private void InterAdsLoadFailed()
