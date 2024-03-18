@@ -150,6 +150,7 @@ public class LevelManager : MonoBehaviour
 
         if (level % 5 == 0)
         {
+            Debug.Log("_______Ads");
             IronSourceADV.CallInterstitialAds();
         }
     }
